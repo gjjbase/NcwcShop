@@ -1,0 +1,206 @@
+package com.ncwc.shop.model.shopcart;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.text.Html;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Space;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.model.perscenter.MyPlaceManageActivity;
+import com.ncwc.shop.model.perscenter.ShoppingSaleActivity;
+import com.ncwc.shop.util.GetProductsMsgOfDingdan;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by DELL-PC on 2015/10/3.
+ */
+public class ShopcarSendOrder extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ll_shopcar_sendorder)
+	LinearLayout ll_shopcar_sendorder;//产品+备注的列表
+	@Bind(R.id.rl_shopcar_commitorder)
+	RelativeLayout rl_shopcar_commitorder;//购物券
+	@Bind(R.id.tv_srue_msgofreceiving)
+	TextView tv_srue_msgofreceiving;//选择收货信息
+
+	/*结算栏部分*/
+	@Bind(R.id.img_shopcar_allchoose)
+	ImageView img_shopcar_allchoose;
+	@Bind(R.id.tv_allchoose)
+	TextView tv_allchoose;
+	@Bind(R.id.tv_shopcar_sendmsg)
+	TextView tv_shopcar_sendmsg;
+	@Bind(R.id.tv_shopcar_commitpay)
+	TextView tv_shopcar_commitpay;
+	@Bind(R.id.tv_shopcar_allpay)
+	TextView tv_shopcar_allpay;//合计
+
+	private String money = "";//合计数额
+	private List<List<String>> order_content = new ArrayList<List<String>>();//跳转页面需要的参数
+	private String storename_move = "";//记录店铺名称做对比控制
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	@OnClick({R.id.rl_shopcar_commitorder, R.id.tv_srue_msgofreceiving, R.id.tv_shopcar_commitpay})
+	public void widgetClick(View v) {
+		switch (v.getId()) {
+			case R.id.rl_shopcar_commitorder://购物券页面
+				startActivity(new Intent(ShopcarSendOrder.this, ShoppingSaleActivity.class));
+				break;
+			case R.id.tv_srue_msgofreceiving://我的地址
+				startActivity(new Intent(ShopcarSendOrder.this, MyPlaceManageActivity.class));
+				break;
+			case R.id.tv_shopcar_commitpay://结算
+				startActivity(new Intent(ShopcarSendOrder.this, CommitPayActivity.class));
+				break;
+		}
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_shopcar_commitorder;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		//标题栏
+		toolbar_title.setText(R.string.sure_order);
+		toolbar_title.setTextColor(Color.WHITE);
+
+		//部分控件隐藏
+		img_shopcar_allchoose.setVisibility(View.GONE);
+		tv_allchoose.setVisibility(View.GONE);
+		tv_shopcar_sendmsg.setVisibility(View.GONE);
+		tv_shopcar_commitpay.setText(R.string.sure);
+
+		money = getIntent().getStringExtra("money");
+		order_content = (List<List<String>>) getIntent().getSerializableExtra("all");
+
+		tv_shopcar_allpay.setText(Html.fromHtml("合计：<font color='#FF0000'><small>￥</small>" + money + "</font>"));
+
+		//动态添加商品
+		for (int i = 0; i < order_content.size(); i++) {
+			List<String> l_createorder = order_content.get(i);//所有信息中的每一项
+
+			/**
+			 * 店铺名称
+			 */
+			//底色--------------------------------------------------------------move
+			TextView tv_top = new TextView(this);
+			LinearLayout.LayoutParams params_tv_top = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, 10));
+			tv_top.setLayoutParams(params_tv_top);
+			tv_top.setBackgroundResource(R.color.BackColor);
+			ll_shopcar_sendorder.addView(tv_top);
+
+			//上部分隔线--------------------------------------------------------------move
+			ImageView top = new ImageView(this);
+			LinearLayout.LayoutParams p_top = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, (float) 0.2));
+			top.setLayoutParams(p_top);
+			top.setImageResource(R.color.Gray);
+			ll_shopcar_sendorder.addView(top);
+
+			//店铺名称--------------------------------------------------------------move
+			TextView storename = new TextView(this);
+			LinearLayout.LayoutParams p_storename = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			p_storename.leftMargin = GetProductsMsgOfDingdan.dip2px(this, 40);
+			p_storename.topMargin = GetProductsMsgOfDingdan.dip2px(this, 5);
+			storename.setLayoutParams(p_storename);
+			storename.setGravity(Gravity.CENTER);
+			storename.setText(l_createorder.get(5));
+			storename.setTextColor(Color.BLACK);
+			storename.setTextSize(15);
+			ll_shopcar_sendorder.addView(storename);
+
+			//上方店铺名称下的分隔线
+			ImageView top_1 = new ImageView(this);
+			LinearLayout.LayoutParams p_top_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, (float) 0.2));
+			p_top_1.topMargin = GetProductsMsgOfDingdan.dip2px(this, 5);
+			top_1.setLayoutParams(p_top_1);
+			top_1.setImageResource(R.color.Gray);
+			ll_shopcar_sendorder.addView(top_1);
+
+			//商品
+			ll_shopcar_sendorder.addView(GetProductsMsgOfDingdan.getMsg(this, l_createorder.get(3), l_createorder.get(4), l_createorder.get(1), l_createorder.get(2), false, true));
+
+			//空白
+			Space space_1 = new Space(this);
+			LinearLayout.LayoutParams params_space_1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, 7));
+			space_1.setLayoutParams(params_space_1);
+			ll_shopcar_sendorder.addView(space_1);
+
+			//编辑框
+			final EditText editText = new EditText(this);
+			LinearLayout.LayoutParams params_ed = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, 40));
+			params_ed.leftMargin = GetProductsMsgOfDingdan.dip2px(this, 14);
+			params_ed.rightMargin = GetProductsMsgOfDingdan.dip2px(this, 14);
+			editText.setLayoutParams(params_ed);
+			editText.setBackgroundResource(R.drawable.bg_edittext);
+			editText.setHint("\u3000\u3000\u3000\u3000\u3000\u3000\u3000备注信息");
+			editText.setTextColor(Color.BLACK);
+			editText.setHintTextColor(Color.GRAY);
+			editText.setTextSize(18);
+			ll_shopcar_sendorder.addView(editText);
+			editText.setFocusable(false);
+			editText.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					editText.setFocusable(true);
+					editText.setFocusableInTouchMode(true);
+					editText.requestFocus();
+					InputMethodManager inputManager = (InputMethodManager) ShopcarSendOrder.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+					inputManager.showSoftInput(editText, 0);
+				}
+			});
+			//空白
+			Space space = new Space(this);
+			LinearLayout.LayoutParams params_space = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, 10));
+			space.setLayoutParams(params_space);
+			ll_shopcar_sendorder.addView(space);
+			//底色--------------------------------------------------------------move
+			TextView tv = new TextView(this);
+			LinearLayout.LayoutParams params_tv = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, GetProductsMsgOfDingdan.dip2px(this, 10));
+			tv.setLayoutParams(params_tv);
+			tv.setBackgroundResource(R.color.BackColor);
+			ll_shopcar_sendorder.addView(tv);
+			tv.setVisibility(View.GONE);
+			tv.setFocusable(true);
+
+			/**
+			 * 店铺名称系列显示控制
+			 */
+			if (storename_move.equals(l_createorder.get(5))) {
+				tv_top.setVisibility(View.GONE);
+				top.setVisibility(View.GONE);
+				storename.setVisibility(View.GONE);
+				tv.setVisibility(View.VISIBLE);
+			}
+			storename_move = l_createorder.get(5);
+
+		}
+
+	}
+}

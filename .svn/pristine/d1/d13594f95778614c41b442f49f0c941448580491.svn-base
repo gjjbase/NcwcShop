@@ -1,0 +1,42 @@
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.FreeComSpcAdapter;
+import com.ncwc.shop.base.BaseFragment;
+import com.ncwc.shop.widget.AllListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import butterknife.Bind;
+
+/**
+ * 产品详情中活动评价页面
+ * Created by admin on 2015/10/9.
+ */
+public class FreeComdSpeFragment extends BaseFragment {
+    @Bind(R.id.listview)
+    protected AllListView listview;
+    private FreeComSpcAdapter adapter;
+    public void initData() {
+        adapter=new FreeComSpcAdapter(getActivity());
+        try{
+            adapter.setData(new JSONArray());
+        }catch (JSONException e){
+
+        }
+        listview.setAdapter(adapter);
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_freecomspe;
+    }
+}

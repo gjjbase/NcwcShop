@@ -1,0 +1,127 @@
+package com.ncwc.shop.model.homepage;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.AllComAdapter;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * 销量排序页面
+ * Created by admin on 2015/10/10.
+ */
+public class SalesSortFragment extends Fragment implements IOAuthCallBack, PullCallback {
+
+    private PullToLoadView pullToLoadView;
+    private RecyclerView mRecyclerView;
+    private AllComAdapter adapter;
+    private boolean isLoading = false;
+    private boolean isHasLoadedAll = false;
+    private JSONArray addjson;
+    private String gc_id = "";
+    private String search = "";
+    private AsynHttpUtil asynHttpUtil;
+    private int page = 1;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sort, container, false);
+        pullToLoadView = (PullToLoadView) view.findViewById(R.id.pullToLoadView);
+        mRecyclerView = pullToLoadView.getRecyclerView();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        pullToLoadView.isLoadMoreEnabled(true);
+        mRecyclerView.setHasFixedSize(false);
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        pullToLoadView.setPullCallback(this);
+        return view;
+    }
+    public void setGc_id(String gc_id) {
+        this.gc_id = gc_id;
+    }
+    public void setSearch(String search) {
+        this.search = search;
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && pullToLoadView != null) {
+            pullToLoadView.initLoad();
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            gc_id = getArguments().getString("gc_id");
+            search = getArguments().getString("search");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        if (!response.getString("status").equals("1")) return;
+        if (page == 1) addjson = new JSONArray();
+        JSONArray jso = response.getJSONObject("datas").getJSONArray("list");
+        for (int i = 0; i < jso.length(); i++) addjson.put(jso.getJSONObject(i));
+        loadData();
+        if (response.getJSONObject("datas").getString("hasmore").equals("0")) isHasLoadedAll = true;
+        else isHasLoadedAll = false;
+    }
+
+    private void loadData() {
+        isLoading = true;
+        adapter = new AllComAdapter(getActivity(), addjson);
+        mRecyclerView.setAdapter(adapter);
+        isLoading = false;
+        pullToLoadView.setComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        page++;
+        asynHttpUtil.goodList(getActivity(), search, "", gc_id, "", HttpService.TYPE_POSI, "", page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public void onRefresh() {
+        isHasLoadedAll = false;
+        page = 1;
+        asynHttpUtil.goodList(getActivity(), search, "", gc_id, "", HttpService.TYPE_POSI, "", page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @Override
+    public boolean hasLoadedAllItems() {
+        if (isHasLoadedAll)
+            Snackbar.make(((Activity) getView().getContext()).getWindow().getDecorView(), R.string.nomore, Snackbar.LENGTH_SHORT).show();
+        return isHasLoadedAll;
+    }
+}

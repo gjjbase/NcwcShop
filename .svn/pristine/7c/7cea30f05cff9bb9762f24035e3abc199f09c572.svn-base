@@ -1,0 +1,58 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeRunAdapter$ViewHolder$$ViewBinder<T extends com.ncwc.shop.adapter.FreeRunAdapter.ViewHolder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558814, "field 'img_detail' and method 'onClick'");
+    target.img_detail = finder.castView(view, 2131558814, "field 'img_detail'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.onClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558815, "field 'txt_per'");
+    target.txt_per = finder.castView(view, 2131558815, "field 'txt_per'");
+    view = finder.findRequiredView(source, 2131558804, "field 'txt_title'");
+    target.txt_title = finder.castView(view, 2131558804, "field 'txt_title'");
+    view = finder.findRequiredView(source, 2131558598, "field 'txt_penum'");
+    target.txt_penum = finder.castView(view, 2131558598, "field 'txt_penum'");
+    view = finder.findRequiredView(source, 2131558599, "field 'txt_dnum'");
+    target.txt_dnum = finder.castView(view, 2131558599, "field 'txt_dnum'");
+    view = finder.findRequiredView(source, 2131558600, "field 'txt_day'");
+    target.txt_day = finder.castView(view, 2131558600, "field 'txt_day'");
+    view = finder.findRequiredView(source, 2131558601, "field 'txt_hour'");
+    target.txt_hour = finder.castView(view, 2131558601, "field 'txt_hour'");
+    view = finder.findRequiredView(source, 2131558602, "field 'txt_minute'");
+    target.txt_minute = finder.castView(view, 2131558602, "field 'txt_minute'");
+    view = finder.findRequiredView(source, 2131558596, "field 'txt_free' and method 'onClick'");
+    target.txt_free = finder.castView(view, 2131558596, "field 'txt_free'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.onClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.img_detail = null;
+    target.txt_per = null;
+    target.txt_title = null;
+    target.txt_penum = null;
+    target.txt_dnum = null;
+    target.txt_day = null;
+    target.txt_hour = null;
+    target.txt_minute = null;
+    target.txt_free = null;
+  }
+}

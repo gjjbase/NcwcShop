@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="menubottom">
+        <item>商城</item>
+        <item>免费试用</item>
+        <item>购物车</item>
+        <item>我的</item>
+    </string-array>
+    <string-array name="menufree">
+        <item>免费试用</item>
+        <item>即将开启</item>
+    </string-array>
+    <string-array name="menuspac">
+        <item>产品详情</item>
+        <item>产品评论</item>
+    </string-array>
+    <string-array name="allment">
+        <item>价格排序</item>
+        <item>销量排序</item>
+        <item>综合排序</item>
+    </string-array>
+    <string-array name="proment">
+        <item>产品介绍</item>
+        <item>规格参数</item>
+        <item>包装售后</item>
+    </string-array>
+    <string-array name="fins">
+        <item>定错货</item>
+        <item>找到比原订单更低的价格</item>
+        <item>与产品期望不符</item>
+        <item>配备包裹不完好,商品外观污损或破坏</item>
+        <item>与预计发货时间不符</item>
+        <item>配送包裹外包装破损，导致商品破损，或配件缺失</item>
+        <item>商品名称与订单不符</item>
+        <item>商品质量问题</item>
+        <item>受到其他商品</item>
+        <item>商品名称一致，但与商品介绍不符</item>
+        <item>我不想要了</item>
+    </string-array>
+</resources>

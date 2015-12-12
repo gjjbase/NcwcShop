@@ -1,0 +1,269 @@
+package com.ncwc.shop.model.homepage;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.DetailCartAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.base.FragmentTabAdapter;
+import com.ncwc.shop.base.ImageViewPagerAdapter;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.OnScrollListener;
+import com.ncwc.shop.interactor.impl.SwipeBackHelper;
+import com.ncwc.shop.model.common.PackSaleFragment;
+import com.ncwc.shop.model.common.ProductIntrFragment;
+import com.ncwc.shop.model.common.SpecificParFragment;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+import com.ncwc.shop.util.DimenUtils;
+import com.ncwc.shop.util.ScreenUtils;
+import com.ncwc.shop.widget.AllGridView;
+import com.ncwc.shop.widget.RotateDownPageTransformer;
+import com.ncwc.shop.widget.TitleScrollView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * 所有商品倆面的產品詳情
+ * Created by admin on 2015/10/6.
+ */
+public class DetailsCartActivity extends BaseActivity implements ViewPager.OnPageChangeListener, IOAuthCallBack, OnScrollListener, RadioGroup.OnCheckedChangeListener, ViewTreeObserver.OnGlobalLayoutListener {
+    @Bind(R.id.viewpager)
+    ViewPager viewpager;
+    @Bind(R.id.lindot)
+    LinearLayout lindot;
+    @Bind(R.id.grd_botm)
+    protected AllGridView grd_botm;
+    @Bind(R.id.toolbar_title)
+    TextView toolbar_title;
+    @Bind(R.id.good_name)
+    TextView good_name;
+    @Bind(R.id.goods_price)
+    TextView goods_price;
+    @Bind(R.id.oods_marketprice)
+    TextView oods_marketprice;
+    @Bind(R.id.geval_addtime)
+    TextView geval_addtime;
+    @Bind(R.id.evaluate)
+    TextView evaluate;
+    @Bind(R.id.member_name)
+    TextView member_name;
+    @Bind(R.id.tabs_rg)
+    RadioGroup tabs_rg;
+    @Bind(R.id.tabs_rg2)
+    RadioGroup tabs_rg2;
+    @Bind(R.id.scrollView)
+    TitleScrollView scrollView;
+    @Bind(R.id.gad_milb)
+    LinearLayout gad_milb;
+    @Bind(R.id.gad_botm)
+    LinearLayout gad_botm;
+    @Bind(R.id.parent_layout)
+    LinearLayout parent_layout;
+    @Bind(R.id.member_avatar)
+    ImageView member_avatar;
+    private ImageViewPagerAdapter adapter;
+    private DetailCartAdapter gridadapter;
+    boolean isScirolled = false;
+    private List<ImageView> mImageViews = new ArrayList<ImageView>();
+    private List<Fragment> listfragment = new ArrayList<Fragment>(Arrays.asList(new ProductIntrFragment(), new SpecificParFragment(), new PackSaleFragment()));
+    private AsynHttpUtil asynHttpUtil;
+    private AsyncLoadingPicture asyncLoadingPicture;
+    private String goods_id;
+    private String goods_spec;
+    private FragmentTabAdapter tabAdapter;
+
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @OnClick({R.id.txt_type, R.id.txt_favoriters, R.id.btn})
+    public void widgetClick(View v) {
+        switch (v.getId()) {
+            case R.id.txt_type:
+                DetailsSelectDialog detailsSelectDialog = new DetailsSelectDialog(DetailsCartActivity.this);
+                detailsSelectDialog.getWindow().setGravity(Gravity.BOTTOM);
+                detailsSelectDialog.show();
+                detailsSelectDialog.getWindow().setLayout(ScreenUtils.getScreenWidth(getApplicationContext()), WindowManager.LayoutParams.WRAP_CONTENT);
+                detailsSelectDialog.setCanceledOnTouchOutside(true);
+                break;
+            case R.id.txt_favoriters:
+                asynHttpUtil.favorites(DetailsCartActivity.this, goods_id);
+                asynHttpUtil.setIoAuthCallBack(this);
+                break;
+            case R.id.btn:
+                Bundle bundle = new Bundle();
+                bundle.putString("goods_id", goods_id);
+                readyGo(EvaluateActivity.class, bundle);
+                break;
+        }
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(true).setSwipeEdgePercent(0.5f).setSwipeSensitivity(0.5f).setClosePercent(0.5f).setSwipeRelateEnable(true).setSwipeSensitivity(1);
+        return R.layout.activity_detailscart;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    @Override
+    protected void initData() {
+        toolbar_title.setText(R.string.comdetal);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        goods_id = getIntent().getStringExtra("goods_id");
+        goods_spec = getIntent().getStringExtra("goods_spec");
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        asynHttpUtil.goodinfo(DetailsCartActivity.this, goods_id, goods_spec);
+        asyncLoadingPicture = AsyncLoadingPicture.getInstance(getApplicationContext());
+        tabAdapter = new FragmentTabAdapter(this, listfragment, R.id.tab_content, tabs_rg);
+        viewpager.setPageTransformer(true, new RotateDownPageTransformer());
+        gridadapter = new DetailCartAdapter(getApplicationContext());
+        grd_botm.setAdapter(gridadapter);
+        viewpager.addOnPageChangeListener(this);
+        scrollView.setOnScrollListener(this);
+        asynHttpUtil.setIoAuthCallBack(this);
+        parent_layout.getViewTreeObserver().addOnGlobalLayoutListener(this);
+        tabs_rg2.setOnCheckedChangeListener(this);
+    }
+
+    private void setimageAtt(ImageView imageView) {
+        imageView.setPadding(DimenUtils.dip2px(getApplicationContext(), 10), DimenUtils.dip2px(getApplicationContext(), 10), DimenUtils.dip2px(getApplicationContext(), 10), DimenUtils.dip2px(getApplicationContext(), 10));
+        imageView.setMinimumHeight(DimenUtils.dip2px(getApplicationContext(), 30));
+        imageView.setMinimumWidth(DimenUtils.dip2px(getApplicationContext(), 30));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        for (int i = 0; i < lindot.getChildCount(); i++)
+            ((ImageView) lindot.getChildAt(i)).setImageResource(R.mipmap.lunbo);
+        ((ImageView) lindot.getChildAt(position)).setImageResource(R.mipmap.lunbodangqian);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        switch (state) {
+            case 1:
+                isScirolled = false;
+                break;
+            case 2:
+                isScirolled = true;
+                break;
+            case 0:
+                if (viewpager.getCurrentItem() == viewpager.getAdapter().getCount() - 1 && !isScirolled)
+                    viewpager.setCurrentItem(0);
+                else if (viewpager.getCurrentItem() == 0 && !isScirolled)
+                    viewpager.setCurrentItem(viewpager.getAdapter().getCount() - 1);
+                break;
+        }
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        if (!response.getString("status").equals("1")) {
+            showToast(response.getString("msg"));
+            return;
+        }
+        if (type.equals(HttpService.TYPE_GOODINFO)) {
+            JSONObject jsonObject = response.getJSONObject("datas");
+            String goods_pricestr = jsonObject.getString("goods_price");
+            String goods_marketprice = jsonObject.getString("goods_marketprice");
+            good_name.setText(jsonObject.getString("goods_name"));
+            goods_price.setText(goods_pricestr);
+            oods_marketprice.setText(goods_marketprice + "元");
+            JSONObject jsonObject1 = jsonObject.getJSONArray("evaluate").getJSONObject(0);
+            geval_addtime.setText(jsonObject1.getString("geval_addtime"));
+            evaluate.setText(jsonObject1.getString("geval_content"));
+            member_name.setText(jsonObject1.getString("member_name"));
+            asyncLoadingPicture.LoadPicture(jsonObject1.getString("member_avatar"), member_avatar);
+            try {
+                /**评论图片列表*/
+                JSONArray jsonArray1 = jsonObject1.optJSONArray("img");
+                gridadapter.setData(jsonArray1);
+            } catch (Exception e) {
+
+            }
+            /**图片列表*/
+            JSONArray imgjson = jsonObject.getJSONArray("img_list");
+            List<String> list = new ArrayList<String>();
+            for (int i = 0; i < imgjson.length(); i++) list.add(imgjson.optString(i));
+            for (String imgId : list) {
+                ImageView imageView = new ImageView(getApplicationContext());
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                asyncLoadingPicture.LoadPicture(imgId, imageView);
+                mImageViews.add(imageView);
+                ImageView imageView1 = new ImageView(getApplicationContext());
+                setimageAtt(imageView1);
+                imageView1.setImageResource(R.mipmap.lunbo);
+                lindot.addView(imageView1);
+            }
+            ((ImageView) lindot.getChildAt(0)).setImageResource(R.mipmap.lunbodangqian);
+            adapter = new ImageViewPagerAdapter(mImageViews);
+            viewpager.setAdapter(adapter);
+        } else if (type.equals(HttpService.TYPE_FAVORITES)) {
+            showToast(response.getString("msg"));
+        }
+
+    }
+
+    @Override
+    public void onScroll(int scrollY) {
+        int layoumilb = Math.max(scrollY, gad_milb.getTop());
+        gad_botm.layout(0, layoumilb, gad_botm.getWidth(), layoumilb + gad_botm.getHeight());
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (group.getId()) {
+            case R.id.tabs_rg2:
+                for (int i = 0; i < tabs_rg2.getChildCount(); i++) {
+                    if (tabs_rg2.getChildAt(i).getId() == checkedId) tabAdapter.showTab(i);
+                    break;
+                }
+        }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        onScroll(scrollView.getScrollY());
+    }
+}

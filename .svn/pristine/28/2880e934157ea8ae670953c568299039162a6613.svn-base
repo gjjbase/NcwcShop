@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--我的浏览或者收藏内容-->
+    <com.ncwc.shop.widget.PullToLoadView
+        android:id="@+id/pullToLoadView_liulan_shoucang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_toolbar"/>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_my_liulan_shoucang.xml -->

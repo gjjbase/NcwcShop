@@ -1,0 +1,33 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class LiulanAndShoucangAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.LiulanAndShoucangAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558829, "field 'img_liulan_shoucang_icon'");
+    target.img_liulan_shoucang_icon = finder.castView(view, 2131558829, "field 'img_liulan_shoucang_icon'");
+    view = finder.findRequiredView(source, 2131558830, "field 'tv_liulan_shoucang_productname'");
+    target.tv_liulan_shoucang_productname = finder.castView(view, 2131558830, "field 'tv_liulan_shoucang_productname'");
+    view = finder.findRequiredView(source, 2131558831, "field 'tv_liulan_shoucang_price'");
+    target.tv_liulan_shoucang_price = finder.castView(view, 2131558831, "field 'tv_liulan_shoucang_price'");
+    view = finder.findRequiredView(source, 2131558832, "field 'tv_liulan_shoucang_youhuichengdu'");
+    target.tv_liulan_shoucang_youhuichengdu = finder.castView(view, 2131558832, "field 'tv_liulan_shoucang_youhuichengdu'");
+    view = finder.findRequiredView(source, 2131558833, "field 'tv_liulan_shoucang_num_s'");
+    target.tv_liulan_shoucang_num_s = finder.castView(view, 2131558833, "field 'tv_liulan_shoucang_num_s'");
+    view = finder.findRequiredView(source, 2131558834, "field 'tv_add_to_shopcar'");
+    target.tv_add_to_shopcar = finder.castView(view, 2131558834, "field 'tv_add_to_shopcar'");
+  }
+
+  @Override public void unbind(T target) {
+    target.img_liulan_shoucang_icon = null;
+    target.tv_liulan_shoucang_productname = null;
+    target.tv_liulan_shoucang_price = null;
+    target.tv_liulan_shoucang_youhuichengdu = null;
+    target.tv_liulan_shoucang_num_s = null;
+    target.tv_add_to_shopcar = null;
+  }
+}

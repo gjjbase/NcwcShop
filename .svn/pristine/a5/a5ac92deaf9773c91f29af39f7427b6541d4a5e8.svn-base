@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--反馈内容-->
+    <EditText
+        android:id="@+id/ed_fankui_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_edittext"
+        android:cursorVisible="false"
+        android:gravity="center"
+        android:hint="@string/fankui_content"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/button_material_light"
+        android:textSize="16sp"/>
+
+    <!--联系方式-->
+    <EditText
+        android:id="@+id/ed_fankui_lianxifangshi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ed_fankui_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_edittext"
+        android:cursorVisible="false"
+        android:hint="@string/write_lianxifangshi"
+        android:textColor="@color/Black"
+        android:textColorHint="@color/button_material_light"
+        android:textSize="16sp"/>
+
+    <!--提交-->
+    <TextView
+        android:id="@+id/tv_fankui_send_commit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ed_fankui_lianxifangshi"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_textview"
+        android:gravity="center"
+        android:text="@string/send_commit"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_fankuiedit.xml -->

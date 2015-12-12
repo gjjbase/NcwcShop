@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/topimg"
+        android:src="@mipmap/moren"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="@color/Black"
+        android:alpha="0.3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBottom="@id/topimg"
+        android:layout_height="wrap_content"
+         >
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="测试"/>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/img_gone"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/sanjiao"
+        android:layout_alignBottom="@id/topimg"/>
+</RelativeLayout>
+<!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/table_row_item.xml -->

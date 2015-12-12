@@ -1,0 +1,386 @@
+package com.ncwc.shop.model.homepage;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.ExpandGridAdapter;
+import com.ncwc.shop.adapter.FineComAdapter;
+import com.ncwc.shop.base.BaseFragment;
+import com.ncwc.shop.base.ImageViewPagerAdapter;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.OnBorderListener;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+import com.ncwc.shop.util.DimenUtils;
+import com.ncwc.shop.widget.AllListView;
+import com.ncwc.shop.widget.DamRebScrollView;
+import com.ncwc.shop.widget.RotateDownPageTransformer;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+
+
+/**
+ * 商城首页
+ * Created by admin on 2015/9/2.
+ */
+public class HomePageFragment extends BaseFragment implements ViewPager.OnPageChangeListener, IOAuthCallBack, OnBorderListener {
+    @Bind(R.id.fading_bar)
+    protected ViewPager fadingBar;
+    @Bind(R.id.toolbar_title)
+    protected TextView toolbar_title;
+    @Bind(R.id.lindot)
+    protected LinearLayout lindot;
+    @Bind(R.id.listview_type)
+    protected AllListView listview_type;
+    @Bind(R.id.job_name_table)
+    protected TableLayout tableLayout;
+    @Bind(R.id.root)
+    protected DamRebScrollView root;
+    @Bind(R.id.progressBar)
+    protected ProgressBar progressBar;
+    private List<ImageView> mImageViews = new ArrayList<ImageView>();
+    private ImageViewPagerAdapter adapter;
+    private FineComAdapter fineComAdapter;
+    private Runnable runable;
+    private static Handler handler;
+    private static final int TIME = 4000;
+    private final int ROW_NUM = 4;
+    private Integer duration = 200;
+    private int page = 1;
+    private List<ImageView> listimg = new ArrayList<ImageView>();
+    private List<View> listview = new ArrayList<View>();
+    private List<ImageView> doulist = new ArrayList<ImageView>();
+    private ImageView imageView1;
+    boolean isScirolled = false;
+    int location = 0;
+    private AsynHttpUtil asynHttpUtil;
+    private AsyncLoadingPicture asyncLoadingPicture;
+    private JSONArray allJSON;
+    private boolean isbotm = false;
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_homepage;
+    }
+
+    public void initData() {
+        handler = new Handler();
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        asyncLoadingPicture = AsyncLoadingPicture.getInstance(getActivity());
+        allJSON = new JSONArray();
+        tableLayout.setStretchAllColumns(true);
+        toolbar_title.setText(R.string.shopcomm);
+        asynHttpUtil.rotateImg(getActivity());
+        asynHttpUtil.menuList(getActivity());
+        asynHttpUtil.prom(getActivity(), page);
+        asynHttpUtil.setIoAuthCallBack(this);
+        fadingBar.addOnPageChangeListener(this);
+        root.setOnBorderListener(this);
+    }
+
+    public void widgetClick(View v) {
+
+    }
+
+    private void setimageAtt(ImageView imageView) {
+        imageView.setPadding(DimenUtils.dip2px(getActivity(), 10), DimenUtils.dip2px(getActivity(), 10), DimenUtils.dip2px(getActivity(), 10), DimenUtils.dip2px(getActivity(), 10));
+        imageView.setMinimumHeight(DimenUtils.dip2px(getActivity(), 30));
+        imageView.setMinimumWidth(DimenUtils.dip2px(getActivity(), 30));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+    }
+
+    /**
+     * 自动切换动画
+     */
+    protected synchronized void initRunnable() {
+        runable = new Runnable() {
+
+            @Override
+            public void run() {
+                int nowIndex = fadingBar.getCurrentItem();
+                int count = fadingBar.getAdapter().getCount();
+                // 如果下一张的索引大于最后一张，则切换到第一张
+                if (nowIndex + 1 >= count)
+                    fadingBar.setCurrentItem(0);
+                else
+                    fadingBar.setCurrentItem(nowIndex + 1);
+                handler.postDelayed(runable, TIME);
+            }
+        };
+        handler.postDelayed(runable, TIME);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (handler != null)
+            handler.removeCallbacks(runable);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        for (int i = 0; i < doulist.size(); i++)
+            doulist.get(i).setImageResource(R.mipmap.lunbo);
+        doulist.get(position).setImageResource(R.mipmap.lunbodangqian);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        switch (state) {
+            case 1:
+                isScirolled = false;
+                break;
+            case 2:
+                isScirolled = true;
+                break;
+            case 0:
+                if (fadingBar.getCurrentItem() == fadingBar.getAdapter().getCount() - 1 && !isScirolled) {
+                    fadingBar.setCurrentItem(0);
+                } else if (fadingBar.getCurrentItem() == 0 && !isScirolled) {
+                    fadingBar.setCurrentItem(fadingBar.getAdapter().getCount() - 1);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        if (!response.getString("status").equals("1"))
+            return;
+        if (type.equals(HttpService.TYPE_CAROUAL)) {
+            JSONArray jsonArray = response.getJSONObject("datas").getJSONArray("list");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                ImageView imageView = new ImageView(getActivity());
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                asyncLoadingPicture.LoadPicture(jsonArray.getJSONObject(i).getString("url"), imageView);
+                mImageViews.add(imageView);
+                imageView1 = new ImageView(getActivity());
+                setimageAtt(imageView1);
+                imageView1.setImageResource(R.mipmap.lunbo);
+                lindot.addView(imageView1);
+                doulist.add(imageView1);
+            }
+            fadingBar.setPageTransformer(true, new RotateDownPageTransformer());
+            adapter = new ImageViewPagerAdapter(mImageViews);
+            fadingBar.setAdapter(adapter);
+            doulist.get(0).setImageResource(R.mipmap.lunbodangqian);
+            initRunnable();
+        } else if (type.equals(HttpService.TYPE_COMMENULIST)) {
+            JSONArray jsonArray = new JSONArray();
+            for (int i = 0; i < 7; i++)
+                jsonArray.put(response.getJSONObject("datas").getJSONArray("list").getJSONObject(i));
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("gc_id", "7");
+            jsonObject.put("gc_name", "全部分类");
+            jsonObject.put("gc_parent_id", "0");
+            jsonObject.put("img", "");
+            jsonArray.put(jsonObject);
+            for (int n = 0; n < (int) Math.ceil(((double) jsonArray.length()) / ROW_NUM); n++) {
+                TableRow row = new TableRow(getActivity());
+                for (int m = 0; m < ROW_NUM; m++) {
+                    RelativeLayout rele = (RelativeLayout) LayoutInflater.from(getActivity()).inflate(R.layout.table_row_item, null);
+                    ImageView img_gone = (ImageView) rele.findViewById(R.id.img_gone);
+                    ImageView topimg = (ImageView) rele.findViewById(R.id.topimg);
+                    TextView txt_title = (TextView) rele.findViewById(R.id.txt_title);
+                    txt_title.setText(jsonArray.getJSONObject(location).getString("gc_name"));
+                    asyncLoadingPicture.LoadPicture(jsonArray.getJSONObject(location).getString("img"), topimg);
+                    rele.setTag(location + "");
+                    rele.setOnClickListener(new OnCliclickItem(jsonArray, location, n, tableLayout, rele));
+                    listimg.add(img_gone);
+                    row.addView(rele);
+                    location++;
+                }
+                View view = LayoutInflater.from(getActivity()).inflate(R.layout.expand_item, null);
+                view.setTag(n);
+                listview.add(view);
+                view.setVisibility(View.GONE);
+                tableLayout.addView(row);
+                tableLayout.addView(view);
+            }
+        } else if (type.equals(HttpService.TYPE_PROM)) {
+            JSONArray jsonArray = response.getJSONObject("datas").getJSONArray("list");
+            if (page == 1)
+                allJSON = new JSONArray();
+            for (int i = 0; i < jsonArray.length(); i++)
+                allJSON.put(jsonArray.get(i));
+            fineComAdapter = new FineComAdapter(getActivity());
+            listview_type.setAdapter(fineComAdapter);
+            try {
+                fineComAdapter.setData(allJSON);
+                progressBar.setVisibility(View.GONE);
+            } catch (JSONException e) {
+
+            }
+            if (response.getJSONObject("datas").getString("hasmore").equals("0")) {
+                isbotm = true;
+            } else {
+                isbotm = false;
+            }
+        }
+    }
+
+    @Override
+    public void onBottom() {
+        if (isbotm) {
+            showToast(getString(R.string.nomore));
+            return;
+        }
+        page++;
+        progressBar.setVisibility(View.VISIBLE);
+        asynHttpUtil.prom(getActivity(), page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public void onTop() {
+        showToast("顶部");
+    }
+
+    private class OnCliclickItem implements View.OnClickListener, AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            //gc_id data.getJSONObject(location).getString("gc_id");
+            Bundle bundle = new Bundle();
+            try {
+                bundle.putString("gc_id", jsonArray.getJSONObject(position).getString("gc_id"));
+                readyGo(AllCommitActivity.class, bundle);
+            } catch (JSONException e) {
+
+            }
+        }
+
+        private int position;
+        private int tag;
+        private RelativeLayout view;
+        private TableLayout tableLayout;
+        private String clickPosition = "";
+        private RelativeLayout rel;
+        private JSONArray data;
+        private ImageView img_gone;
+        JSONArray jsonArray;
+
+        public OnCliclickItem(JSONArray data, int position, int tag, TableLayout table, RelativeLayout view) {
+            this.position = position;
+            this.tag = tag;
+            this.view = view;
+            this.tableLayout = table;
+            this.data = data;
+            img_gone = (ImageView) view.findViewById(R.id.img_gone);
+        }
+
+        private void expand(final View v, int location) {
+            GridView grd_expand = (GridView) v.findViewById(R.id.grd_expand);
+            try {
+                jsonArray = data.getJSONObject(location).getJSONArray("list");
+                ExpandGridAdapter ea = new ExpandGridAdapter(getActivity());
+                grd_expand.setAdapter(ea);
+                ea.setData(jsonArray);
+                grd_expand.setOnItemClickListener(this);
+            } catch (JSONException e) {
+
+            }
+            v.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            final int targetHeight = v.getMeasuredHeight();
+            v.getLayoutParams().height = 0;
+            for (View view : listview)
+                view.setVisibility(View.GONE);
+            v.setVisibility(View.VISIBLE);
+            img_gone.setVisibility(View.VISIBLE);
+            Animation animation = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime,
+                                                   Transformation t) {
+                    v.getLayoutParams().height = (interpolatedTime == 1) ? RelativeLayout.LayoutParams.WRAP_CONTENT
+                            : (int) (targetHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+
+                @Override
+                public boolean willChangeBounds() {
+                    return true;
+                }
+            };
+            animation.setDuration(duration);
+            v.startAnimation(animation);
+        }
+
+        public void onClick(View v) {
+            if (position == 7) {
+                readyGo(CategoryActivity.class);
+                return;
+            }
+            String tempTag = (String) v.getTag();
+            for (ImageView gonimg : listimg)
+                gonimg.setVisibility(View.GONE);
+            rel = (RelativeLayout) tableLayout.findViewWithTag(tag);
+            if (rel.getVisibility() == View.VISIBLE) {
+                collapse(rel);
+                view.postInvalidate();
+            } else {
+                if (tempTag.equals(clickPosition)) {
+                    expand(rel, position);
+                }
+                view.postInvalidate();
+            }
+            if (!tempTag.equals(clickPosition)) {
+                expand(rel, position);
+                view.postInvalidate();
+            }
+            clickPosition = tempTag;
+        }
+
+        private void collapse(final View v) {
+            final int initialHeight = v.getMeasuredHeight();
+            Animation animation = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime,
+                                                   Transformation t) {
+                    if (interpolatedTime == 1) {
+                        v.setVisibility(View.GONE);
+                        img_gone.setVisibility(View.GONE);
+                    } else {
+                        v.getLayoutParams().height = initialHeight
+                                - (int) (initialHeight * interpolatedTime);
+                        v.requestLayout();
+                    }
+                }
+
+                @Override
+                public boolean willChangeBounds() {
+                    return true;
+                }
+            };
+
+            animation.setDuration(duration);
+            v.startAnimation(animation);
+        }
+    }
+}

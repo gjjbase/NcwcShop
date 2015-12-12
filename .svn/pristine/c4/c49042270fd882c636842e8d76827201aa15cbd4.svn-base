@@ -1,0 +1,154 @@
+package com.ncwc.shop.model.homepage;
+
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.ClassFragPageAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.interactor.impl.SwipeBackHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * 所有商品页面
+ * Created by admin on 2015/10/5.
+ */
+public class AllCommitActivity extends BaseActivity implements EditText.OnEditorActionListener {
+    @Bind(R.id.tab_layout)
+    protected TabLayout tab_layout;
+    @Bind(R.id.viewpager)
+    protected ViewPager viewpager;
+    @Bind(R.id.txt_type)
+    TextView txt_type;
+    @Bind(R.id.feedbook)
+    TextView feedbook;
+    @Bind(R.id.toolbar_title)
+    TextView toolbar_title;
+    @Bind(R.id.toolbar_right)
+    TextView toolbar_right;
+    @Bind(R.id.sear_cart)
+    EditText sear_cart;
+    private List<Fragment> fragmentList;
+    ;
+    String gc_id;
+    ClassFragPageAdapter viewpageradapter;
+    PricSortFragment pricSortFragment;
+    SalesSortFragment salesSortFragment;
+    SynSortFragment synSortFragment;
+
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @OnClick({R.id.txt_type})
+    public void widgetClick(View v) {
+        switch (v.getId()) {
+            case R.id.txt_type:
+                readyGo(CategoryActivity.class);
+                break;
+            case R.id.feedbook:
+                break;
+        }
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(true)
+                .setSwipeEdgePercent(0.5f)
+                .setSwipeSensitivity(0.5f)
+                .setClosePercent(0.5f)
+                .setSwipeRelateEnable(true).setSwipeSensitivity(0).setSwipeEdgePercent(0.2f);
+        return R.layout.activity_allcommit;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    @Override
+    protected void initData() {
+        gc_id = getIntent().getExtras().getString("gc_id");
+        toolbar_right.setVisibility(View.VISIBLE);
+        toolbar_title.setText(R.string.alltitle);
+        toolbar_right.setBackgroundResource(R.mipmap.gouwuchetb2);
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        pricSortFragment = new PricSortFragment();
+        salesSortFragment = new SalesSortFragment();
+        synSortFragment = new SynSortFragment();
+        fragmentList = new ArrayList<Fragment>();
+        fragmentList.add(pricSortFragment);
+        fragmentList.add(salesSortFragment);
+        fragmentList.add(synSortFragment);
+        Bundle bundle = new Bundle();
+        bundle.putString("gc_id", gc_id);
+        bundle.putString("search", "");
+        for (Fragment fragment : fragmentList) fragment.setArguments(bundle);
+        viewpageradapter = new ClassFragPageAdapter(getSupportFragmentManager());
+        viewpageradapter.setList(fragmentList);
+        viewpageradapter.setStrList(getResources().getStringArray(R.array.allment));
+        viewpager.setAdapter(viewpageradapter);
+        viewpager.setOffscreenPageLimit(2);
+        tab_layout.setupWithViewPager(viewpager);
+        tab_layout.setTabsFromPagerAdapter(viewpageradapter);
+        sear_cart.setOnEditorActionListener(this);
+    }
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            // 先隐藏键盘
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+                    .hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            pricSortFragment = new PricSortFragment();
+            salesSortFragment = new SalesSortFragment();
+            synSortFragment = new SynSortFragment();
+            fragmentList = new ArrayList<Fragment>();
+            fragmentList.add(pricSortFragment);
+            fragmentList.add(salesSortFragment);
+            fragmentList.add(synSortFragment);
+            pricSortFragment.setSearch(v.getText().toString());
+            salesSortFragment.setSearch(v.getText().toString());
+            synSortFragment.setSearch(v.getText().toString());
+            pricSortFragment.setGc_id(gc_id);
+            salesSortFragment.setGc_id(gc_id);
+            synSortFragment.setGc_id(gc_id);
+            viewpageradapter = new ClassFragPageAdapter(getSupportFragmentManager());
+            viewpageradapter.setList(fragmentList);
+            viewpageradapter.setStrList(getResources().getStringArray(R.array.allment));
+            viewpager.setAdapter(viewpageradapter);
+            return true;
+        }
+        return false;
+    }
+
+}

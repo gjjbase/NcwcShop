@@ -1,0 +1,70 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapterInject;
+import com.ncwc.shop.interactor.ViewHolderInject;
+import com.ncwc.shop.model.classifica.FreeRepActivity;
+import com.ncwc.shop.model.classifica.FreeVaActivity;
+import com.ncwc.shop.model.classifica.InterListActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/7.
+ */
+public class FreeOldAdapter extends BaseAdapterInject {
+    public FreeOldAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int getConvertViewId(int position) {
+        return R.layout.freeoldadapter_item;
+    }
+
+    @Override
+    public int getCount() {
+        return 6;
+    }
+
+    @Override
+    public ViewHolderInject getNewHolder(int position) {
+        return new ViewHolder();
+    }
+    class ViewHolder extends ViewHolderInject{
+        @Bind(R.id.txt_freerep)
+        TextView txt_freerep;
+        @Bind(R.id.txt_freeeva)
+        TextView txt_freeeva;
+        @Bind(R.id.txt_freeist)
+        TextView txt_freeist;
+        public void loadData(JSONObject object, int position) throws JSONException {
+            txt_freerep.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, FreeRepActivity.class));
+                }
+            });
+            txt_freeeva.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, FreeVaActivity.class));
+                }
+            });
+            txt_freeist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mContext.startActivity(new Intent(mContext, InterListActivity.class));
+                }
+            });
+        }
+    }
+}

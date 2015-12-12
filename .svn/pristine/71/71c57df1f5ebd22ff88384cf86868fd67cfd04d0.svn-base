@@ -1,0 +1,47 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseFragment;
+
+/**
+ * Created by admin on 2015/9/2.
+ */
+public class PerScenterFragment extends BaseFragment {
+
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_perscenter;
+    }
+
+
+//    @OnClick({R.id.button3, R.id.button4, R.id.button5, R.id.button6,R.id.button7,R.id.button8,R.id.button9})
+    public void widgetClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.button4:
+//                readyGo(PayActivity.class);
+//                break;
+//            case R.id.button3:
+//                readyGo(PayDemoActivity.class);
+//                break;
+//            case R.id.button5:
+//                readyGo(ZbarActivity.class);
+//                break;
+//            case R.id.button6:
+////                readyGo(RecyclerViewExample.class);
+//                break;
+//            case R.id.button7:
+//                readyGo(Example.class);
+//                break;
+//            case R.id.button9:
+//                readyGo(ExampleZbar.class);
+//                break;
+        }
+
+
+    @Override
+    public void initData() {
+
+    }
+
+}

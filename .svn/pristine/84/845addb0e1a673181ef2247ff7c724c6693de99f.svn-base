@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/item_shopcar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackColor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <!--上部深色分隔线-->
+        <ImageView
+            android:id="@+id/top_line_b"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:src="@color/button_material_dark"/>
+
+        <!--店名-->
+        <TextView
+            android:id="@+id/shopcar_shopname"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/top_line_b"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="7dp"
+            android:text="shopname店名"
+            android:textColor="@color/abc_primary_text_disable_only_material_light"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:id="@+id/ll_shopcar_item_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shopcar_shopname"
+            android:orientation="vertical">
+            <!--动态插入数据-->
+        </LinearLayout>
+
+        <!--空白-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_below="@+id/ll_shopcar_item_msg"/>
+        <!--下方的结算栏-->
+        <!--
+                <include
+                    layout="@layout/item_bottom_settlement"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/ll_shopcar_item_msg"
+                    android:layout_marginTop="10dp"/>
+        -->
+    </RelativeLayout>
+</RelativeLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/item_shopcar.xml -->

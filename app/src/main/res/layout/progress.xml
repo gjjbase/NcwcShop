@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:android_custom="http://schemas.android.com/apk/res/com.ncwc.shop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <com.ncwc.shop.widget.RoundProgressBar
+        android:id="@+id/mProgress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android_custom:roundColor="@color/white"
+        android_custom:roundProgressColor="@color/rea"
+        android_custom:roundWidth="10dp"
+        android_custom:textColor="@color/white"
+        android_custom:textSize="14sp"/>
+
+</RelativeLayout>

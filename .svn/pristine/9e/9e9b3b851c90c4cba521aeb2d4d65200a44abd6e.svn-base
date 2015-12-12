@@ -1,0 +1,52 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ForgetActivity$$ViewBinder<T extends com.ncwc.shop.model.perscenter.ForgetActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623956, "field 'regist' and method 'widgetClick'");
+    target.regist = finder.castView(view, 2131623956, "field 'regist'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131623944, "field 'getcode' and method 'widgetClick'");
+    target.getcode = finder.castView(view, 2131623944, "field 'getcode'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131623941, "field 'code'");
+    target.code = finder.castView(view, 2131623941, "field 'code'");
+    view = finder.findRequiredView(source, 2131623954, "field 'psw'");
+    target.psw = finder.castView(view, 2131623954, "field 'psw'");
+    view = finder.findRequiredView(source, 2131623957, "field 'repsw'");
+    target.repsw = finder.castView(view, 2131623957, "field 'repsw'");
+    view = finder.findRequiredView(source, 2131623963, "field 'username'");
+    target.username = finder.castView(view, 2131623963, "field 'username'");
+  }
+
+  @Override public void unbind(T target) {
+    target.regist = null;
+    target.getcode = null;
+    target.toolbar_title = null;
+    target.code = null;
+    target.psw = null;
+    target.repsw = null;
+    target.username = null;
+  }
+}

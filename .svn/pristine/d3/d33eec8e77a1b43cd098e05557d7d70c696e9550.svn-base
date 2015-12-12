@@ -1,0 +1,73 @@
+package com.ncwc.shop.model.classifica;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.GridView;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.InterListAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.interactor.impl.SwipeBackHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import butterknife.Bind;
+
+/**
+ * 中奖名单页面
+ * Created by admin on 2015/10/10.
+ */
+public class InterListActivity extends BaseActivity {
+    @Bind(R.id.grd_botm)
+    GridView grd_botm;
+    private InterListAdapter adapter;
+
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        SwipeBackHelper.onCreate(this);
+
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(true)
+                .setSwipeEdgePercent(0.5f)
+                .setSwipeSensitivity(0.5f)
+                .setClosePercent(0.5f)
+                .setSwipeRelateEnable(true).setSwipeSensitivity(1);
+        return R.layout.activity_interlist;
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+    @Override
+    protected void initData() {
+        TextView txt = (TextView) mToolbar.findViewById(R.id.toolbar_title);
+        txt.setText(R.string.interlist);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        adapter = new InterListAdapter(getApplicationContext());
+        grd_botm.setAdapter(adapter);
+        try {
+            adapter.setData(new JSONArray());
+        } catch (JSONException e) {
+
+        }
+    }
+}

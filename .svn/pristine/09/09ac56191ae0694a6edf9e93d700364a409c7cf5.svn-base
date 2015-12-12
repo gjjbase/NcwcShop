@@ -1,0 +1,27 @@
+package com.ncwc.shop.model.common;
+
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseFragment;
+
+/**
+ * 规格参数页面
+ * Created by admin on 2015/10/10.
+ */
+public class SpecificParFragment extends BaseFragment{
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_productr;
+    }
+}

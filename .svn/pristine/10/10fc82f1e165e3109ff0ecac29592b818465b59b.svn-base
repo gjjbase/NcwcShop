@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--结算成功图示-->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <!--金额合计及提示选择支付方式-->
+    <TextView
+        android:id="@+id/tv_shopping_allmoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:textColor="@color/Black"
+        android:textSize="18sp"/>
+
+    <!--支付宝支付-->
+    <TextView
+        android:id="@+id/tv_zhifubao_pay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_shopping_allmoney"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/circle"
+        android:gravity="center"
+        android:text="@string/pay_zhifubao"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
+    <!--微信支付-->
+    <TextView
+        android:id="@+id/tv_weixin_pay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_zhifubao_pay"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="14dp"
+        android:background="@color/highlighted_text_material_light"
+        android:gravity="center"
+        android:text="@string/pay_weixin"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
+</RelativeLayout>

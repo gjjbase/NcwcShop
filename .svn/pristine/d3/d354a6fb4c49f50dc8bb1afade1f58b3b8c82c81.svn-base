@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--原始密码-->
+    <EditText
+        android:id="@+id/ed_setting_oldpwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/oldpwd"/>
+
+    <!--新密码-->
+    <EditText
+        android:id="@+id/ed_setting_newpwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ed_setting_oldpwd"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/newpwd"/>
+
+    <!--确认新密码-->
+    <EditText
+        android:id="@+id/ed_setting_surepwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ed_setting_newpwd"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/surepwd"/>
+
+    <!--完成-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ed_setting_surepwd"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_textview"
+        android:gravity="center"
+        android:text="@string/finish"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

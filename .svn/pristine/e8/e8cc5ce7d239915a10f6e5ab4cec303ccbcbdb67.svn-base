@@ -1,0 +1,166 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.ShiyongJiluAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.util.SharepreUtil;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/7.
+ */
+public class ShiYongJiLvActivity extends BaseActivity implements IOAuthCallBack {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.pullToLoadView_shiyongjilu)
+	PullToLoadView pullToLoadView_shiyongjilu;//试用记录展示列表
+	private boolean isLoading = false;
+	private boolean isHasLoadedAll = false;
+	private int nextPage;
+	//	List<Map<String, String>> listmap;
+	private ShiyongJiluAdapter adapter;
+	private JSONArray jso, addjson;
+	private RecyclerView mRecyclerView;
+
+	AsynHttpUtil ahu = AsynHttpUtil.getInstance();
+
+	//发出网络请求
+	private void takeIntel() {
+		if (SharepreUtil.getStringValue(this, Constants.MEMBERID, "").equals("")) {
+			showToast(getString(R.string.none_login));
+		} else {
+			ahu.setIoAuthCallBack(this);
+			ahu.getShiYongJL(this);
+		}
+	}
+
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_per_shiyongjilv;
+	}
+
+	@Override
+	protected void initData() {
+
+		takeIntel();
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.shiyongjilu);
+
+		/*listmap = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < 30; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("name", i + 1 + "");
+			listmap.add(map);
+		}
+		jso = new JSONArray(listmap);
+		addjson = new JSONArray(listmap);*/
+		mRecyclerView = pullToLoadView_shiyongjilu.getRecyclerView();
+		mRecyclerView.setHasFixedSize(false);
+		LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mRecyclerView.setLayoutManager(manager);
+		pullToLoadView_shiyongjilu.isLoadMoreEnabled(true);
+
+	}
+
+	private void loadData(final int page) {
+		isLoading = true;
+		new Handler().postDelayed(new Runnable() {
+			public void run() {
+				if (isHasLoadedAll) {
+					Toast.makeText(ShiYongJiLvActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+				}
+				if (page > 10) {
+					isHasLoadedAll = true;
+					return;
+				}
+				if (page == 1) {
+					adapter = new ShiyongJiluAdapter(ShiYongJiLvActivity.this, jso);
+					mRecyclerView.setAdapter(adapter);
+				} else {
+					/*try {
+						adapter.addData(addjson);
+					} catch (JSONException e) {
+					}*/
+				}
+
+				pullToLoadView_shiyongjilu.setComplete();
+				isLoading = false;
+				nextPage = page + 1;
+			}
+		}, 1000);
+	}
+
+	@Override
+	public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+		if (type == HttpService.TYPE_PERSONAL_SHIYONGJILU) {
+//			Log.d("################################", response.toString());
+			String code = response.getString("code");
+			if (code.equals("200")) {
+				String status = response.getString("status");
+				if (status.equals("0")) {
+					showToast(response.getString("msg"));
+				} else {
+					//正常数据处理
+					JSONObject datas = response.getJSONObject("datas");
+					jso = datas.getJSONArray("list");
+
+					pullToLoadView_shiyongjilu.setPullCallback(new PullCallback() {
+						public void onLoadMore() {
+							loadData(nextPage);
+						}
+
+						public void onRefresh() {
+							isHasLoadedAll = false;
+							loadData(1);
+						}
+
+						public boolean isLoading() {
+							Log.e("main activity", "main isLoading:" + isLoading);
+							return isLoading;
+						}
+
+						public boolean hasLoadedAllItems() {
+							return isHasLoadedAll;
+						}
+					});
+					pullToLoadView_shiyongjilu.initLoad();
+
+				}
+			} else {
+				showToast(getString(R.string.fault));
+			}
+		}
+	}
+}

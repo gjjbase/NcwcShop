@@ -1,0 +1,18 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.homepage;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class DetailsFragment$$ViewBinder<T extends com.ncwc.shop.model.homepage.DetailsFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558763, "field 'list_detail'");
+    target.list_detail = finder.castView(view, 2131558763, "field 'list_detail'");
+  }
+
+  @Override public void unbind(T target) {
+    target.list_detail = null;
+  }
+}

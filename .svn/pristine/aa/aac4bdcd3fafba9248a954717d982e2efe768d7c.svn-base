@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.ncwc.shop.widget.TitleScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lin_topall"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/good_name"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="236dp"
+                            android:background="@mipmap/bgfreerun"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="200dp">
+
+                                <android.support.v4.view.ViewPager
+                                    android:id="@+id/viewpager"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    android:background="@color/white" />
+
+                                <LinearLayout
+                                    android:id="@id/lindot"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="center"
+                                    android:orientation="horizontal" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="@color/navpage" />
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="价格:￥"
+                                    android:textColor="@color/bg_title" />
+
+                                <TextView
+                                    android:id="@+id/goods_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingLeft="3dp"
+                                    android:text="350"
+                                    android:textColor="@color/bg_title"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="30dp"
+                                    android:gravity="center"
+                                    android:text="@string/allexample" />
+
+                                <TextView
+                                    android:id="@+id/oods_marketprice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/bg_title"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text=")" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/txt_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/selectcolor_selectot">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/selectcolor" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/navpage" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="200dp"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/pingjiamsg"
+                                android:textSize="18sp" />
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="5dp">
+
+                                <com.ncwc.shop.widget.CircularImage
+                                    android:id="@+id/member_avatar"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:src="@mipmap/moren" />
+
+                                <TextView
+                                    android:id="@+id/member_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/member_avatar"
+                                    android:padding="5dp"
+                                    android:textColor="@color/img_nickname"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/geval_addtime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:padding="5dp"
+                                    android:textColor="@color/maintext"
+                                    android:textSize="16sp" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/navpage" />
+
+                            <TextView
+                                android:id="@+id/evaluate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:padding="5dp"
+                                 />
+
+                            <com.ncwc.shop.widget.AllGridView
+                                android:id="@+id/grd_botm"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:numColumns="4" />
+                            <Button
+                                android:id="@+id/btn"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="查看更多"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--底部菜单-->
+                    <include
+                        android:id="@+id/gad_milb"
+                        layout="@layout/gadiogrop_mege" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/ltgray" />
+
+                    <FrameLayout
+                        android:id="@+id/tab_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/gad_botm"
+                    layout="@layout/gadiogrop2_mege" />
+            </FrameLayout>
+        </com.ncwc.shop.widget.TitleScrollView>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/bg_adapter_item"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/txt_favoriters"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="10dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/shoucang" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/collection" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="3"
+                android:background="@drawable/detailall_selector">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="10dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/gouwuchetb" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/addcart"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.6"
+                android:background="@drawable/buycart_selector">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="10dp"
+                    android:scaleType="center"
+                    android:src="@mipmap/img_buy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:text="@string/nowbuy"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

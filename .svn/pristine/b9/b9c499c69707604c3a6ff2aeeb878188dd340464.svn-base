@@ -1,0 +1,101 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by DELL-PC on 2015/10/8.
+ */
+public class MyFankuiActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.tv_fankui_fuwu)
+	TextView tv_fankui_fuwu;//我需要的服务
+	@Bind(R.id.tv_fankui_product)
+	TextView tv_fankui_product;//我需要的商品
+	@Bind(R.id.tv_fankui_us)
+	TextView tv_fankui_us;//给我们的建议
+	@Bind(R.id.tv_fankui_app)
+	TextView tv_fankui_app;//APP使用建议
+	@Bind(R.id.ll_fankui_all)
+	LinearLayout ll_fankui_all;//记录列表
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	@OnClick({R.id.tv_fankui_app, R.id.tv_fankui_us, R.id.tv_fankui_product, R.id.tv_fankui_fuwu})
+	public void widgetClick(View v) {
+		switch (v.getId()) {
+			case R.id.tv_fankui_fuwu://我需要的服务
+				Intent in_fuwu = new Intent(this, FankuiEditActivity.class);
+				in_fuwu.putExtra("style", 0);
+				startActivity(in_fuwu);
+				break;
+			case R.id.tv_fankui_product://我需要的商品
+				Intent in_product = new Intent(this, FankuiEditActivity.class);
+				in_product.putExtra("style", 1);
+				startActivity(in_product);
+				break;
+			case R.id.tv_fankui_us://给我们的建议
+				Intent in_us = new Intent(this, FankuiEditActivity.class);
+				in_us.putExtra("style", 2);
+				startActivity(in_us);
+				break;
+			case R.id.tv_fankui_app://APP使用建议
+				Intent in_app = new Intent(this, FankuiEditActivity.class);
+				in_app.putExtra("style", 3);
+				startActivity(in_app);
+				break;
+
+		}
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_myfankui;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.fankui_msg);
+
+		for (int i = 0; i < 14; i++) {
+			LinearLayout item_jilu = new LinearLayout(this);
+			LinearLayout.LayoutParams ll_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			ll_params.topMargin = 6;
+			item_jilu.setLayoutParams(ll_params);
+			ll_fankui_all.addView(item_jilu);
+			for (int j = 0; j < 4; j++) {
+				TextView item_jilu_tv = new TextView(this);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+				item_jilu_tv.setGravity(Gravity.CENTER);
+				item_jilu_tv.setText("2015-10-08_" + i + "_" + j);
+				item_jilu_tv.setTextColor(Color.BLACK);
+				item_jilu_tv.setTextSize(10);
+				item_jilu_tv.setLayoutParams(params);
+				item_jilu.addView(item_jilu_tv);
+			}
+		}
+		Space space = new Space(this);
+		LinearLayout.LayoutParams space_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+		space.setLayoutParams(space_params);
+		ll_fankui_all.addView(space);
+	}
+}

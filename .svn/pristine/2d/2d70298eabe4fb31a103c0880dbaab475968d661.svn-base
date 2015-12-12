@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/tab_content"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <RadioGroup
+            android:id="@+id/tabs_rg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="3dp">
+
+            <RadioButton
+                android:id="@+id/rad_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:checked="true"
+                android:drawableTop="@drawable/homeico_selector"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@drawable/mian_tab_text_shecked"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rad_class"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:drawableTop="@drawable/classico_selector"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@drawable/mian_tab_text_shecked"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rad_shop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:drawableTop="@drawable/shopcart_selector"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@drawable/mian_tab_text_shecked"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rad_perscent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:button="@null"
+                android:drawableTop="@drawable/perscent_selector"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@drawable/mian_tab_text_shecked"
+                android:textSize="13sp" />
+        </RadioGroup>
+    </LinearLayout>
+</LinearLayout>

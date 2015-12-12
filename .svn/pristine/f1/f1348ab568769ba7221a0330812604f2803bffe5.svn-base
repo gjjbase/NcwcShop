@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/dianji" android:state_selected="true"/>
+    <item android:drawable="@mipmap/dianji" android:state_pressed="true"/>
+    <item android:drawable="@mipmap/fankui"/>
+</selector><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/drawable/textviewcode_selector.xml -->

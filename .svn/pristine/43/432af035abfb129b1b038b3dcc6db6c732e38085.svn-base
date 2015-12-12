@@ -1,0 +1,110 @@
+package com.ncwc.shop.model.homepage;
+
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.EvaluateAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * 商品评价页面
+ * Created by admin on 2015/10/14.
+ */
+public class EvaluateActivity extends BaseActivity implements IOAuthCallBack, PullCallback {
+    @Bind(R.id.pullToLoadView)
+    PullToLoadView pullToLoadView;
+    private RecyclerView mRecyclerView;
+    private AsynHttpUtil asynHttpUtil;
+    private int page = 1;
+    private boolean isLoading = false;
+    private boolean isHasLoadedAll = false;
+    private JSONArray addjson;
+    private EvaluateAdapter adapter;
+    private String gc_id = "";
+
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.activity_evaluate;
+    }
+
+    @Override
+    protected void initData() {
+        mRecyclerView = pullToLoadView.getRecyclerView();
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        gc_id = getIntent().getExtras().getString("goods_id");
+        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        pullToLoadView.isLoadMoreEnabled(true);
+        mRecyclerView.setHasFixedSize(false);
+        pullToLoadView.setPullCallback(this);
+        pullToLoadView.initLoad();
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        if (!response.getString("status").equals("1")) return;
+        if (page == 1) addjson = new JSONArray();
+        JSONArray jso = response.getJSONObject("datas").getJSONArray("list");
+        for (int i = 0; i < jso.length(); i++) addjson.put(jso.getJSONObject(i));
+        loadData();
+        if (response.getJSONObject("datas").getString("hasmore").equals("0")) isHasLoadedAll = true;
+        else isHasLoadedAll = false;
+    }
+
+    private void loadData() {
+        isLoading = true;
+        adapter = new EvaluateAdapter(getApplicationContext(), addjson);
+        mRecyclerView.setAdapter(adapter);
+        isLoading = false;
+        pullToLoadView.setComplete();
+    }
+
+    @Override
+    public void onLoadMore() {
+        page++;
+        asynHttpUtil.evaluate(EvaluateActivity.this, gc_id, page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public void onRefresh() {
+        isHasLoadedAll = false;
+        page = 1;
+        asynHttpUtil.evaluate(EvaluateActivity.this, gc_id, page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @Override
+    public boolean hasLoadedAllItems() {
+        if (isHasLoadedAll)
+            Snackbar.make(getWindow().getDecorView(), R.string.nomore, Snackbar.LENGTH_SHORT).show();
+        return isHasLoadedAll;
+    }
+}

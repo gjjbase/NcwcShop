@@ -1,0 +1,16 @@
+package com.ncwc.shop.interactor;
+/**
+ * 自定义对话框返回事务处理
+ * @author Administrator
+ *
+ */
+public interface DialogListener {
+	/**
+	 * 确定
+	 */
+	void onEnter();
+	/**
+	 * 退出
+	 */
+	void onExit();
+}

@@ -1,0 +1,24 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeRunFragment$$ViewBinder<T extends com.ncwc.shop.model.classifica.FreeRunFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624277, "field 'listview_freerun'");
+    target.listview_freerun = finder.castView(view, 2131624277, "field 'listview_freerun'");
+    view = finder.findRequiredView(source, 2131624276, "field 'topsroll'");
+    target.topsroll = finder.castView(view, 2131624276, "field 'topsroll'");
+    view = finder.findRequiredView(source, 2131624278, "field 'listview_freeold'");
+    target.listview_freeold = finder.castView(view, 2131624278, "field 'listview_freeold'");
+  }
+
+  @Override public void unbind(T target) {
+    target.listview_freerun = null;
+    target.topsroll = null;
+    target.listview_freeold = null;
+  }
+}

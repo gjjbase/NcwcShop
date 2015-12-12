@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:background="@drawable/loginedt_shape"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/topandbottomsharp"
+        android:gravity="center"
+        android:textColor="@color/Black"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bottomandtopsharp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/Black"/>
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/Black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="0.5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/grentxt"/>
+
+            <TextView
+                android:id="@+id/txt_enter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="0.5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/grentxt"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_diapros.xml -->

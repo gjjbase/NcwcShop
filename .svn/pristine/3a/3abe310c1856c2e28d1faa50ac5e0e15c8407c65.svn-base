@@ -1,0 +1,61 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class RegistActivity$$ViewBinder<T extends com.ncwc.shop.model.perscenter.RegistActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558420, "field 'regist' and method 'widgetClick'");
+    target.regist = finder.castView(view, 2131558420, "field 'regist'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558408, "field 'getcode' and method 'widgetClick'");
+    target.getcode = finder.castView(view, 2131558408, "field 'getcode'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558405, "field 'code'");
+    target.code = finder.castView(view, 2131558405, "field 'code'");
+    view = finder.findRequiredView(source, 2131558705, "field 'nickname'");
+    target.nickname = finder.castView(view, 2131558705, "field 'nickname'");
+    view = finder.findRequiredView(source, 2131558418, "field 'psw'");
+    target.psw = finder.castView(view, 2131558418, "field 'psw'");
+    view = finder.findRequiredView(source, 2131558421, "field 'repsw'");
+    target.repsw = finder.castView(view, 2131558421, "field 'repsw'");
+    view = finder.findRequiredView(source, 2131558427, "field 'username'");
+    target.username = finder.castView(view, 2131558427, "field 'username'");
+    view = finder.findRequiredView(source, 2131558410, "field 'invitation'");
+    target.invitation = finder.castView(view, 2131558410, "field 'invitation'");
+    view = finder.findRequiredView(source, 2131558404, "field 'check_xy'");
+    target.check_xy = finder.castView(view, 2131558404, "field 'check_xy'");
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+  }
+
+  @Override public void unbind(T target) {
+    target.regist = null;
+    target.getcode = null;
+    target.code = null;
+    target.nickname = null;
+    target.psw = null;
+    target.repsw = null;
+    target.username = null;
+    target.invitation = null;
+    target.check_xy = null;
+    target.toolbar_title = null;
+  }
+}

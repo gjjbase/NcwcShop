@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--购物券列表-->
+    <com.ncwc.shop.widget.PullToLoadView
+        android:id="@+id/pullToLoadView_shop_sale"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_toolbar"
+        android:visibility="gone"/>
+
+    <!--暂时没有这个模块 直接用空白代替-->
+    <ImageView
+        android:id="@+id/img_kongbai"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@mipmap/kongbai_shoppingsale"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <include layout="@layout/common_toolbar" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:scaleType="center"
+        android:src="@mipmap/img_freeresult" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/freemsg"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/goshop"
+        style="@style/textView_style"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/logintextview_selector"
+        android:text="@string/goshop"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/gofree"
+        style="@style/textView_style"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/logintextview_selector"
+        android:text="@string/gofree"
+        android:textColor="@color/white" />
+</LinearLayout>

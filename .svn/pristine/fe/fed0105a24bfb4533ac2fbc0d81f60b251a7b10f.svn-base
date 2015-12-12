@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <LinearLayout
+        android:id="@+id/ll_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_toolbar"
+        android:orientation="vertical">
+
+        <!--服务反馈-->
+        <TextView
+            android:id="@+id/tv_fankui_fuwu"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_edittext"
+            android:gravity="center"
+            android:text="@string/fankui_fuwu"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!--商品反馈-->
+        <TextView
+            android:id="@+id/tv_fankui_product"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_edittext"
+            android:gravity="center"
+            android:text="@string/fankui_product"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!--建议-->
+        <TextView
+            android:id="@+id/tv_fankui_us"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_edittext"
+            android:gravity="center"
+            android:text="@string/fankui_jianyi"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!--APP建议-->
+        <TextView
+            android:id="@+id/tv_fankui_app"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_edittext"
+            android:gravity="center"
+            android:text="@string/fankui_use"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!--旁白-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/fankui_pangbai"
+            android:textColor="@color/Black"
+            android:textSize="14sp"/>
+
+        <!--反馈记录数量-->
+        <TextView
+            android:id="@+id/tv_fankui_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:text="反馈记录（4）"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!--记录表头-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <!--时间-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/time"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+
+            <!--反馈类别-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/fankui_leibie"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+
+            <!--是否查阅-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/shifouchayue"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+
+            <!--获得积分-->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/get_vantages"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!--下划线-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="2dp"
+            android:src="@color/Black"/>
+
+        <!--空白-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+    </LinearLayout>
+
+    <!--可滑动内容-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_01"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_fankui_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--动态插入记录内容-->
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_myfankui.xml -->

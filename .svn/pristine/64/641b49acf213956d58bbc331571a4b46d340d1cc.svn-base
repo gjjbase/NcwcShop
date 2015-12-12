@@ -1,0 +1,188 @@
+package com.ncwc.shop.model.shopcart;
+
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseFragment;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.util.SharepreUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/16.
+ */
+public class ShopcarFragment extends BaseFragment implements IOAuthCallBack {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.toolbar_right)
+	TextView toolbar_right;//编辑
+	private boolean flag = true;//是否为编辑状态
+	@Bind(R.id.tv_shopcar_sendmsg)
+	TextView tv_shopcar_sendmsg;//免费配送
+	@Bind(R.id.tv_shopcar_allpay)
+	TextView tv_shopcar_allpay;//合计
+	@Bind(R.id.tv_shopcar_commitpay)
+	TextView tv_shopcar_commitpay;//下单
+	@Bind(R.id.tv_shopcar_addcollect)
+	TextView tv_shopcar_addcollect;//移入收藏
+	@Bind(R.id.tv_shopcar_delete)
+	TextView tv_shopcar_delete;//删除
+	@Bind(R.id.expandlist_shopcar)
+	ExpandableListView expandlist_shopcar;//所有内容
+
+
+	AsynHttpUtil ahu = AsynHttpUtil.getInstance();
+
+	//数据
+	private JSONArray store_list = null;
+	private JSONObject onestore = null;
+
+
+	@Override
+	public void initData() {
+		//发出网络请求
+		if (SharepreUtil.getStringValue(getActivity(), Constants.MEMBERID, "").equals("")) {
+			showToast(getString(R.string.none_login));
+		} else {
+			ahu.setIoAuthCallBack(this);
+			ahu.shopcar(getActivity());
+		}
+
+		/**
+		 * 标题、编辑
+		 */
+		toolbar_title.setText(R.string.shopcar);
+		toolbar_right.setVisibility(View.VISIBLE);
+		toolbar_right.setText(R.string.edit);
+		toolbar_right.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (flag) {
+					toolbar_right.setText(R.string.finish);
+					tv_shopcar_sendmsg.setVisibility(View.GONE);
+					tv_shopcar_allpay.setVisibility(View.GONE);
+					tv_shopcar_commitpay.setVisibility(View.GONE);
+					tv_shopcar_addcollect.setVisibility(View.VISIBLE);
+					tv_shopcar_delete.setVisibility(View.VISIBLE);
+				} else {
+					toolbar_right.setText(R.string.edit);
+					tv_shopcar_sendmsg.setVisibility(View.VISIBLE);
+					tv_shopcar_allpay.setVisibility(View.VISIBLE);
+					tv_shopcar_commitpay.setVisibility(View.VISIBLE);
+					tv_shopcar_addcollect.setVisibility(View.GONE);
+					tv_shopcar_delete.setVisibility(View.GONE);
+				}
+				flag = !flag;
+			}
+		});
+
+
+	}
+
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			//发出网络请求
+			if (SharepreUtil.getStringValue(getActivity(), Constants.MEMBERID, "").equals("")) {
+				showToast(getString(R.string.none_login));
+			} else {
+				ahu.setIoAuthCallBack(this);
+				ahu.shopcar(getActivity());
+			}
+		}
+	}
+
+	@Override
+	public void widgetClick(View v) {
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.fragment_shopcart_new;
+	}
+
+	@Override
+	public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+		if (type.equals(HttpService.TYPE_SHOPCAR)) {
+			Log.d("=====================", response.toString());
+			if (response.getString("code").equals("200")) {
+				JSONObject all = response.getJSONObject("datas");
+				store_list = all.getJSONArray("list");
+				for (int i = 0; i < store_list.length(); i++) {
+					onestore = store_list.getJSONObject(i);
+				}
+			}
+		}
+	}
+
+	final ExpandableListAdapter adapter = new BaseExpandableListAdapter() {
+
+		@Override
+		public int getGroupCount() {
+			return store_list.length();
+		}
+
+		@Override
+		public int getChildrenCount(int groupPosition) {
+			return onestore.length();
+		}
+
+		@Override
+		public Object getGroup(int groupPosition) {
+			return null;
+		}
+
+		@Override
+		public Object getChild(int groupPosition, int childPosition) {
+			return null;
+		}
+
+		@Override
+		public long getGroupId(int groupPosition) {
+			return 0;
+		}
+
+		@Override
+		public long getChildId(int groupPosition, int childPosition) {
+			return 0;
+		}
+
+		@Override
+		public boolean hasStableIds() {
+			return false;
+		}
+
+		@Override
+		public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+			return null;
+		}
+
+		@Override
+		public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+			return null;
+		}
+
+		@Override
+		public boolean isChildSelectable(int groupPosition, int childPosition) {
+			return false;
+		}
+	};
+
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp">
+
+        <com.ncwc.shop.widget.CircularImage
+            android:id="@+id/img_title"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/moren" />
+
+        <TextView
+            android:id="@+id/txt_nickname"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/img_title"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="ncwc_ads45"
+            android:textColor="@color/img_nickname" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/navpage" />
+</LinearLayout>

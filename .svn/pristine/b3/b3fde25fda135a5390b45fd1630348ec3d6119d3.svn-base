@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/loginedt_shape"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_album"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/topandbottomsharp"
+            android:gravity="center"
+            android:text="@string/fromalbumselection"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:src="@color/button_material_dark"/>
+
+        <TextView
+            android:id="@+id/txt_photo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bottomandtopsharp"
+            android:gravity="center"
+            android:text="@string/photograph"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_exit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/top"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/corners_bg"
+        android:gravity="center"
+        android:text="@string/cancel"
+        android:textColor="@color/Black"
+        android:textSize="16sp"/>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/botmselectlayout.xml -->

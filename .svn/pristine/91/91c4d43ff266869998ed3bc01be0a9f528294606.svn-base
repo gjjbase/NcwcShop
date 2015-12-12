@@ -1,0 +1,40 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/7.
+ * 新增地址
+ */
+public class NewPlaceActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_newplace;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.new_place);
+	}
+}

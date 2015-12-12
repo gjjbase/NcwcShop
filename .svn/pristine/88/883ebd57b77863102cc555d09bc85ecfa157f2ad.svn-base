@@ -1,0 +1,42 @@
+package com.ncwc.shop.adapter;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.ncwc.shop.bean.SortBean;
+import com.ncwc.shop.model.homepage.SortFragment;
+
+import java.util.List;
+
+/**
+ * Created by gaojiangjian on 15/12/2.
+ */
+public class SortPagerAdapter extends FragmentStatePagerAdapter {
+    List<SortBean> list;
+
+    public SortPagerAdapter(FragmentManager fm) {
+        super(fm);
+    }
+
+    public void setList(List<SortBean> list) {
+        this.list = list;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+
+        return SortFragment.newInstance(list.get(position));
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return list.get(position).getName();
+
+    }
+
+    @Override
+    public int getCount() {
+        return list.size();
+    }
+}

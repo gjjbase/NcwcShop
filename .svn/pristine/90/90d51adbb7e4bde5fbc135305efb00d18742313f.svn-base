@@ -1,0 +1,57 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class SubmitRepActivity$$ViewBinder<T extends com.ncwc.shop.model.classifica.SubmitRepActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558404, "field 'check_xy'");
+    target.check_xy = finder.castView(view, 2131558404, "field 'check_xy'");
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558492, "field 'txt_title'");
+    target.txt_title = finder.castView(view, 2131558492, "field 'txt_title'");
+    view = finder.findRequiredView(source, 2131558568, "field 'grd_botm'");
+    target.grd_botm = finder.castView(view, 2131558568, "field 'grd_botm'");
+    view = finder.findRequiredView(source, 2131558731, "field 'edit_aspect'");
+    target.edit_aspect = finder.castView(view, 2131558731, "field 'edit_aspect'");
+    view = finder.findRequiredView(source, 2131558733, "field 'edt_price'");
+    target.edt_price = finder.castView(view, 2131558733, "field 'edt_price'");
+    view = finder.findRequiredView(source, 2131558734, "field 'edt_quality'");
+    target.edt_quality = finder.castView(view, 2131558734, "field 'edt_quality'");
+    view = finder.findRequiredView(source, 2131558735, "field 'ratingBar2'");
+    target.ratingBar2 = finder.castView(view, 2131558735, "field 'ratingBar2'");
+    view = finder.findRequiredView(source, 2131558420, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558732, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.check_xy = null;
+    target.toolbar_title = null;
+    target.txt_title = null;
+    target.grd_botm = null;
+    target.edit_aspect = null;
+    target.edt_price = null;
+    target.edt_quality = null;
+    target.ratingBar2 = null;
+  }
+}

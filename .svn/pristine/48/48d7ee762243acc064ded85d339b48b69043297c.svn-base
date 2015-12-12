@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ncwc.shop"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <application
+        android:name="com.ncwc.shop.base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.ncwc.shop.SplashActivity"
+            android:allowBackup="true"
+            android:clearTaskOnLaunch="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ncwc.shop.model.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.Example"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.ExampleZbar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.RecyclerViewExample"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.ZbarActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.LoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.classifica.FreeComDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <activity
+            android:name="com.ncwc.shop.model.classifica.FreeRepActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.classifica.InterListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.classifica.SubmitRepActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.classifica.FreeVaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.BindMobActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.ForgetActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.RegistActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.homepage.CategoryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.homepage.AllCommitActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.homepage.EvaluateActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.model.homepage.DetailsCartActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name="com.ncwc.shop.model.common.AgreementActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name="com.ncwc.shop.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.wxapi.PayDemoActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.wxapi.PayActivity"
+            android:exported="true"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxf04cbd55a84fb988" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ncwc.shop.wxapi.WXEntryActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1104875124" />
+                <!-- 100380359 100381104 222222 -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <receiver android:name="com.ncwc.shop.interactor.receiver.AppRegister" >
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.ncwc.shop.model.shopcart.ShopcarSendOrder"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.ShoppingSaleActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.shopcart.CommitPayActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.shopcart.AfterPayActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.SettingActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.BindandChangeofSettingActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.ChangePasswordActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.MyVantagesActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.ShiYongJiLvActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.LiulanAndShoucangActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.MyPlaceManageActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.NewPlaceActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.MyFankuiActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.FankuiEditActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.MyYaoqingActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.AboutUsActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.HuodongJieshaoActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.MyOrderActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.OrderMsgActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.PingJiaofProductActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.ncwc.shop.model.perscenter.WuLiuMsgActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+    </application>
+
+</manifest>

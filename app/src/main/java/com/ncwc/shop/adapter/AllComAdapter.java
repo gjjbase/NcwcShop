@@ -1,0 +1,112 @@
+package com.ncwc.shop.adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapter;
+import com.ncwc.shop.base.BaseViewHolder;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.interactor.AllClickListener;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+import com.ncwc.shop.util.SharepreUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/6.
+ */
+public class AllComAdapter extends BaseAdapter<AllComAdapter.CallViewholder> {
+    private AllClickListener allClickListener;
+
+    public AllComAdapter(Context context, JSONArray dataList) {
+        super(context, dataList);
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.allcomadapter_item;
+    }
+
+    @Override
+    protected AllComAdapter.CallViewholder getViewholder(View view) {
+        return new CallViewholder(getContentView());
+    }
+
+    @Override
+    protected void setJsonData(AllComAdapter.CallViewholder holder, final JSONObject jsonObject) {
+        try {
+            holder.txy_itemtitle.setText(jsonObject.getString("goods_name"));
+            holder.txt_pric.setText(jsonObject.getString("goods_price"));
+            holder.allexample.setText(jsonObject.getString("point_msg"));
+            holder.txt_preferential.setText("(￥" + jsonObject.getString("preferential") + ")");
+            holder.txt_goods_salenum.setText(jsonObject.getString("goods_salenum") + "人已购买");
+            holder.txt_evaluation_count.setText(jsonObject.getString("evaluation_count") + "人已评论");
+            AsyncLoadingPicture.getInstance(mContext).LoadPicture(jsonObject.getString("goods_image"), holder.img_left);
+
+            holder.img_left.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LeftOnClick(jsonObject);
+                }
+            });
+            holder.txt_addcart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (SharepreUtil.getStringValue(mContext, Constants.TOKEN, "").equals("")) {
+                        Intent intent = new Intent("com.ncwc.shop.interactor.receiver.GoLoginRegister");
+                        mContext.sendBroadcast(intent);
+                        return;
+                    }
+                    AddCartOnClick(jsonObject);
+                }
+            });
+        } catch (JSONException e) {
+
+        }
+    }
+
+    public void setAllClickListener(AllClickListener allClickListener) {
+        this.allClickListener = allClickListener;
+    }
+
+    public void LeftOnClick(JSONObject jsonObject) {
+        if (allClickListener != null) allClickListener.LeftOnClick(jsonObject);
+    }
+
+    public void AddCartOnClick(JSONObject jsonObject) {
+        if (allClickListener != null) allClickListener.AddCartOnClick(jsonObject);
+    }
+
+    class CallViewholder extends BaseViewHolder {
+        @Bind(R.id.txt_addcart)
+        TextView txt_addcart;
+        @Bind(R.id.txy_itemtitle)
+        TextView txy_itemtitle;
+        @Bind(R.id.txt_goods_salenum)
+        TextView txt_goods_salenum;
+        @Bind(R.id.txt_evaluation_count)
+        TextView txt_evaluation_count;
+        @Bind(R.id.txt_pric)
+        TextView txt_pric;
+        @Bind(R.id.txt_preferential)
+        TextView txt_preferential;
+        @Bind(R.id.allexample)
+        TextView allexample;
+        @Bind(R.id.img_left)
+        ImageView img_left;
+
+        public CallViewholder(View itemView) {
+            super(itemView);
+        }
+    }
+}

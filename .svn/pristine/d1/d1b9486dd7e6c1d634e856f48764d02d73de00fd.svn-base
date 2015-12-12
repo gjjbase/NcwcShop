@@ -1,0 +1,21 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ShopCarAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.ShopCarAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624361, "field 'text'");
+    target.text = finder.castView(view, 2131624361, "field 'text'");
+    view = finder.findRequiredView(source, 2131624362, "field 'll_shopcar_item_msg'");
+    target.ll_shopcar_item_msg = finder.castView(view, 2131624362, "field 'll_shopcar_item_msg'");
+  }
+
+  @Override public void unbind(T target) {
+    target.text = null;
+    target.ll_shopcar_item_msg = null;
+  }
+}

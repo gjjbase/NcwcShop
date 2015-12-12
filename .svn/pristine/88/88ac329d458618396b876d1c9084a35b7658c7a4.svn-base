@@ -1,0 +1,65 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class MyFankuiActivity$$ViewBinder<T extends com.ncwc.shop.model.perscenter.MyFankuiActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558615, "field 'tv_fankui_fuwu' and method 'widgetClick'");
+    target.tv_fankui_fuwu = finder.castView(view, 2131558615, "field 'tv_fankui_fuwu'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558616, "field 'tv_fankui_product' and method 'widgetClick'");
+    target.tv_fankui_product = finder.castView(view, 2131558616, "field 'tv_fankui_product'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558617, "field 'tv_fankui_us' and method 'widgetClick'");
+    target.tv_fankui_us = finder.castView(view, 2131558617, "field 'tv_fankui_us'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558618, "field 'tv_fankui_app' and method 'widgetClick'");
+    target.tv_fankui_app = finder.castView(view, 2131558618, "field 'tv_fankui_app'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558620, "field 'll_fankui_all'");
+    target.ll_fankui_all = finder.castView(view, 2131558620, "field 'll_fankui_all'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.tv_fankui_fuwu = null;
+    target.tv_fankui_product = null;
+    target.tv_fankui_us = null;
+    target.tv_fankui_app = null;
+    target.ll_fankui_all = null;
+  }
+}

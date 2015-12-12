@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class MyOrderAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.MyOrderAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558835, "field 'tv_dingdan_storename'");
+    target.tv_dingdan_storename = finder.castView(view, 2131558835, "field 'tv_dingdan_storename'");
+    view = finder.findRequiredView(source, 2131558836, "field 'tv_dingdan_trading_success'");
+    target.tv_dingdan_trading_success = finder.castView(view, 2131558836, "field 'tv_dingdan_trading_success'");
+    view = finder.findRequiredView(source, 2131558843, "field 'tv_dingdan_bottom_l_btn'");
+    target.tv_dingdan_bottom_l_btn = finder.castView(view, 2131558843, "field 'tv_dingdan_bottom_l_btn'");
+    view = finder.findRequiredView(source, 2131558842, "field 'tv_dingdan_bottom_r_btn'");
+    target.tv_dingdan_bottom_r_btn = finder.castView(view, 2131558842, "field 'tv_dingdan_bottom_r_btn'");
+    view = finder.findRequiredView(source, 2131558841, "field 'tv_dingdan_bottom_more'");
+    target.tv_dingdan_bottom_more = finder.castView(view, 2131558841, "field 'tv_dingdan_bottom_more'");
+    view = finder.findRequiredView(source, 2131558839, "field 'tv_dingdan_num_allpay_youfei'");
+    target.tv_dingdan_num_allpay_youfei = finder.castView(view, 2131558839, "field 'tv_dingdan_num_allpay_youfei'");
+    view = finder.findRequiredView(source, 2131558838, "field 'll_dingdan_products'");
+    target.ll_dingdan_products = finder.castView(view, 2131558838, "field 'll_dingdan_products'");
+  }
+
+  @Override public void unbind(T target) {
+    target.tv_dingdan_storename = null;
+    target.tv_dingdan_trading_success = null;
+    target.tv_dingdan_bottom_l_btn = null;
+    target.tv_dingdan_bottom_r_btn = null;
+    target.tv_dingdan_bottom_more = null;
+    target.tv_dingdan_num_allpay_youfei = null;
+    target.ll_dingdan_products = null;
+  }
+}

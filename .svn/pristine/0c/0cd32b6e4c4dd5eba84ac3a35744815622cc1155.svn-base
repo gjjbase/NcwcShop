@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_kongbai"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/img_kongbai"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/tv_kongbai"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/img_kongbai"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_edittext"
+        android:gravity="center"
+        android:text="木有东西。。。。"
+        android:textColor="@color/Black"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--姓名-->
+    <EditText
+        android:id="@+id/ed_newplace_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/write_name"
+        android:textColorHint="@color/button_material_dark"
+        android:textSize="16sp"/>
+
+
+    <!--联系方式-->
+    <EditText
+        android:id="@+id/ed_newplace_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ed_newplace_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/write_phone"
+        android:textColorHint="@color/button_material_dark"
+        android:textSize="16sp"/>
+    <!--详细地址-->
+    <EditText
+        android:id="@+id/ed_newplace_place"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ed_newplace_phone"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/write_place"
+        android:textColorHint="@color/button_material_dark"
+        android:textSize="16sp"/>
+
+    <!--邮编-->
+    <EditText
+        android:id="@+id/ed_newplace_youbian"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ed_newplace_place"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/write_youbian"
+        android:textColorHint="@color/button_material_dark"
+        android:textSize="16sp"/>
+
+    <!--保存-->
+    <TextView
+        android:id="@+id/tv_newplace_save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/ed_newplace_youbian"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/bg_textview"
+        android:gravity="center"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_newplace.xml -->

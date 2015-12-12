@@ -1,0 +1,233 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.AppManager;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.interactor.DialogListener;
+import com.ncwc.shop.interactor.SelectReturn;
+import com.ncwc.shop.model.MainActivity;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+import com.ncwc.shop.util.CameraManager;
+import com.ncwc.shop.util.ImageTools;
+import com.ncwc.shop.util.ScreenUtils;
+import com.ncwc.shop.util.SharepreUtil;
+import com.ncwc.shop.widget.DialogSelect;
+import com.ncwc.shop.widget.UpDataDialog;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.io.File;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by DELL-PC on 2015/10/6.
+ */
+public class SettingActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;
+	@Bind(R.id.shopcar_toolbar_edit)
+	TextView shopcar_toolbar_edit;//标题栏右侧完成按钮
+	@Bind(R.id.rl_setting_user)
+	RelativeLayout rl_setting_user;
+	@Bind(R.id.ed_setting_nickname)
+	EditText ed_setting_nickname;//编辑用户名
+	@Bind(R.id.rl_setting_phone)
+	RelativeLayout rl_setting_phone;
+	@Bind(R.id.rl_setting_icon)
+	RelativeLayout rl_setting_icon;
+	@Bind(R.id.rl_setting_password)
+	RelativeLayout rl_setting_password;
+	@Bind(R.id.rl_setting_exit)
+	RelativeLayout rl_setting_exit;
+
+	@Bind(R.id.tv_setting_nickname)
+	TextView tv_setting_nickname;//用户名
+	@Bind(R.id.tv_setting_phone)
+	TextView tv_setting_phone;//手机号
+	@Bind(R.id.img_setting_icon)
+	ImageView img_setting_icon;//头像
+	@Bind(R.id.tv_setting_password)
+	TextView tv_setting_password;//密码服务
+
+	private boolean first_time = true;
+	private Uri uri;//返回的资源定位符
+	private File outFile;//图片缓存
+	private Bitmap bitmap = null;//自定义头像
+
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@OnClick({R.id.tv_setting_nickname, R.id.rl_setting_phone, R.id.rl_setting_icon,
+			R.id.rl_setting_password, R.id.rl_setting_exit, R.id.shopcar_toolbar_edit})
+	public void widgetClick(View v) {
+		switch (v.getId()) {
+			case R.id.shopcar_toolbar_edit://修改完成
+				InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(ed_setting_nickname.getWindowToken(), 400);
+				//没有接口前暂时使用
+				Intent in = new Intent();
+				in.putExtra("icon", bitmap);
+				setResult(Constants.INTENT_ACTION_ICON, in);
+				//修改头像接口
+//				SharepreUtil.putStringValue(this, Constants.MEMBERAVATAR, ?????????);
+				finish();
+				break;
+			case R.id.tv_setting_nickname://用户名
+				ed_setting_nickname.setVisibility(View.VISIBLE);
+				tv_setting_nickname.setVisibility(View.GONE);
+				ed_setting_nickname.setFocusable(true);
+				ed_setting_nickname.requestFocus();
+				InputMethodManager inputManager = (InputMethodManager) ed_setting_nickname.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				inputManager.showSoftInput(ed_setting_nickname, 0);
+				break;
+			case R.id.rl_setting_phone://手机号
+				Intent in_phone = new Intent(this, BindandChangeofSettingActivity.class);
+				in_phone.putExtra("first", first_time);
+				startActivity(in_phone);
+				break;
+			case R.id.rl_setting_icon://头像
+				DialogSelect dialogselect = new DialogSelect(this);
+				dialogselect.getWindow().setGravity(Gravity.BOTTOM);
+				dialogselect.show();
+				dialogselect.getWindow().setLayout(
+						ScreenUtils.getScreenWidth(this), ActionBar.LayoutParams.WRAP_CONTENT);
+				dialogselect.setCanceledOnTouchOutside(true);
+				dialogselect.getSelectReturnListener(new SelectReturn() {
+
+					public void phoTo() {
+						/** 拍照 */
+						CameraManager.openCamera(SettingActivity.this, outFile);
+					}
+
+					@Override
+					public void exit() {
+						/** 退出 */
+					}
+
+					@Override
+					public void alBum() {
+						/** 相册 */
+						CameraManager.openAlbum(SettingActivity.this);
+					}
+				});
+				break;
+			case R.id.rl_setting_password://密码服务
+				startActivity(new Intent(this, ChangePasswordActivity.class));
+				break;
+			case R.id.rl_setting_exit://退出登录
+				UpDataDialog updata = new UpDataDialog(this,
+						Constants.FINISHAPP);
+				updata.show();
+				updata.SetDialogListener(new DialogListener() {
+
+					@Override
+					public void onExit() {
+						// TODO Auto-generated method stub
+					}
+
+					@Override
+					public void onEnter() {
+						SharepreUtil.clear(getApplicationContext());
+						ImageLoader.getInstance().clearDiskCache();
+						ImageLoader.getInstance().clearMemoryCache();
+						startActivity(new Intent(SettingActivity.this, MainActivity.class));
+						AppManager.getInstance().killAllActivity();
+					}
+				});
+				break;
+		}
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_setting;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.setting);
+		shopcar_toolbar_edit.setVisibility(View.VISIBLE);
+		shopcar_toolbar_edit.setTextColor(Color.WHITE);
+		shopcar_toolbar_edit.setText(R.string.finish);
+
+//		String icon_ = getIntent().getStringExtra("icon");
+//		AsyncLoadingPicture.getInstance(this).LoadPicture(icon_, img_setting_icon);
+
+		AsyncLoadingPicture.getInstance(this).LoadPicture(SharepreUtil.getStringValue(this, Constants.MEMBERAVATAR, ""), img_setting_icon);
+
+		File outDir = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		if (!outDir.exists()) {
+			outDir.mkdirs();
+		}
+		outFile = new File(outDir, System.currentTimeMillis() + ".jpg");
+
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if (event.getAction() == event.ACTION_UP) {
+			InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(ed_setting_nickname.getWindowToken(), 400);
+		}
+		return true;
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == Constants.INTENT_ACTION_PICTURE
+				&& resultCode == Activity.RESULT_OK && null != data) {
+			uri = data.getData();
+			if (uri != null) {
+				CameraManager.openCrop(SettingActivity.this, uri);
+			} else {
+
+			}
+		} else if (requestCode == Constants.INTENT_ACTION_CAREMA
+				&& resultCode == Activity.RESULT_OK) {
+			CameraManager.openCrop(SettingActivity.this, Uri.fromFile(outFile));
+		} else if (requestCode == Constants.INTENT_ACTION_CROP
+				&& resultCode == Activity.RESULT_OK && null != data) {
+			if (data != null) {
+				bitmap = data.getParcelableExtra("data");
+				img_setting_icon.setImageBitmap(bitmap);
+				ImageLoader.getInstance().clearDiskCache();
+				ImageLoader.getInstance().clearMemoryCache();
+			}
+			try {
+				// 将临时文件删除
+				outFile.delete();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

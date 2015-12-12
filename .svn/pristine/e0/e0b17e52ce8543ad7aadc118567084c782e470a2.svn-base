@@ -1,0 +1,60 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.util.GetProductsMsgOfDingdan;
+import com.ncwc.shop.util.GetWuLiuMsg;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/13.
+ */
+public class WuLiuMsgActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ll_wuliu_products)
+	LinearLayout ll_wuliu_products;//商品列表
+	@Bind(R.id.ll_wuliu_msg)
+	LinearLayout ll_wuliu_msg;//物流信息列表
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_wuliumsg;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.wuliu_msg);
+
+		for (int i = 0; i < 2; i++) {
+			ll_wuliu_products.addView(GetProductsMsgOfDingdan.getMsg(this, i + "", "", "", "", false, false));
+		}
+
+		int num = 4;
+		for (int i = 0; i < num; i++) {
+			if (i == num - 1) {
+				ll_wuliu_msg.addView(GetWuLiuMsg.getMsg_wuliu(this, i, false));
+			} else {
+				ll_wuliu_msg.addView(GetWuLiuMsg.getMsg_wuliu(this, i, true));
+			}
+		}
+
+	}
+}

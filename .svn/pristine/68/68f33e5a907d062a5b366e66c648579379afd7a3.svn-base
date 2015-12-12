@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        android:scaleType="center"
+        android:src="@mipmap/photo" />
+
+    <EditText
+        android:id="@id/username"
+        style="@style/editText_style"
+        android:hint="@string/usernamemsg"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@id/password"
+        style="@style/editText_style"
+        android:layout_marginTop="15dp"
+        android:hint="@string/pswmsg" />
+
+    <TextView
+        android:id="@id/login"
+        style="@style/textView_style"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/logintextview_selector"
+        android:text="@string/logintitle" />
+
+    <TextView
+        android:id="@id/regist"
+        style="@style/textView_style"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/resgtextview_select"
+        android:text="@string/regist" />
+
+    <TextView
+        android:id="@id/forget"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center|right"
+        android:text="@string/failpsw"
+        android:textColor="@color/textBlack"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/top"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@color/Gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/otherlogin"
+                android:textColor="@color/textBlack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/Gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@id/qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@mipmap/login_qq" />
+
+            <ImageView
+                android:id="@+id/weibo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@mipmap/login_weibo" />
+
+            <ImageView
+                android:id="@id/weixin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@mipmap/login_weixin" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/cent"
+            android:layout_marginBottom="10dp"
+            android:autoLink="all"
+            android:gravity="center"
+            android:text="@string/faillogin"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+</LinearLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_login.xml -->

@@ -1,0 +1,67 @@
+package com.ncwc.shop.model;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.interactor.impl.SwipeBackHelper;
+
+/**
+ * Created by admin on 2015/9/11.
+ */
+public class Example extends BaseActivity {
+    //    private ActionBar actionBar;
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        SwipeBackHelper.onCreate(this);
+
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(true)
+                .setSwipeEdgePercent(0.5f)
+                .setSwipeSensitivity(0.5f)
+                .setClosePercent(0.5f)
+                .setSwipeRelateEnable(true).setSwipeSensitivity(1);
+        return R.layout.example;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    @Override
+    protected void initData() {
+        initActionBar();
+    }
+
+    void initActionBar() {
+        /**
+         */
+        mToolbar.setTitle(R.string.pay_by_wx_title);
+    }
+
+    public void done(View v) {
+        startActivity(new Intent(Example.this, MainActivity.class));
+    }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
+}

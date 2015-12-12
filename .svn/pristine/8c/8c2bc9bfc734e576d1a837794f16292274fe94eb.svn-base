@@ -1,0 +1,74 @@
+package com.ncwc.shop.util;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+
+import com.ncwc.shop.config.Constants;
+
+import java.io.File;
+
+public class CameraManager {
+	/** 剪裁方法 */
+	public static void openCrop(Activity activity, Uri uri) {
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		intent.setDataAndType(uri, "image/*");
+		intent.putExtra("crop", "true");// 可裁剪
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		intent.putExtra("outputX", 100);
+		intent.putExtra("outputY", 100);
+		intent.putExtra("scale", true);
+		// intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+		intent.putExtra("return-data", true);// 若为false则表示不返回数据
+		// intent.putExtra("outputFormat",
+		// Bitmap.CompressFormat.JPEG.toString());
+		intent.putExtra("noFaceDetection", true);
+		activity.startActivityForResult(intent, Constants.INTENT_ACTION_CROP);
+		// startActivityForResult(intent, INTENT_ACTION_CAREMA);
+	}
+
+	/**
+	 * 打开相册，区分4.4以上的系统
+	 */
+	public static void openAlbum(Activity activity) {
+		Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		activity.startActivityForResult(intent, Constants.INTENT_ACTION_PICTURE);
+	}
+
+	/** 打开相机照相 */
+	public static void openCamera(Activity activity, File picturePath) {
+		String state = Environment.getExternalStorageState();
+		if (state.equals(Environment.MEDIA_MOUNTED)) {
+			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picturePath));
+			intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+			activity.startActivityForResult(intent, Constants.INTENT_ACTION_CAREMA);
+		} else {
+
+		}
+	}
+
+	/**
+	 * 获取图片路径
+	 * 
+	 * @param contentUri
+	 * @return String
+	 */
+	@SuppressWarnings("deprecation")
+	public static String getRealPathFromURI(Uri contentUri, Context context) {
+		try {
+			String[] proj = { MediaStore.Images.Media.DATA };
+			Cursor cursor = ((Activity) context).managedQuery(contentUri, proj, null, null, null);
+			int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			cursor.moveToFirst();
+			return cursor.getString(column_index);
+		} catch (Exception e) {
+			return contentUri.getPath();
+		}
+	}
+}

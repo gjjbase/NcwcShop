@@ -1,0 +1,18 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class DetailCartAdapter$ViewHolder$$ViewBinder<T extends com.ncwc.shop.adapter.DetailCartAdapter.ViewHolder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558758, "field 'img'");
+    target.img = finder.castView(view, 2131558758, "field 'img'");
+  }
+
+  @Override public void unbind(T target) {
+    target.img = null;
+  }
+}

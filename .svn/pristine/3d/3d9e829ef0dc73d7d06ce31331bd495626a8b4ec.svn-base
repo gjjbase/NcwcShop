@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white" />
+            <stroke android:width="0px" android:color="@color/login_btned" />
+        </shape>
+    </item>
+    <!-- 当按钮被点击之后 -->
+    <item android:drawable="@mipmap/bg_title" android:state_selected="true"/>
+
+</selector><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/drawable/tv_choose.xml -->

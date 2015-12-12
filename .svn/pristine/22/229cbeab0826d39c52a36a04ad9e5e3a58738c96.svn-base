@@ -1,0 +1,167 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.LiulanAndShoucangAdapter;
+import com.ncwc.shop.adapter.MyOrderAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by DELL-PC on 2015/10/9.
+ */
+public class MyOrderActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.tv_order_all)
+	TextView tv_order_all;
+	@Bind(R.id.tv_order_nopay)
+	TextView tv_order_nopay;
+	@Bind(R.id.tv_order_wait)
+	TextView tv_order_wait;
+	@Bind(R.id.tv_order_no_pingjia)
+	TextView tv_order_no_pingjia;
+	@Bind(R.id.pullToLoadView_dingdan)
+	PullToLoadView pullToLoadView_dingdan;//订单列表
+
+	private boolean isLoading = false;
+	private boolean isHasLoadedAll = false;
+	private int nextPage;
+	List<Map<String, String>> listmap;
+	private MyOrderAdapter adapter;
+	private JSONArray jso, addjson;
+	private RecyclerView mRecyclerView;
+
+	private int style_0 = 0;
+
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	@OnClick({R.id.tv_order_all, R.id.tv_order_nopay, R.id.tv_order_wait, R.id.tv_order_no_pingjia})
+	public void widgetClick(View v) {
+		tv_order_all.setSelected(false);
+		tv_order_nopay.setSelected(false);
+		tv_order_wait.setSelected(false);
+		tv_order_no_pingjia.setSelected(false);
+		switch (v.getId()) {
+			case R.id.tv_order_all://所有订单
+				tv_order_all.setSelected(true);
+				style_0 = 0;
+				loadData(1, 0);
+				break;
+			case R.id.tv_order_nopay://待付款
+				tv_order_nopay.setSelected(true);
+				style_0 = 1;
+				loadData(1, 1);
+				break;
+			case R.id.tv_order_wait://待收货
+				tv_order_wait.setSelected(true);
+				style_0 = 2;
+				loadData(1, 2);
+				break;
+			case R.id.tv_order_no_pingjia://待评价
+				tv_order_no_pingjia.setSelected(true);
+				style_0 = 3;
+				loadData(1, 3);
+				break;
+		}
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_myorder;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.my_order);
+		tv_order_all.setSelected(true);
+
+		listmap = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < 30; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("name", i + 1 + "");
+			listmap.add(map);
+		}
+		jso = new JSONArray(listmap);
+		addjson = new JSONArray(listmap);
+		mRecyclerView = pullToLoadView_dingdan.getRecyclerView();
+		mRecyclerView.setHasFixedSize(false);
+		LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mRecyclerView.setLayoutManager(manager);
+		pullToLoadView_dingdan.isLoadMoreEnabled(true);
+		pullToLoadView_dingdan.setPullCallback(new PullCallback() {
+			public void onLoadMore() {
+				loadData(nextPage, style_0);
+			}
+
+			public void onRefresh() {
+				isHasLoadedAll = false;
+				loadData(1, style_0);
+			}
+
+			public boolean isLoading() {
+				Log.e("main activity", "main isLoading:" + isLoading);
+				return isLoading;
+			}
+
+			public boolean hasLoadedAllItems() {
+				return isHasLoadedAll;
+			}
+		});
+		pullToLoadView_dingdan.initLoad();
+	}
+
+	private void loadData(final int page, final int style) {
+		isLoading = true;
+		new Handler().postDelayed(new Runnable() {
+			public void run() {
+				if (isHasLoadedAll) {
+					Toast.makeText(MyOrderActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+				}
+				if (page > 10) {
+					isHasLoadedAll = true;
+					return;
+				}
+				if (page == 1) {
+					adapter = new MyOrderAdapter(MyOrderActivity.this, jso, style);
+					mRecyclerView.setAdapter(adapter);
+				} else {
+					try {
+						adapter.addData(addjson);
+					} catch (JSONException e) {
+					}
+				}
+
+				pullToLoadView_dingdan.setComplete();
+				isLoading = false;
+				nextPage = page + 1;
+			}
+		}, 400);
+	}
+}

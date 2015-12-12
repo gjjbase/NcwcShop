@@ -1,0 +1,110 @@
+package com.ncwc.shop.config;
+
+/**
+ * Created by admin on 2015/9/1.
+ */
+public class Constants {
+	/*支付宝支付*/
+	// 商户PID
+	public static final String PARTNER = "";
+	// 商户收款账号
+	public static final String SELLER = "";
+	// 商户私钥，pkcs8格式
+	public static final String RSA_PRIVATE = "";
+	// 支付宝公钥
+	public static final String RSA_PUBLIC = "";
+	public static final int SDK_PAY_FLAG = 1;
+	public static final int SDK_CHECK_FLAG = 2;
+	//请同时修改  androidmanifest.xml里面，.PayActivityd里的属性<data android:scheme="wxb4ba3c02aa476ea1"/>为新设置的appid
+	/*微信支付*/
+	public static final String APP_ID = "wxf04cbd55a84fb988";
+	//商户号
+	public static final String MCH_ID = "";
+	//  API密钥，在商户平台设置
+	public static final String API_KEY = "";
+	// 自己微信应用的 appSecret
+	public static final String WX_SECRET = "db003805f5ba9afd5abfeabd71c4d5ef";
+	/**
+	 * QQ登录
+	 */
+	public static final String QQAPP_ID = "1104875124";
+	/**
+	 * 微博登录
+	 */
+	public static final String WBAPP_ID = "3782149964";
+	public static final String REDIRECT_URL = "http://www.sina.com";
+	public static final String SCOPE =
+			"email,direct_messages_read,direct_messages_write,"
+					+ "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
+					+ "follow_app_official_microblog," + "invitation_write";
+
+	/**
+	 * 打开相册，并截图
+	 */
+	public static final int INTENT_ACTION_PICTURE = 0;
+	/**
+	 * 打开相机照相
+	 */
+	public static final int INTENT_ACTION_CAREMA = 1;
+	/**
+	 * 照相后，截图
+	 */
+	public static final int INTENT_ACTION_CROP = 2;
+	/**
+	 * 修改头像后，在个人中心展示
+	 */
+	public static final int INTENT_ACTION_ICON = 3;
+	/**个人信息常量*/
+	/**
+	 * 用户ID
+	 */
+	public static final String MEMBERID = "member_id";
+	/**
+	 * 登录名
+	 */
+	public static final String MEMBERNAME = "member_name";
+	/**
+	 * 昵称
+	 */
+	public static final String MEMBERTRUENAME = "member_truename";
+	/**
+	 * 性别，1男2女
+	 */
+	public static final String MEMBERSEX = "member_sex";
+	/**
+	 * 头像
+	 */
+	public static final String MEMBERAVATAR = "member_avatar";
+	/**
+	 * 邮箱
+	 */
+	public static final String MEMBEREMAIL = "member_email";
+	/**
+	 * 手机号
+	 */
+	public static final String MEMBERMOBILE = "member_mobile";
+	/**
+	 * 登录验证KEY
+	 */
+	public static final String TOKEN = "token";
+	/**
+	 * 默认收货地址
+	 */
+	public static final String ADDRESS = "address";
+	/**
+	 * 购物车
+	 * 二维KEY头部
+	 */
+	public static final String SHOPCAR_ID = "shopcar_id";
+	public static final String SHOPCAR_NUM = "shopcar_pronum";
+	public static final String SHOPCAR_MONEY = "shopcar_money";
+	/**
+	 * 版本更新提示
+	 */
+	public final static int UPMSG = 1;
+	/**
+	 * 退出程序提示
+	 */
+	public final static int FINISHAPP = 2;
+
+}

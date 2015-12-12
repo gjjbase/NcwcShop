@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PullToRefresh">
+        <attr name="mode" format="reference" >
+            <flag name="pullDownFromTop" value="0x1" />
+            <flag name="pullUpFromBottom" value="0x2" />
+            <flag name="both" value="0x3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="LoadingView">
+        <attr name="loadingText" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="SelectNumPicker">
+        <attr name="edtext" format="string|integer"/>
+        <attr name="backgrd" format="integer"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,78 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapter;
+import com.ncwc.shop.base.BaseViewHolder;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/7.
+ */
+public class MyPlaceManageAdapter extends BaseAdapter<MyPlaceManageAdapter.CallViewholder> {
+
+	private int style = 0;//等于1时放开隐藏
+
+	public MyPlaceManageAdapter(Context context, JSONArray dataList) {
+		super(context, dataList);
+	}
+
+	public MyPlaceManageAdapter(Context context, JSONArray dataList, int style) {
+		super(context, dataList);
+		this.style = style;
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.item_place_manage;
+	}
+
+	@Override
+	protected CallViewholder getViewholder(View view) {
+		return new CallViewholder(getContentView());
+	}
+
+	@Override
+	protected void setJsonData(CallViewholder holder, JSONObject jsonObject) {
+		try {
+			holder.tv_place_manage_name.setText(jsonObject.getString("name"));
+			if (style == 1) {
+				holder.ll_place_manage_edit.setVisibility(View.VISIBLE);
+			} else {
+				holder.ll_place_manage_edit.setVisibility(View.GONE);
+			}
+		} catch (JSONException e) {
+		}
+	}
+
+	public static class CallViewholder extends BaseViewHolder {
+		@Bind(R.id.tv_place_manage_name)
+		TextView tv_place_manage_name;//姓名和手机号
+		@Bind(R.id.img_place_manage_default)
+		ImageView img_place_manage_default;//是否默认
+		@Bind(R.id.tv_05)
+		TextView tv_05;//默认；选择
+		@Bind(R.id.tv_place_manage_place)
+		TextView tv_place_manage_place;//具体地址
+		@Bind(R.id.tv_place_manage_edit)
+		TextView tv_place_manage_edit;//编辑地址
+		@Bind(R.id.tv_place_manage_delete)
+		TextView tv_place_manage_delete;//删除地址
+		@Bind(R.id.ll_place_manage_edit)
+		LinearLayout ll_place_manage_edit;//编辑区
+
+		public CallViewholder(View itemView) {
+			super(itemView);
+		}
+	}
+}

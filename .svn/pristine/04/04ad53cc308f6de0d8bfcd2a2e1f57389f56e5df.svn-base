@@ -1,0 +1,156 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.model.MainActivity;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by DELL-PC on 2015/10/8.
+ */
+public class MyYaoqingActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ll_yaoqing_all)
+	LinearLayout ll_yaoqing_all;//邀请记录列表
+	@Bind(R.id.gv_yaoqing)
+	GridView gv_yaoqing;//分享平台
+
+	@Bind(R.id.tv_yaoqing_code)
+	TextView tv_yaoqing_code;//邀请码
+	@Bind(R.id.tv_yaoqing_copy)
+	TextView tv_yaoqing_copy;//复制
+	@Bind(R.id.tv_yaoqing_num)
+	TextView tv_yaoqing_num;//邀请记录（条数）
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	@OnClick({R.id.tv_yaoqing_copy})
+	public void widgetClick(View v) {
+		switch (v.getId()) {
+			case R.id.tv_yaoqing_copy://复制邀请码
+				ClipboardManager clip = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+				clip.setText(tv_yaoqing_code.getText().toString().trim()); // 复制
+				Toast.makeText(this, R.string.fuzhi_success, Toast.LENGTH_SHORT).show();
+//				clip.getText(); // 粘贴
+				break;
+		}
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_myyaoqing;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.my_yaoqing);
+
+		//给邀请记录填充数据
+		for (int i = 0; i < 14; i++) {
+			LinearLayout item_jilu = new LinearLayout(this);
+			LinearLayout.LayoutParams ll_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			if (i == 0) {
+				ll_params.topMargin = 10;
+			} else {
+				ll_params.topMargin = 4;
+			}
+			item_jilu.setLayoutParams(ll_params);
+			ll_yaoqing_all.addView(item_jilu);
+			for (int j = 0; j < 3; j++) {
+				TextView item_jilu_tv = new TextView(this);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+				item_jilu_tv.setGravity(Gravity.CENTER);
+				item_jilu_tv.setText("2015-10-08_" + i + "_" + j);
+				item_jilu_tv.setTextColor(Color.BLACK);
+				item_jilu_tv.setTextSize(10);
+				item_jilu_tv.setLayoutParams(params);
+				item_jilu.addView(item_jilu_tv);
+			}
+		}
+		Space space = new Space(this);
+		LinearLayout.LayoutParams space_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+		space.setLayoutParams(space_params);
+		ll_yaoqing_all.addView(space);
+
+		//设置分享平台
+		//为GridView设置适配器
+		gv_yaoqing.setAdapter(new MyGridViewAdapter(this));
+		//注册监听事件
+		gv_yaoqing.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				showToast("平台：" + position);
+			}
+		});
+
+	}
+
+	//自定义适配器
+	class MyGridViewAdapter extends BaseAdapter {
+		//上下文对象
+		private Context context;
+		//图片数组
+		private Integer[] imgs = {
+				R.mipmap.weinxin,
+				R.mipmap.pengyouquan,
+				R.mipmap.qq,
+				R.mipmap.qqz,
+				R.mipmap.suan
+		};
+
+		MyGridViewAdapter(Context context) {
+			this.context = context;
+		}
+
+		public int getCount() {
+			return imgs.length;
+		}
+
+		public Object getItem(int item) {
+			return item;
+		}
+
+		public long getItemId(int id) {
+			return id;
+		}
+
+		//创建View方法
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ImageView imageView;
+			if (convertView == null) {
+				imageView = new ImageView(context);
+				imageView.setLayoutParams(new GridView.LayoutParams(240, 240));//设置ImageView对象布局
+				imageView.setAdjustViewBounds(false);//设置边界对齐
+				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);//设置刻度的类型
+				imageView.setPadding(8, 8, 8, 8);//设置间距
+			} else {
+				imageView = (ImageView) convertView;
+			}
+			imageView.setImageResource(imgs[position]);//为ImageView设置图片资源
+			return imageView;
+		}
+	}
+}

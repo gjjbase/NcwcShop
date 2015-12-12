@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeRepAdapter$ViewHolder$$ViewBinder<T extends com.ncwc.shop.adapter.FreeRepAdapter.ViewHolder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558568, "field 'grd_botm'");
+    target.grd_botm = finder.castView(view, 2131558568, "field 'grd_botm'");
+    view = finder.findRequiredView(source, 2131558747, "field 'img_left'");
+    target.img_left = finder.castView(view, 2131558747, "field 'img_left'");
+    view = finder.findRequiredView(source, 2131558798, "field 'txt_nickname'");
+    target.txt_nickname = finder.castView(view, 2131558798, "field 'txt_nickname'");
+    view = finder.findRequiredView(source, 2131558811, "field 'txt_aspect'");
+    target.txt_aspect = finder.castView(view, 2131558811, "field 'txt_aspect'");
+    view = finder.findRequiredView(source, 2131558812, "field 'txt_quality'");
+    target.txt_quality = finder.castView(view, 2131558812, "field 'txt_quality'");
+    view = finder.findRequiredView(source, 2131558813, "field 'txt_price'");
+    target.txt_price = finder.castView(view, 2131558813, "field 'txt_price'");
+    view = finder.findRequiredView(source, 2131558810, "field 'ratingBar'");
+    target.ratingBar = finder.castView(view, 2131558810, "field 'ratingBar'");
+  }
+
+  @Override public void unbind(T target) {
+    target.grd_botm = null;
+    target.img_left = null;
+    target.txt_nickname = null;
+    target.txt_aspect = null;
+    target.txt_quality = null;
+    target.txt_price = null;
+    target.ratingBar = null;
+  }
+}

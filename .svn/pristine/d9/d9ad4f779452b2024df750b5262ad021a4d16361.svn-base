@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="spark_viewpager" type="id"/>
+    <item name="toolbarid" type="id"/>
+    <item name="toolbar_title" type="id"/>
+    <!--登录-->
+    <item name="qq" type="id"/>
+    <item name="weibo" type="id"/>
+    <item name="weixin" type="id"/>
+    <item name="username" type="id"/>
+    <item name="password" type="id"/>
+    <item name="login" type="id"/>
+    <item name="regist" type="id"/>
+    <item name="forget" type="id"/>
+    <!--注册-->
+    <item name="code" type="id"/>
+    <item name="getcode" type="id"/>
+    <item name="psw" type="id"/>
+    <item name="repsw" type="id"/>
+    <item name="invitation" type="id"/>
+    <item name="check_xy" type="id"/>
+    <!--首页商城-->
+    <item name="listview_type" type="id"/>
+    <item name="zp_curr_potion_linear" type="id"/>
+    <item name="lindot" type="id"/>
+    <item name="fading_bar" type="id"/>
+</resources>

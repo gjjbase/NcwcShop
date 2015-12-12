@@ -1,0 +1,146 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class PersonalFragment$$ViewBinder<T extends com.ncwc.shop.model.perscenter.PersonalFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131624283, "field 'img_personal_ic' and method 'widgetClick'");
+    target.img_personal_ic = finder.castView(view, 2131624283, "field 'img_personal_ic'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624282, "field 'img_personal_bg'");
+    target.img_personal_bg = finder.castView(view, 2131624282, "field 'img_personal_bg'");
+    view = finder.findRequiredView(source, 2131624259, "field 'shopcar_toolbar_edit' and method 'widgetClick'");
+    target.shopcar_toolbar_edit = finder.castView(view, 2131624259, "field 'shopcar_toolbar_edit'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624285, "field 'tv_personal_vantages' and method 'widgetClick'");
+    target.tv_personal_vantages = finder.castView(view, 2131624285, "field 'tv_personal_vantages'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624287, "field 'tv_personal_numoftryuse' and method 'widgetClick'");
+    target.tv_personal_numoftryuse = finder.castView(view, 2131624287, "field 'tv_personal_numoftryuse'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624293, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624295, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624291, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624299, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624297, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624303, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624301, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624288, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624286, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.img_personal_ic = null;
+    target.img_personal_bg = null;
+    target.shopcar_toolbar_edit = null;
+    target.tv_personal_vantages = null;
+    target.tv_personal_numoftryuse = null;
+  }
+}

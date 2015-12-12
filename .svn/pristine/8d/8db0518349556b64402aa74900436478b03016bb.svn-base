@@ -1,0 +1,154 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.os.Handler;
+import android.text.Html;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.util.SharepreUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by admin on 2015/9/30.
+ */
+public class RegistActivity extends BaseActivity implements IOAuthCallBack {
+    @Bind(R.id.regist)
+    protected TextView regist;
+    @Bind(R.id.getcode)
+    protected TextView getcode;
+    @Bind(R.id.code)
+    protected EditText code;
+    @Bind(R.id.nickname)
+    protected EditText nickname;
+    @Bind(R.id.psw)
+    protected EditText psw;
+    @Bind(R.id.repsw)
+    protected EditText repsw;
+    @Bind(R.id.username)
+    protected EditText username;
+    @Bind(R.id.invitation)
+    protected EditText invitation;
+    @Bind(R.id.check_xy)
+    protected CheckBox check_xy;
+    @Bind(R.id.toolbar_title)
+    protected TextView toolbar_title;
+    private static int TIME = 1000;
+    private int fag = 120;
+    private Runnable runnable;
+    private String mobile = "";
+    private String password = "";
+    private String strcode = "";
+    private String password_confirm = "";
+    private String strnickname = "";
+    private String strinvitation = "";
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @OnClick({R.id.getcode, R.id.regist})
+    public void widgetClick(View v) {
+        mobile = username.getText().toString().trim();
+        password = psw.getText().toString().trim();
+        strcode = code.getText().toString().trim();
+        password_confirm = repsw.getText().toString().trim();
+        strnickname = nickname.getText().toString().trim();
+        strinvitation = invitation.getText().toString().trim();
+        switch (v.getId()) {
+            case R.id.regist:
+                asynHttpUtil.register(RegistActivity.this, strnickname, mobile, strcode, password, password_confirm, strinvitation);
+                break;
+            case R.id.getcode:
+                if (mobile.length() != 11) {
+                    showToast(getString(R.string.failmobile));
+                    return;
+                }
+                asynHttpUtil.getCode(RegistActivity.this, mobile);
+                break;
+        }
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.activity_regist;
+    }
+
+    @Override
+    protected void initData() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar_title.setText(R.string.regist);
+        check_xy.setText(Html.fromHtml("<font size=\"3\" color=\"black\">我已阅读并同意</font><font size=\"3\" color=\"blue\">《你车我车用户协议》</font>"));
+    }
+
+    /**
+     * 计时器
+     */
+    public void MsgTimer() {
+        final Handler handler = new Handler();
+        runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                // handler自带方法实现定时器
+                try {
+                    handler.postDelayed(this, TIME);
+                    username.setEnabled(false);
+                    getcode.setEnabled(false);
+                    getcode.setText(Integer.toString(fag--) + "秒");
+                    if (fag == 0) {
+                        getcode.setEnabled(true);
+                        getcode.setEnabled(true);
+                        getcode.refreshDrawableState();
+                        getcode.setText(R.string.getcode);
+                        fag = 120;
+                        handler.removeCallbacks(runnable);
+                    }
+                    System.out.println("do...");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("exception...");
+                }
+            }
+        };
+        handler.postDelayed(runnable, TIME);
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        if (type.equals(HttpService.TYPE_GETCODE)) {
+            showToast(response.getString("msg"));
+            if (response.getString("status").equals("1")) {
+                MsgTimer();
+            }
+        } else if (type.equals(HttpService.TYPE_REGISTER)) {
+            showToast(response.getString("msg"));
+            if (response.getString("status").equals("1")) {
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERID, response.getString(Constants.MEMBERID));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERNAME, response.getString(Constants.MEMBERNAME));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERTRUENAME, response.getString(Constants.MEMBERTRUENAME));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERSEX, response.getString(Constants.MEMBERSEX));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERAVATAR, response.getString(Constants.MEMBERAVATAR));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBEREMAIL, response.getString(Constants.MEMBEREMAIL));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERMOBILE, response.getString(Constants.MEMBERMOBILE));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.TOKEN, response.getString(Constants.TOKEN));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.ADDRESS, response.getString(Constants.ADDRESS));
+                finish();
+            }
+
+        }
+    }
+}

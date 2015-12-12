@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:id="@+id/tabs_rg2"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/rad_home2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/allcomdetail_checked"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/comdetal"
+            android:textColor="@drawable/mian_tab_text_shecked" />
+
+        <RadioButton
+            android:id="@+id/rad_class2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/allcomdetail_checked"
+            android:button="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/comdetail"
+            android:textColor="@drawable/mian_tab_text_shecked" />
+
+        <RadioButton
+            android:id="@+id/rad_shop2"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="@drawable/allcomdetail_checked"
+            android:button="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/comdsale"
+            android:textColor="@drawable/mian_tab_text_shecked" />
+    </RadioGroup>
+</LinearLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/gadiogrop2_mege.xml -->

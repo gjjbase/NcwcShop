@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--订单支付完成提示-->
+    <LinearLayout
+        android:id="@+id/ll_shopping_succeespay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!--提示图-->
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <!--提示文字-->
+        <TextView
+            android:id="@+id/txt_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/succees_pay"
+            android:textColor="@color/rea"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!--订单信息：编号、创建时间-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_shopping_succeespay"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext">
+
+        <!--标语-->
+        <TextView
+            android:id="@+id/tv_00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:textColor="@color/Black"
+            android:textSize="20sp"/>
+
+        <!--下划线-->
+        <ImageView
+            android:id="@+id/img_01"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/tv_00"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="7dp"
+            android:src="@color/Black"/>
+
+        <!--订单编号-->
+        <TextView
+            android:id="@+id/tv_num_of_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_01"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="14dp"
+            android:text="订单编号：000000000000"
+            android:textColor="@color/Black"
+            android:textSize="18sp"/>
+
+        <!--订单创建时间-->
+        <TextView
+            android:id="@+id/tv_createdtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_num_of_order"
+            android:layout_below="@+id/tv_num_of_order"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/Black"
+            android:textSize="18sp"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/tv_createdtime"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

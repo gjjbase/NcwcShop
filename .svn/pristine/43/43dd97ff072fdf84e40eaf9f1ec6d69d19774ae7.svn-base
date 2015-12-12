@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!-- &lt;!&ndash;店名&ndash;&gt;
+     <TextView
+         android:id="@+id/tv_shouhou_huanhuo_storename"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/common_toolbar"
+         android:layout_marginLeft="30dp"
+         android:layout_marginTop="10dp"
+         android:text="你车我车"
+         android:textColor="@color/Black"
+         android:textSize="16sp"/>
+
+     &lt;!&ndash;下划线&ndash;&gt;
+     <ImageView
+         android:id="@+id/img_18"
+         android:layout_width="match_parent"
+         android:layout_height="0.3dp"
+         android:layout_below="@+id/tv_shouhou_huanhuo_storename"
+         android:layout_marginTop="4dp"
+         android:src="@color/Gray"/>
+
+     &lt;!&ndash;商品列表&ndash;&gt;
+     <LinearLayout
+         android:id="@+id/ll_shouhou_huanhuo_pros"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/img_18"
+         android:layout_marginLeft="10dp"
+         android:layout_marginRight="10dp"
+         android:layout_marginTop="4dp"
+         android:orientation="vertical">
+         &lt;!&ndash;代码动态生成产品信息&ndash;&gt;
+     </LinearLayout>-->
+
+    <!--所有内容部分可滑动-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_toolbar">
+
+        <!--所有内容-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--商品部分-->
+            <RelativeLayout
+                android:id="@+id/rl_01_shouhou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <!--上部浅色分隔线-->
+                <!--<ImageView
+                    android:id="@+id/top_line_g_shouhou"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@color/button_material_light"/>-->
+
+                <!--商品缩略图-->
+                <ImageView
+                    android:id="@+id/shouhou_shopicon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <!--商品名称-->
+                <TextView
+                    android:id="@+id/shouhou_productname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/shouhou_shopicon"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_toRightOf="@+id/shouhou_shopicon"
+                    android:text="产品产品产品产品产品产品产品产品产品产品"
+                    android:textColor="@color/abc_input_method_navigation_guard"
+                    android:textSize="14sp"/>
+
+                <!--产品价格-->
+                <TextView
+                    android:id="@+id/shouhou_productprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shouhou_productname"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toRightOf="@+id/shouhou_shopicon"
+                    android:text="价格:￥404004"
+                    android:textColor="@color/rea"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <!--产品数量-->
+                <TextView
+                    android:id="@+id/shouhou_product_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/shouhou_productprice"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/shouhou_productprice"
+                    android:singleLine="false"
+                    android:text="×1"
+                    android:textColor="@color/abc_input_method_navigation_guard"
+                    android:textSize="12sp"/>
+
+                <!--下部浅色分隔线-->
+                <ImageView
+                    android:id="@+id/bottom_line_g"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_below="@+id/shouhou_shopicon"
+                    android:layout_marginTop="10dp"
+                    android:src="@color/button_material_light"/>
+            </RelativeLayout>
+
+            <!--服务类型-->
+            <LinearLayout
+                android:id="@+id/ll_shouhou_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_01_shouhou"
+                android:orientation="vertical">
+
+                <!--文字：服务类型-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="服务类型"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"/>
+
+                <!--我要退货（默认）-->
+                <TextView
+                    android:id="@+id/tv_shouhou_style_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="14dp"
+                    android:text="我要退货"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+
+                <!--我要退款-->
+                <TextView
+                    android:id="@+id/tv_shouhou_style_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="14dp"
+                    android:text="我要退款（无需退货）"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!--退货数量&退款金额-->
+            <LinearLayout
+                android:id="@+id/ll_shouhou_num_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_shouhou_style"
+                android:orientation="vertical">
+
+                <!--文字：退货数量-->
+                <TextView
+                    android:id="@+id/tv_22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="退货数量"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"/>
+
+                <!--退货数量-->
+                <EditText
+                    android:id="@+id/ed_shouhuo_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:numeric="integer"
+                    android:paddingLeft="10dp"/>
+
+                <!--文字：退款金额-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="退款金额"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"/>
+
+                <!--退款金额-->
+                <EditText
+                    android:id="@+id/ed_shouhou_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:numeric="decimal"
+                    android:paddingLeft="10dp"/>
+
+            </LinearLayout>
+
+            <!--退款原因&上传凭证-->
+            <include
+                layout="@layout/item_tuihuo_huanhuo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_shouhou_num_money"/>
+
+            <!--确定申请售后-->
+            <TextView
+                android:id="@+id/tv_shouhou_shenqing_sure"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/item_tuihuo_huanhuo"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_textview"
+                android:gravity="center"
+                android:text="@string/sure"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+            <!--空白-->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_shouhou_shenqing_sure"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

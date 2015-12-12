@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class AllComAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.AllComAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558574, "field 'txt_addcart'");
+    target.txt_addcart = finder.castView(view, 2131558574, "field 'txt_addcart'");
+    view = finder.findRequiredView(source, 2131558748, "field 'txy_itemtitle'");
+    target.txy_itemtitle = finder.castView(view, 2131558748, "field 'txy_itemtitle'");
+    view = finder.findRequiredView(source, 2131558751, "field 'txt_goods_salenum'");
+    target.txt_goods_salenum = finder.castView(view, 2131558751, "field 'txt_goods_salenum'");
+    view = finder.findRequiredView(source, 2131558752, "field 'txt_evaluation_count'");
+    target.txt_evaluation_count = finder.castView(view, 2131558752, "field 'txt_evaluation_count'");
+    view = finder.findRequiredView(source, 2131558749, "field 'txt_pric'");
+    target.txt_pric = finder.castView(view, 2131558749, "field 'txt_pric'");
+    view = finder.findRequiredView(source, 2131558750, "field 'txt_preferential'");
+    target.txt_preferential = finder.castView(view, 2131558750, "field 'txt_preferential'");
+    view = finder.findRequiredView(source, 2131558747, "field 'img_left'");
+    target.img_left = finder.castView(view, 2131558747, "field 'img_left'");
+  }
+
+  @Override public void unbind(T target) {
+    target.txt_addcart = null;
+    target.txy_itemtitle = null;
+    target.txt_goods_salenum = null;
+    target.txt_evaluation_count = null;
+    target.txt_pric = null;
+    target.txt_preferential = null;
+    target.img_left = null;
+  }
+}

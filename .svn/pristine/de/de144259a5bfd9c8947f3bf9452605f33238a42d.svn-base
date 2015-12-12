@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/item_tuihuo_huanhuo"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--原因-->
+    <TextView
+        android:id="@+id/tv_shouhou_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="原因："
+        android:textColor="@color/Black"
+        android:textSize="16sp"/>
+
+    <!--下划线-->
+    <ImageView
+        android:id="@+id/img_16"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_shouhou_reason"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:src="@color/Gray"
+        android:visibility="gone"/>
+
+    <!--具体原因-->
+    <LinearLayout
+        android:id="@+id/ll_02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_shouhou_reason"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <!--原因====质量问题-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_01"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_01"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_01"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====价格问题-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_02"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_02"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_02"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====发错货-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_03"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_03"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_03"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====配件缺失、破损-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_04"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_04"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_04"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====与商品名称不一致-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_05"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_05"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_05"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====商品参数不一致-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_06"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_06"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_06"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <!--原因====其他原因-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp">
+
+            <ImageView
+                android:id="@+id/img_reason_07"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:background="@mipmap/order_cancel_no"/>
+
+            <TextView
+                android:id="@+id/tv_resson_07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_reason_07"
+                android:gravity="center"
+                android:text="@string/shouhou_reason_other"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/ed_shouhou_reason"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_resson_07"
+                android:background="@drawable/bg_edittext"
+                android:hint="请输入其他原因"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@color/Black"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--下划线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/ll_02"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@color/Gray"
+        android:visibility="gone"/>
+
+    <!--上传凭证-->
+    <TextView
+        android:id="@+id/tv_shangchuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_02"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="上传凭证："
+        android:textColor="@color/Black"
+        android:textSize="16sp"/>
+
+    <!--照片展示区-->
+    <LinearLayout
+        android:id="@+id/ll_show_pics_th"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_shangchuan"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/img_camera_0_th"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@mipmap/choose_img"/>
+
+            <ImageView
+                android:id="@+id/img_camera_delete_0_th"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/cancel_img"/>
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/img_camera_1_th"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@mipmap/choose_img"/>
+
+            <ImageView
+                android:id="@+id/img_camera_delete_1_th"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/cancel_img"/>
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/img_camera_2_th"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@mipmap/choose_img"/>
+
+            <ImageView
+                android:id="@+id/img_camera_delete_2_th"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/cancel_img"/>
+
+        </RelativeLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10">
+
+            <ImageView
+                android:id="@+id/img_camera_3_th"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@mipmap/choose_img"/>
+
+            <ImageView
+                android:id="@+id/img_camera_delete_3_th"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@mipmap/cancel_img"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:paddingTop="20dp"></RadioGroup>
+
+    <EditText
+        android:id="@+id/edt_msg"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@mipmap/bg_edittext"
+        android:gravity="center"
+        android:hint="@string/retrungonmsg" />
+
+    <TextView
+        android:id="@id/login"
+        style="@style/textView_style"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/logintextview_selector"
+        android:text="@string/retruego"
+        android:textColor="@color/white" />
+</LinearLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_returngo.xml -->

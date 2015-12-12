@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:background="@mipmap/bgfreerun"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/lin_left"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:background="@mipmap/freerunadpterleft"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_detail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/moren" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/bg_color" />
+
+            <TextView
+                android:id="@+id/txt_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="第19期"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/lin_left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/itemtitle" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freepel"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txt_penum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="980"
+                        android:textColor="@color/bg_title"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pel"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freenum"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txt_dnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="100"
+                        android:textColor="@color/bg_title"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/num"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                >
+
+                <LinearLayout
+                    android:id="@+id/lin_btnleft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="剩余:" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="03"
+                        android:textColor="@color/bg_title" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="@string/day" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="24"
+                        android:textColor="@color/bg_title" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="@string/hour" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="56"
+                        android:textColor="@color/bg_title" />
+
+                    <TextView
+                        style="@style/runtextview"
+                        android:text="@string/minute" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/lin_btnleft">
+
+                    <TextView
+                        android:id="@+id/txt_free"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/freeruntextview_selector"
+                        android:gravity="center"
+                        android:text="免费试用"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/freerunadpter_item.xml -->

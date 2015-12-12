@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeOldAdapter$ViewHolder$$ViewBinder<T extends com.ncwc.shop.adapter.FreeOldAdapter.ViewHolder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558807, "field 'txt_freerep'");
+    target.txt_freerep = finder.castView(view, 2131558807, "field 'txt_freerep'");
+    view = finder.findRequiredView(source, 2131558808, "field 'txt_freeeva'");
+    target.txt_freeeva = finder.castView(view, 2131558808, "field 'txt_freeeva'");
+    view = finder.findRequiredView(source, 2131558809, "field 'txt_freeist'");
+    target.txt_freeist = finder.castView(view, 2131558809, "field 'txt_freeist'");
+    view = finder.findRequiredView(source, 2131558803, "field 'txt_period'");
+    target.txt_period = finder.castView(view, 2131558803, "field 'txt_period'");
+    view = finder.findRequiredView(source, 2131558805, "field 'txt_people'");
+    target.txt_people = finder.castView(view, 2131558805, "field 'txt_people'");
+    view = finder.findRequiredView(source, 2131558804, "field 'txt_title'");
+    target.txt_title = finder.castView(view, 2131558804, "field 'txt_title'");
+    view = finder.findRequiredView(source, 2131558802, "field 'img_logo'");
+    target.img_logo = finder.castView(view, 2131558802, "field 'img_logo'");
+  }
+
+  @Override public void unbind(T target) {
+    target.txt_freerep = null;
+    target.txt_freeeva = null;
+    target.txt_freeist = null;
+    target.txt_period = null;
+    target.txt_people = null;
+    target.txt_title = null;
+    target.img_logo = null;
+  }
+}

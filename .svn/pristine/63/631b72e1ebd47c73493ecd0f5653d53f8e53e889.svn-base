@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--目标内容-->
+    <EditText
+        android:id="@+id/ed_setting_target"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="\u3000请输入您的。。。。"/>
+
+    <!--输入验证码-->
+    <EditText
+        android:id="@+id/ed_verification_code"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ed_setting_target"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="@string/verification_code"/>
+
+    <!--获取验证码-->
+    <TextView
+        android:id="@+id/tv_setting_get_verification_code"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@+id/ed_verification_code"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_edittext"
+        android:gravity="center"
+        android:text="@string/get_verification_code"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"/>
+
+    <!--确认-->
+    <TextView
+        android:id="@+id/tv_setting_bindandchange_sure"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ed_verification_code"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_textview"
+        android:gravity="center"
+        android:text="@string/sure"
+        android:textColor="@color/white"/>
+
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_bind_change_ofsetting.xml -->

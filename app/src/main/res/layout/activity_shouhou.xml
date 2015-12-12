@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--选项卡-->
+    <LinearLayout
+        android:id="@+id/ll_03"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/common_toolbar"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <!--退货-->
+        <TextView
+            android:id="@+id/tv_shouhou_tuihuo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/shouhou_tuihuo"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+
+        <!--退款-->
+        <TextView
+            android:id="@+id/tv_shouhou_tuikuan"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/shouhou_tuikuan"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <!--下划线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/ll_03"
+        android:src="@color/button_material_dark"/>
+
+    <!--订单内容-->
+    <!--我的浏览或者收藏内容-->
+    <com.ncwc.shop.widget.PullToLoadView
+        android:id="@+id/pullToLoadView_shouhou"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_03"
+        android:layout_marginTop="14dp"
+        android:background="@color/BackColor"/>
+
+    <!--空白提示-->
+    <include
+        layout="@layout/include_kongbai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_03"/>
+
+</RelativeLayout>

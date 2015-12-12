@@ -1,0 +1,17 @@
+alipaySDK-20150818.jar 				支付宝支付
+android-async-http-1.4.8.jar 			网络请求
+butterknife-7.0.1.jar 				view注入工具
+libmmsdk.jar 					微信支付
+mta-sdk-1.6.2.jar 				QQ三方登录
+nineoldandroids-2.4.0.jar 			viewpager滑动动画
+open_sdk_r5276_lite.jar 			QQ三方登录
+universal-image-loader-1.9.4-with-source.jar 	图片缓存
+weiboSDKCore_3.1.2.jar 				微博第三方登录
+zbar.jar 					zbar二维码扫描
+
+
+shopcart 购物车
+homepage 主页商城
+
+classifica 免费试用
+perscenter 我的

@@ -1,0 +1,49 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.util.GetProductsMsgOfDingdan;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/12.
+ */
+public class OrderMsgActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ll_order_msg)
+	LinearLayout ll_order_msg;//商品列表
+
+	@Override
+
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_ordermsg;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.look_more);
+
+		for (int i = 0; i < 2; i++) {
+			ll_order_msg.addView(GetProductsMsgOfDingdan.getMsg(this, i + "", "", "", "", false, false));
+		}
+
+	}
+}

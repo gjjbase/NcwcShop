@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.ncwc.shop.widget.TitleScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lin_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lin_topall"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/good_name"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:textColor="@color/Black"
+                            android:textSize="18sp" />
+
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="200dp">
+
+                            <android.support.v4.view.ViewPager
+                                android:id="@+id/viewpager"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:background="@color/white" />
+
+                            <LinearLayout
+                                android:id="@id/lindot"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:orientation="horizontal" />
+                        </RelativeLayout>
+
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/navpage" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/freepel"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/txt_penum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:textColor="@color/bg_title"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/pel"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="30dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/freenum"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/txt_dnum"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="10dp"
+                                    android:text="100"
+                                    android:textColor="@color/bg_title"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/num"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lin_btnleft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/runtextview"
+                                android:text="剩余:" />
+
+                            <TextView
+                                android:id="@+id/txt_day"
+                                style="@style/runtextview"
+                                android:text="03"
+                                android:textColor="@color/bg_title" />
+
+                            <TextView
+                                style="@style/runtextview"
+                                android:text="@string/day" />
+
+                            <TextView
+                                android:id="@+id/txt_hour"
+                                style="@style/runtextview"
+                                android:text="24"
+                                android:textColor="@color/bg_title" />
+
+                            <TextView
+                                style="@style/runtextview"
+                                android:text="@string/hour" />
+
+                            <TextView
+                                android:id="@+id/txt_minute"
+                                style="@style/runtextview"
+                                android:text="56"
+                                android:textColor="@color/bg_title" />
+
+                            <TextView
+                                style="@style/runtextview"
+                                android:text="@string/minute" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_free"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="10dp"
+                            android:layout_toRightOf="@id/lin_btnleft"
+                            android:background="@drawable/freeruntextview_selector"
+                            android:gravity="center"
+                            android:text="@string/nowrep"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/ltgray" />
+
+                    <include
+                        android:id="@+id/gad_milb"
+                        layout="@layout/gadiogrop_fav" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/ltgray" />
+
+                    <FrameLayout
+                        android:id="@+id/tab_content"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/gad_botm"
+                    layout="@layout/gradiofrop_fav1" />
+            </FrameLayout>
+        </com.ncwc.shop.widget.TitleScrollView>
+    </FrameLayout>
+</LinearLayout>

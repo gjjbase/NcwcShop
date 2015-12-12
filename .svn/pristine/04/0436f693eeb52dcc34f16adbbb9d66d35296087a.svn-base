@@ -1,0 +1,24 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class WuLiuMsgActivity$$ViewBinder<T extends com.ncwc.shop.model.perscenter.WuLiuMsgActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558741, "field 'll_wuliu_products'");
+    target.ll_wuliu_products = finder.castView(view, 2131558741, "field 'll_wuliu_products'");
+    view = finder.findRequiredView(source, 2131558746, "field 'll_wuliu_msg'");
+    target.ll_wuliu_msg = finder.castView(view, 2131558746, "field 'll_wuliu_msg'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.ll_wuliu_products = null;
+    target.ll_wuliu_msg = null;
+  }
+}

@@ -1,0 +1,155 @@
+package com.ncwc.shop.util;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+
+/**
+ * Created by DELL-PC on 2015/10/14.
+ */
+public class GetWuLiuMsg {
+
+	/**
+	 * 自定义id从5开始
+	 *
+	 * @param context  上下文
+	 * @param position 位置
+	 * @param flag     是否为最后一个信息
+	 * @return
+	 */
+	public static RelativeLayout getMsg_wuliu(final Context context, int position, boolean flag) {
+		/**
+		 *搭建父容器
+		 */
+		RelativeLayout rl_wuliu = new RelativeLayout(context);
+		RelativeLayout.LayoutParams p_wuliu = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		rl_wuliu.setBackgroundColor(Color.WHITE);
+		rl_wuliu.setLayoutParams(p_wuliu);
+
+		/**
+		 * Left
+		 */
+		RelativeLayout rl_left = new RelativeLayout(context);
+		@android.support.annotation.IdRes int id_left = 14;
+		rl_left.setId(id_left);
+		RelativeLayout.LayoutParams p_left = new RelativeLayout.LayoutParams(dip2px(context, 80), ViewGroup.LayoutParams.MATCH_PARENT);
+		p_left.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		p_left.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		rl_left.setLayoutParams(p_left);
+		rl_wuliu.addView(rl_left);
+
+		/**
+		 *Right
+		 */
+		LinearLayout ll_right = new LinearLayout(context);
+		RelativeLayout.LayoutParams p_right = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		p_right.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		p_right.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		p_right.addRule(RelativeLayout.RIGHT_OF, rl_left.getId());
+		ll_right.setOrientation(LinearLayout.VERTICAL);
+		ll_right.setLayoutParams(p_right);
+		rl_wuliu.addView(ll_right);
+
+		/*时间轴*/
+		ImageView img_0 = new ImageView(context);
+		@android.support.annotation.IdRes int id_img0 = 15;
+		img_0.setId(id_img0);
+		RelativeLayout.LayoutParams p_img0 = new RelativeLayout.LayoutParams(dip2px(context, 1), dip2px(context, 28));
+		if (position == 0) {
+			p_img0 = new RelativeLayout.LayoutParams(dip2px(context, (float) 0.3), dip2px(context, 24));
+		}
+		p_img0.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		img_0.setLayoutParams(p_img0);
+		img_0.setImageResource(R.color.time_line);
+		rl_left.addView(img_0);
+		if (position == 0) {
+			img_0.setVisibility(View.INVISIBLE);
+		}
+
+		ImageView img_1 = new ImageView(context);
+		@android.support.annotation.IdRes int id_img1 = 16;
+		img_1.setId(id_img1);
+		RelativeLayout.LayoutParams p_img1 = null;
+		if (position == 0) {
+			img_1.setImageResource(R.mipmap.wuliu_big);
+			p_img1 = new RelativeLayout.LayoutParams(dip2px(context, 14), dip2px(context, 14));
+		} else {
+			img_1.setImageResource(R.mipmap.wuliu_small);
+			p_img1 = new RelativeLayout.LayoutParams(dip2px(context, 4), dip2px(context, 4));
+		}
+		p_img1.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		p_img1.addRule(RelativeLayout.BELOW, img_0.getId());
+		img_1.setLayoutParams(p_img1);
+		rl_left.addView(img_1);
+
+		ImageView img_2 = new ImageView(context);
+		@android.support.annotation.IdRes int id_img2 = 17;
+		img_2.setId(id_img2);
+		RelativeLayout.LayoutParams p_img2 = new RelativeLayout.LayoutParams(dip2px(context, 1), dip2px(context, 70));
+		if (position == 0) {
+			p_img2 = new RelativeLayout.LayoutParams(dip2px(context, 1), dip2px(context, 60));
+		}
+		p_img2.addRule(RelativeLayout.CENTER_HORIZONTAL);
+		p_img2.addRule(RelativeLayout.BELOW, img_1.getId());
+		img_2.setLayoutParams(p_img2);
+		img_2.setImageResource(R.color.time_line);
+		rl_left.addView(img_2);
+		if (flag == false) {
+			img_2.setVisibility(View.INVISIBLE);
+		}
+
+		/*物流信息*/
+		TextView tv_place = new TextView(context);
+		@android.support.annotation.IdRes int id_tvplace = 18;
+		tv_place.setId(id_tvplace);
+		LinearLayout.LayoutParams p_place = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		p_place.topMargin = dip2px(context, 22);
+		tv_place.setLayoutParams(p_place);
+		tv_place.setText(position + "【济南市】快件已到达 济南中转站");
+		tv_place.setTextSize(12);
+		if (position == 0) {
+			tv_place.setTextColor(Color.RED);
+		} else {
+			tv_place.setTextColor(Color.BLACK);
+		}
+		ll_right.addView(tv_place);
+
+		TextView tv_time = new TextView(context);
+		@android.support.annotation.IdRes int id_tvtime = 19;
+		tv_time.setId(id_tvtime);
+		LinearLayout.LayoutParams p_time = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		p_time.topMargin = dip2px(context, 7);
+		tv_time.setLayoutParams(p_time);
+		tv_time.setText("2015-13-34 25:98:56");
+		tv_time.setTextSize(12);
+		if (position == 0) {
+			tv_time.setTextColor(Color.RED);
+		} else {
+			tv_time.setTextColor(Color.BLACK);
+		}
+		ll_right.addView(tv_time);
+
+		ImageView line = new ImageView(context);
+		LinearLayout.LayoutParams p_line = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dip2px(context, (float) 0.3));
+		p_line.topMargin = dip2px(context, 7);
+		line.setLayoutParams(p_line);
+		line.setImageResource(R.color.Gray);
+		ll_right.addView(line);
+
+
+		return rl_wuliu;
+	}
+
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+}

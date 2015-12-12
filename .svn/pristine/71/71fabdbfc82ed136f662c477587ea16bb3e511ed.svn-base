@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="90dp"
+    android:layout_height="90dp">
+    <ImageView
+        android:src="@mipmap/moren"
+        android:layout_width="90dp"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        android:layout_height="90dp" />
+    <ImageView
+        android:id="@+id/img_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/img_subdeta"/>
+</RelativeLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/submitrepadapter_item.xml -->

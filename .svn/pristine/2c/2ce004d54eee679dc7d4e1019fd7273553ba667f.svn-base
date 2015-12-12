@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <com.ncwc.shop.widget.DamRebScrollView
+        android:id="@+id/top_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"
+                android:background="@color/white">
+
+                <RelativeLayout
+                    android:id="@+id/rel_rep"
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/logintextview_selector">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:drawableLeft="@mipmap/tijioashiyongbaogao"
+                        android:drawablePadding="20dp"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="提交试用报告"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/navpage" />
+
+            <com.ncwc.shop.widget.AllListView
+                android:id="@+id/listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null" />
+        </LinearLayout>
+    </com.ncwc.shop.widget.DamRebScrollView>
+
+</LinearLayout>

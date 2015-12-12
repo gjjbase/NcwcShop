@@ -1,0 +1,93 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.homepage;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class DetailsCartActivity$$ViewBinder<T extends com.ncwc.shop.model.homepage.DetailsCartActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624077, "field 'viewpager'");
+    target.viewpager = finder.castView(view, 2131624077, "field 'viewpager'");
+    view = finder.findRequiredView(source, 2131623948, "field 'lindot'");
+    target.lindot = finder.castView(view, 2131623948, "field 'lindot'");
+    view = finder.findRequiredView(source, 2131624101, "field 'grd_botm'");
+    target.grd_botm = finder.castView(view, 2131624101, "field 'grd_botm'");
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131624094, "field 'good_name'");
+    target.good_name = finder.castView(view, 2131624094, "field 'good_name'");
+    view = finder.findRequiredView(source, 2131624095, "field 'goods_price'");
+    target.goods_price = finder.castView(view, 2131624095, "field 'goods_price'");
+    view = finder.findRequiredView(source, 2131624096, "field 'oods_marketprice'");
+    target.oods_marketprice = finder.castView(view, 2131624096, "field 'oods_marketprice'");
+    view = finder.findRequiredView(source, 2131624099, "field 'geval_addtime'");
+    target.geval_addtime = finder.castView(view, 2131624099, "field 'geval_addtime'");
+    view = finder.findRequiredView(source, 2131624100, "field 'evaluate'");
+    target.evaluate = finder.castView(view, 2131624100, "field 'evaluate'");
+    view = finder.findRequiredView(source, 2131624098, "field 'member_name'");
+    target.member_name = finder.castView(view, 2131624098, "field 'member_name'");
+    view = finder.findRequiredView(source, 2131624121, "field 'tabs_rg'");
+    target.tabs_rg = finder.castView(view, 2131624121, "field 'tabs_rg'");
+    view = finder.findRequiredView(source, 2131624317, "field 'tabs_rg2'");
+    target.tabs_rg2 = finder.castView(view, 2131624317, "field 'tabs_rg2'");
+    view = finder.findRequiredView(source, 2131624034, "field 'scrollView'");
+    target.scrollView = finder.castView(view, 2131624034, "field 'scrollView'");
+    view = finder.findRequiredView(source, 2131624103, "field 'gad_milb'");
+    target.gad_milb = finder.castView(view, 2131624103, "field 'gad_milb'");
+    view = finder.findRequiredView(source, 2131624105, "field 'gad_botm'");
+    target.gad_botm = finder.castView(view, 2131624105, "field 'gad_botm'");
+    view = finder.findRequiredView(source, 2131624091, "field 'parent_layout'");
+    target.parent_layout = finder.castView(view, 2131624091, "field 'parent_layout'");
+    view = finder.findRequiredView(source, 2131624097, "field 'member_avatar'");
+    target.member_avatar = finder.castView(view, 2131624097, "field 'member_avatar'");
+    view = finder.findRequiredView(source, 2131624073, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624106, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624102, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.viewpager = null;
+    target.lindot = null;
+    target.grd_botm = null;
+    target.toolbar_title = null;
+    target.good_name = null;
+    target.goods_price = null;
+    target.oods_marketprice = null;
+    target.geval_addtime = null;
+    target.evaluate = null;
+    target.member_name = null;
+    target.tabs_rg = null;
+    target.tabs_rg2 = null;
+    target.scrollView = null;
+    target.gad_milb = null;
+    target.gad_botm = null;
+    target.parent_layout = null;
+    target.member_avatar = null;
+  }
+}

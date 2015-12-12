@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom"
+            android:horizontalSpacing="3dp"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:verticalSpacing="5dp" />
+        <!--android:background="#c000"-->
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white">
+
+            <Button
+                android:id="@+id/btn_select"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                android:background="@drawable/spinner_bg"
+                android:text="@string/allpic"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/txt_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:gravity="center"
+                android:text="@string/selectpric"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lstview"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:layout_above="@id/bottom"
+            android:background="@color/bg_color"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_selectpric.xml -->

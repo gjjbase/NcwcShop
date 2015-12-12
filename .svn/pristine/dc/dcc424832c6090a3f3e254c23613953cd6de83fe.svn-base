@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--头像-->
+    <RelativeLayout
+        android:id="@+id/rl_setting_icon"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/my_icon"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <com.ncwc.shop.widget.CircularImage
+            android:id="@+id/img_setting_icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/arrow"/>
+
+    </RelativeLayout>
+
+    <!--用户名-->
+    <RelativeLayout
+        android:id="@+id/rl_setting_user"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/rl_setting_icon"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_setting_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="@string/set_username"
+            android:textColor="@color/Black"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/ed_setting_nickname"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="请输入应户名"
+            android:padding="3dp"
+            android:singleLine="true"
+            android:textColor="@color/Black"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <!--手机号-->
+    <RelativeLayout
+        android:id="@+id/rl_setting_phone"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/rl_setting_user"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/phonenum"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_setting_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="@string/nobind"
+            android:textColor="@color/Black"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/arrow"/>
+
+    </RelativeLayout>
+
+    <!--密码服务-->
+    <RelativeLayout
+        android:id="@+id/rl_setting_password"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/rl_setting_phone"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/sevice_password"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_setting_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="@string/changepassword"
+            android:textColor="@color/Black"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/arrow"/>
+
+    </RelativeLayout>
+
+    <!--退出登录-->
+    <RelativeLayout
+        android:id="@+id/rl_setting_exit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/rl_setting_password"
+        android:layout_marginTop="120dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/exit"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_setting.xml -->

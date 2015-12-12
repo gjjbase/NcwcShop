@@ -1,0 +1,53 @@
+package com.ncwc.shop.model.classifica;
+
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.ClassFragPageAdapter;
+import com.ncwc.shop.base.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import butterknife.Bind;
+
+/**
+ * 免费试用页面
+ * Created by admin on 2015/9/2.
+ */
+public class ClassificaFragmnet extends BaseFragment  {
+    @Bind(R.id.common_toolbar)
+    protected Toolbar mToolbar;
+    @Bind(R.id.viewpager)
+    protected ViewPager viewpager;
+    @Bind(R.id.tab_layout)
+    protected TabLayout tab_layout;
+    private ClassFragPageAdapter viewpageradapter;
+    private List<Fragment> list = new ArrayList<Fragment>( Arrays.asList(new FreeRunFragment(), new FreeWillFragment()));
+
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_classifica;
+    }
+
+    @Override
+    public void initData() {
+        TextView txt = (TextView) mToolbar.findViewById(R.id.toolbar_title);
+        txt.setText(R.string.freetitle);
+        viewpageradapter = new ClassFragPageAdapter(getChildFragmentManager());
+        viewpageradapter.setList(list);
+        viewpageradapter.setStrList(getResources().getStringArray(R.array.menufree));
+        viewpager.setAdapter(viewpageradapter);
+        tab_layout.setupWithViewPager(viewpager);
+        tab_layout.setTabsFromPagerAdapter(viewpageradapter);
+    }
+
+    public void widgetClick(View v) {
+
+    }
+}

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+    <!--上划线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_alignParentTop="true"
+        android:src="@color/button_material_dark"/>
+
+    <!--店铺名-->
+    <TextView
+        android:id="@+id/tv_dingdan_storename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="4.3dp"
+        android:text="店铺名称"
+        android:textColor="@color/Black"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <!--交易成功-->
+    <TextView
+        android:id="@+id/tv_dingdan_trading_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_dingdan_storename"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:text="@string/trading_success"
+        android:textColor="@color/rea"
+        android:textSize="13sp"
+        android:visibility="gone"/>
+
+    <!--店铺名称下划线-->
+    <ImageView
+        android:id="@+id/img_11"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_dingdan_storename"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:src="@color/button_material_dark"/>
+
+    <!--商品列表-->
+    <LinearLayout
+        android:id="@+id/ll_dingdan_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_11"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+        <!--动态插入具体列表内容-->
+    </LinearLayout>
+
+    <!--商品数量、合计、邮费-->
+    <TextView
+        android:id="@+id/tv_dingdan_num_allpay_youfei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ll_dingdan_products"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:text="共2件商品\u3000合计：￥100.00(含运费￥0.00)"
+        android:textColor="@color/button_material_dark"
+        android:textSize="12sp"/>
+
+    <!--分隔线-->
+    <ImageView
+        android:id="@+id/img_12"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_dingdan_num_allpay_youfei"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:src="@color/button_material_dark"/>
+
+    <!--底部按钮-->
+    <!--查看更多-->
+    <TextView
+        android:id="@+id/tv_dingdan_bottom_more"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@+id/tv_dingdan_bottom_r_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/look_more"
+        android:textColor="@color/Black"
+        android:textSize="13sp"/>
+    <!--右按钮-->
+    <TextView
+        android:id="@+id/tv_dingdan_bottom_r_btn"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/img_12"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/rea"
+        android:gravity="center"
+        android:text="确定收货"
+        android:textColor="@color/white"
+        android:textSize="13sp"/>
+    <!--左按钮-->
+    <TextView
+        android:id="@+id/tv_dingdan_bottom_l_btn"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@+id/tv_dingdan_bottom_r_btn"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/tv_dingdan_bottom_r_btn"
+        android:background="@color/circle"
+        android:gravity="center"
+        android:text="物流信息"
+        android:textColor="@color/white"
+        android:textSize="13sp"/>
+
+    <!--最下方下划线-->
+    <ImageView
+        android:id="@+id/img_13"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_dingdan_bottom_r_btn"
+        android:layout_marginTop="5dp"
+        android:src="@color/button_material_dark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/img_13"
+        android:background="@color/BackColor"/>
+
+</RelativeLayout>

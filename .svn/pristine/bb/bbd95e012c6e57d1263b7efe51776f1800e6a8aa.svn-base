@@ -1,0 +1,29 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeRepActivity$$ViewBinder<T extends com.ncwc.shop.model.classifica.FreeRepActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624119, "field 'listView'");
+    target.listView = finder.castView(view, 2131624119, "field 'listView'");
+    view = finder.findRequiredView(source, 2131624118, "field 'rel_rep' and method 'widgetClick'");
+    target.rel_rep = finder.castView(view, 2131624118, "field 'rel_rep'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.listView = null;
+    target.rel_rep = null;
+  }
+}

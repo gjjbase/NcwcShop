@@ -1,0 +1,66 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.shopcart;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ShopcarSendOrder$$ViewBinder<T extends com.ncwc.shop.model.shopcart.ShopcarSendOrder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131624234, "field 'll_shopcar_sendorder'");
+    target.ll_shopcar_sendorder = finder.castView(view, 2131624234, "field 'll_shopcar_sendorder'");
+    view = finder.findRequiredView(source, 2131624236, "field 'rl_shopcar_commitorder' and method 'widgetClick'");
+    target.rl_shopcar_commitorder = finder.castView(view, 2131624236, "field 'rl_shopcar_commitorder'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624239, "field 'tv_srue_msgofreceiving' and method 'widgetClick'");
+    target.tv_srue_msgofreceiving = finder.castView(view, 2131624239, "field 'tv_srue_msgofreceiving'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624324, "field 'img_shopcar_allchoose'");
+    target.img_shopcar_allchoose = finder.castView(view, 2131624324, "field 'img_shopcar_allchoose'");
+    view = finder.findRequiredView(source, 2131624325, "field 'tv_allchoose'");
+    target.tv_allchoose = finder.castView(view, 2131624325, "field 'tv_allchoose'");
+    view = finder.findRequiredView(source, 2131624326, "field 'tv_shopcar_sendmsg'");
+    target.tv_shopcar_sendmsg = finder.castView(view, 2131624326, "field 'tv_shopcar_sendmsg'");
+    view = finder.findRequiredView(source, 2131624328, "field 'tv_shopcar_commitpay' and method 'widgetClick'");
+    target.tv_shopcar_commitpay = finder.castView(view, 2131624328, "field 'tv_shopcar_commitpay'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624327, "field 'tv_shopcar_allpay'");
+    target.tv_shopcar_allpay = finder.castView(view, 2131624327, "field 'tv_shopcar_allpay'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.ll_shopcar_sendorder = null;
+    target.rl_shopcar_commitorder = null;
+    target.tv_srue_msgofreceiving = null;
+    target.img_shopcar_allchoose = null;
+    target.tv_allchoose = null;
+    target.tv_shopcar_sendmsg = null;
+    target.tv_shopcar_commitpay = null;
+    target.tv_shopcar_allpay = null;
+  }
+}

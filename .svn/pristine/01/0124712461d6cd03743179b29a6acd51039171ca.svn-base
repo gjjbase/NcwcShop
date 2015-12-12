@@ -1,0 +1,43 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class MyPlaceManageActivity$$ViewBinder<T extends com.ncwc.shop.model.perscenter.MyPlaceManageActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558755, "field 'shopcar_toolbar_edit' and method 'widgetClick'");
+    target.shopcar_toolbar_edit = finder.castView(view, 2131558755, "field 'shopcar_toolbar_edit'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558627, "field 'pullToLoadView_place'");
+    target.pullToLoadView_place = finder.castView(view, 2131558627, "field 'pullToLoadView_place'");
+    view = finder.findRequiredView(source, 2131558628, "field 'tv_add_to_myplace' and method 'widgetClick'");
+    target.tv_add_to_myplace = finder.castView(view, 2131558628, "field 'tv_add_to_myplace'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.shopcar_toolbar_edit = null;
+    target.pullToLoadView_place = null;
+    target.tv_add_to_myplace = null;
+  }
+}

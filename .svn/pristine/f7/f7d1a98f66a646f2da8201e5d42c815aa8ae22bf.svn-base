@@ -1,0 +1,54 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.common;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class SelectPictureActicity$$ViewBinder<T extends com.ncwc.shop.model.common.SelectPictureActicity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558756, "field 'toolbar_right' and method 'widgetClick'");
+    target.toolbar_right = finder.castView(view, 2131558756, "field 'toolbar_right'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558710, "field 'btn_select' and method 'widgetClick'");
+    target.btn_select = finder.castView(view, 2131558710, "field 'btn_select'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558711, "field 'txt_select' and method 'widgetClick'");
+    target.txt_select = finder.castView(view, 2131558711, "field 'txt_select'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558709, "field 'gridview'");
+    target.gridview = finder.castView(view, 2131558709, "field 'gridview'");
+    view = finder.findRequiredView(source, 2131558712, "field 'lstview'");
+    target.lstview = finder.castView(view, 2131558712, "field 'lstview'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_right = null;
+    target.btn_select = null;
+    target.txt_select = null;
+    target.gridview = null;
+    target.lstview = null;
+  }
+}

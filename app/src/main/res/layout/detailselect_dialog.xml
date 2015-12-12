@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_botm"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/detailall_selector"
+        android:gravity="center"
+        android:text="@string/enter"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <com.ncwc.shop.widget.AllListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_botm"
+        android:background="@color/white" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/listview"
+        android:background="@color/navpage"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@mipmap/fankui"
+            android:padding="5dp"
+            android:src="@mipmap/moren"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="价格:￥"
+                        android:textColor="@color/bg_title" />
+
+                    <TextView
+                        android:id="@+id/goods_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="3dp"
+                        android:text="350"
+                        android:textColor="@color/bg_title"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="@string/allexample" />
+
+                    <TextView
+                        android:id="@+id/oods_marketprice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/bg_title"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=")" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tx_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="@string/addnum" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@id/tx_num"
+                    android:background="@mipmap/fankui">
+
+                    <ImageView
+                        android:id="@+id/img_subt"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/textviewcode_selector"
+                        android:scaleType="center"
+                        android:src="@mipmap/img_subt" />
+
+                    <EditText
+                        android:id="@+id/edt_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:inputType="phone"
+                        android:minWidth="50dp"
+                        android:text="1"
+                        android:textColor="@color/textBlack" />
+
+                    <ImageView
+                        android:id="@+id/img_add"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/textviewcode_selector"
+                        android:scaleType="center"
+                        android:src="@mipmap/img_add" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

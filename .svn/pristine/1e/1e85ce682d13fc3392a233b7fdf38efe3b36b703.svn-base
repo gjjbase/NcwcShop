@@ -1,0 +1,94 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.graphics.Color;
+import android.text.TextPaint;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/6.
+ */
+public class MyVantagesActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ll_vantages)
+	LinearLayout ll_vantages;//积分记录
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_myvantages;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar_title.setText(R.string.myvantages);
+
+		//给邀请记录填充数据
+		for (int i = 0; i < 14; i++) {
+			LinearLayout item_jilu = new LinearLayout(this);
+			LinearLayout.LayoutParams ll_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			if (i == 0) {
+				ll_params.topMargin = 10;
+			} else {
+				ll_params.topMargin = 4;
+			}
+			item_jilu.setLayoutParams(ll_params);
+			ll_vantages.addView(item_jilu);
+
+			TextView item_0 = new TextView(this);
+			LinearLayout.LayoutParams params_0 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+			item_0.setGravity(Gravity.CENTER);
+			item_0.setText("首次注册：");
+			item_0.setTextColor(Color.BLACK);
+			item_0.setTextSize(12);
+			item_0.setLayoutParams(params_0);
+			item_jilu.addView(item_0);
+
+			TextView item_1 = new TextView(this);
+			LinearLayout.LayoutParams params_1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+			item_1.setGravity(Gravity.CENTER);
+			item_1.setText("+400" + i);
+			item_1.setTextColor(Color.RED);
+			item_1.setTextSize(14);
+			TextPaint tp = item_1.getPaint();
+			tp.setFakeBoldText(true);
+			item_1.setLayoutParams(params_1);
+			item_jilu.addView(item_1);
+
+			TextView item_2 = new TextView(this);
+			LinearLayout.LayoutParams params_2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+			item_2.setGravity(Gravity.CENTER);
+			item_2.setText("2015-10-08");
+			item_2.setTextColor(Color.GRAY);
+			item_2.setTextSize(12);
+			item_2.setLayoutParams(params_2);
+			item_jilu.addView(item_2);
+
+		}
+		Space space = new Space(this);
+		LinearLayout.LayoutParams space_params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+		space.setLayoutParams(space_params);
+		ll_vantages.addView(space);
+	}
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="ltgray">#FFCCCCCC</color>
+    <color name="bg_color">#fcfcfc</color>
+    <color name="bg_title">#f2492e</color>
+    <color name="navpage">#FFE1E8EB</color>
+    <color name="finder_mask">#60000000</color>
+    <color name="rea">#ffff0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="triangle">#72d572</color>
+    <color name="circle">#738ffe</color>
+    <color name="rect">#e84e40</color>
+    <color name="view_bg">#00000000</color>
+    <color name="shadow">#bdbdbd</color>
+    <color name="colorPrimary">@color/DeepPurple</color>
+    <color name="colorPrimaryDark">@color/DeepPurple900</color>
+    <color name="colorAccent">@color/Orange</color>
+    <color name="Orange">#ff5722</color>
+    <color name="DeepPurple">#673AB7</color>
+    <color name="DeepPurple900">#311B92</color>
+    <color name="top_title">#c92b12</color>
+    <color name="hinttext">#959595</color>
+    <color name="BackColor">#f8f8f8</color>
+    <color name="Gray">#888888</color>
+    <color name="Black">#000000</color>
+    <color name="introtextcolor">#f7950a</color>
+    <color name="login_btned">#CCCCCC</color>
+    <color name="transparent">#00000000</color>
+    <color name="yellow">#ffb413</color>
+    <color name="textBlack">#333333</color>
+    <color name="codetext">#1b2aef</color>
+    <color name="time_line">#878787</color>
+    <color name="gidbg_color">#fffaf5</color>
+    <color name="grentxt">#007aff</color>
+    <color name="bg_delta">#e8e8e8</color>
+    <color name="img_nickname">#f2a40c</color>
+    <color name="maintext">#969696</color>
+    
+</resources>

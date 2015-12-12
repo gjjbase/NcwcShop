@@ -1,0 +1,39 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.shopcart;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ShopcarFragment$$ViewBinder<T extends com.ncwc.shop.model.shopcart.ShopcarFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558756, "field 'toolbar_right'");
+    target.toolbar_right = finder.castView(view, 2131558756, "field 'toolbar_right'");
+    view = finder.findRequiredView(source, 2131558824, "field 'tv_shopcar_sendmsg'");
+    target.tv_shopcar_sendmsg = finder.castView(view, 2131558824, "field 'tv_shopcar_sendmsg'");
+    view = finder.findRequiredView(source, 2131558825, "field 'tv_shopcar_allpay'");
+    target.tv_shopcar_allpay = finder.castView(view, 2131558825, "field 'tv_shopcar_allpay'");
+    view = finder.findRequiredView(source, 2131558826, "field 'tv_shopcar_commitpay'");
+    target.tv_shopcar_commitpay = finder.castView(view, 2131558826, "field 'tv_shopcar_commitpay'");
+    view = finder.findRequiredView(source, 2131558827, "field 'tv_shopcar_addcollect'");
+    target.tv_shopcar_addcollect = finder.castView(view, 2131558827, "field 'tv_shopcar_addcollect'");
+    view = finder.findRequiredView(source, 2131558828, "field 'tv_shopcar_delete'");
+    target.tv_shopcar_delete = finder.castView(view, 2131558828, "field 'tv_shopcar_delete'");
+    view = finder.findRequiredView(source, 2131558796, "field 'expandlist_shopcar'");
+    target.expandlist_shopcar = finder.castView(view, 2131558796, "field 'expandlist_shopcar'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+    target.toolbar_right = null;
+    target.tv_shopcar_sendmsg = null;
+    target.tv_shopcar_allpay = null;
+    target.tv_shopcar_commitpay = null;
+    target.tv_shopcar_addcollect = null;
+    target.tv_shopcar_delete = null;
+    target.expandlist_shopcar = null;
+  }
+}

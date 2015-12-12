@@ -1,0 +1,51 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/6.
+ */
+public class BindandChangeofSettingActivity extends BaseActivity {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	@Bind(R.id.ed_setting_target)
+	EditText ed_setting_target;//目标输入内容
+
+	/*有没有绑定手机号*/
+	private boolean first_time;
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_bind_change_ofsetting;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		first_time = getIntent().getBooleanExtra("first", true);
+		if (first_time) {
+			toolbar_title.setText(R.string.bind_phone);
+		} else {
+			toolbar_title.setText(R.string.change_phone);
+		}
+		ed_setting_target.setHint(R.string.please_write_phone);
+	}
+}

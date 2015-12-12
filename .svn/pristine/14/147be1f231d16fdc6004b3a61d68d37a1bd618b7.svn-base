@@ -1,0 +1,197 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.LiulanAndShoucangAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.PullCallback;
+import com.ncwc.shop.util.SharepreUtil;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+
+/**
+ * Created by DELL-PC on 2015/10/7.
+ */
+public class LiulanAndShoucangActivity extends BaseActivity implements IOAuthCallBack {
+
+	@Bind(R.id.toolbar_title)
+	TextView toolbar_title;//标题
+	private int style;//标题选择：0，我的浏览；1，我的收藏
+	@Bind(R.id.pullToLoadView_liulan_shoucang)
+	PullToLoadView pullToLoadView_liulan_shoucang;//列表
+
+	private boolean isLoading = false;
+	private boolean isHasLoadedAll = false;
+	private int nextPage;
+	//	List<Map<String, String>> listmap;
+	private LiulanAndShoucangAdapter adapter;
+	private JSONArray jso;
+	private RecyclerView mRecyclerView;
+
+	AsynHttpUtil ahu = AsynHttpUtil.getInstance();
+
+	//发出网络请求----浏览
+	private void takeIntel_liulan() {
+		if (SharepreUtil.getStringValue(this, Constants.MEMBERID, "").equals("")) {
+			showToast(getString(R.string.none_login));
+		} else {
+			ahu.setIoAuthCallBack(this);
+			ahu.getLiuLanJL(this);
+		}
+	}
+
+	//发出网络请求----收藏
+	private void takeIntel_shoucang() {
+		if (SharepreUtil.getStringValue(this, Constants.MEMBERID, "").equals("")) {
+			showToast(getString(R.string.none_login));
+		} else {
+			ahu.setIoAuthCallBack(this);
+			ahu.getShouCangJL(this);
+		}
+	}
+
+	//添加到购物车
+	public void takeIntel_addToshopcar(String goods_id) {
+		ahu.setIoAuthCallBack(this);
+		ahu.addToShopcar(this, goods_id);
+	}
+
+	@Override
+	protected View getLoadingTargetView() {
+		return null;
+	}
+
+	@Override
+	public void widgetClick(View v) {
+
+	}
+
+	@Override
+	protected int getContentViewLayoutID() {
+		return R.layout.activity_my_liulan_shoucang;
+	}
+
+	@Override
+	protected void initData() {
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		style = getIntent().getIntExtra("style", 0);
+		if (style == 0) {
+			takeIntel_liulan();
+			toolbar_title.setText(R.string.my_liulan);
+		} else {
+			takeIntel_shoucang();
+			toolbar_title.setText(R.string.my_shoucang);
+		}
+		/*listmap = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < 30; i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("name", i + 1 + "");
+			listmap.add(map);
+		}
+		jso = new JSONArray(listmap);
+		addjson = new JSONArray(listmap);*/
+		mRecyclerView = pullToLoadView_liulan_shoucang.getRecyclerView();
+		mRecyclerView.setHasFixedSize(false);
+		LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+		mRecyclerView.setLayoutManager(manager);
+		pullToLoadView_liulan_shoucang.isLoadMoreEnabled(true);
+	}
+
+	private void loadData(final int page) {
+		isLoading = true;
+		new Handler().postDelayed(new Runnable() {
+			public void run() {
+				if (isHasLoadedAll) {
+					Toast.makeText(LiulanAndShoucangActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+				}
+				if (page > 10) {
+					isHasLoadedAll = true;
+					return;
+				}
+				if (page == 1) {
+					adapter = new LiulanAndShoucangAdapter(LiulanAndShoucangActivity.this, jso);
+					mRecyclerView.setAdapter(adapter);
+				} else {
+					/*try {
+						adapter.addData(addjson);
+					} catch (JSONException e) {
+					}*/
+				}
+
+				pullToLoadView_liulan_shoucang.setComplete();
+				isLoading = false;
+				nextPage = page + 1;
+			}
+		}, 1000);
+	}
+
+	@Override
+	public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+		if (type == HttpService.TYPE_PERSONAL_LIULANJILU || type == HttpService.TYPE_PERSONAL_SHOUCANGJILU) {
+			String code = response.getString("code");
+			if (code.equals("200")) {
+				String status = response.getString("status");
+				if (status.equals("0")) {
+					showToast(response.getString("msg"));
+				} else {
+					//正常数据处理
+					JSONObject datas = response.getJSONObject("datas");
+					jso = datas.getJSONArray("list");
+
+					pullToLoadView_liulan_shoucang.setPullCallback(new PullCallback() {
+						public void onLoadMore() {
+							loadData(nextPage);
+						}
+
+						public void onRefresh() {
+							isHasLoadedAll = false;
+							loadData(1);
+						}
+
+						public boolean isLoading() {
+							Log.e("main activity", "main isLoading:" + isLoading);
+							return isLoading;
+						}
+
+						public boolean hasLoadedAllItems() {
+							return isHasLoadedAll;
+						}
+					});
+					pullToLoadView_liulan_shoucang.initLoad();
+
+				}
+			} else {
+				showToast(getString(R.string.fault));
+			}
+		} else if (type.equals(HttpService.TYPE_PERSONAL_ADDTOSHOPCAR)) {
+//			Log.d("——————————————", response.toString());
+			String code = response.getString("code");
+			if (code.equals("200")) {
+				showToast(response.getString("msg"));
+			} else {
+				showToast(getString(R.string.fault));
+			}
+		}
+	}
+}

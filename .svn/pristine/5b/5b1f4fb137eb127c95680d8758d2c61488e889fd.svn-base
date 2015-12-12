@@ -1,0 +1,71 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeComDetailActivity$$ViewBinder<T extends com.ncwc.shop.model.classifica.FreeComDetailActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558544, "field 'viewpager'");
+    target.viewpager = finder.castView(view, 2131558544, "field 'viewpager'");
+    view = finder.findRequiredView(source, 2131558412, "field 'lindot'");
+    target.lindot = finder.castView(view, 2131558412, "field 'lindot'");
+    view = finder.findRequiredView(source, 2131558608, "field 'tabs_rg'");
+    target.tabs_rg = finder.castView(view, 2131558608, "field 'tabs_rg'");
+    view = finder.findRequiredView(source, 2131558816, "field 'tabs_rg2'");
+    target.tabs_rg2 = finder.castView(view, 2131558816, "field 'tabs_rg2'");
+    view = finder.findRequiredView(source, 2131558570, "field 'gad_milb'");
+    target.gad_milb = finder.castView(view, 2131558570, "field 'gad_milb'");
+    view = finder.findRequiredView(source, 2131558572, "field 'gad_botm'");
+    target.gad_botm = finder.castView(view, 2131558572, "field 'gad_botm'");
+    view = finder.findRequiredView(source, 2131558558, "field 'parent_layout'");
+    target.parent_layout = finder.castView(view, 2131558558, "field 'parent_layout'");
+    view = finder.findRequiredView(source, 2131558424, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131558424, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131558596, "field 'txt_free' and method 'widgetClick'");
+    target.txt_free = finder.castView(view, 2131558596, "field 'txt_free'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558561, "field 'good_name'");
+    target.good_name = finder.castView(view, 2131558561, "field 'good_name'");
+    view = finder.findRequiredView(source, 2131558598, "field 'txt_penum'");
+    target.txt_penum = finder.castView(view, 2131558598, "field 'txt_penum'");
+    view = finder.findRequiredView(source, 2131558600, "field 'txt_day'");
+    target.txt_day = finder.castView(view, 2131558600, "field 'txt_day'");
+    view = finder.findRequiredView(source, 2131558601, "field 'txt_hour'");
+    target.txt_hour = finder.castView(view, 2131558601, "field 'txt_hour'");
+    view = finder.findRequiredView(source, 2131558602, "field 'txt_minute'");
+    target.txt_minute = finder.castView(view, 2131558602, "field 'txt_minute'");
+    view = finder.findRequiredView(source, 2131558599, "field 'txt_dnum'");
+    target.txt_dnum = finder.castView(view, 2131558599, "field 'txt_dnum'");
+    view = finder.findRequiredView(source, 2131558498, "field 'scrollView'");
+    target.scrollView = finder.castView(view, 2131558498, "field 'scrollView'");
+  }
+
+  @Override public void unbind(T target) {
+    target.viewpager = null;
+    target.lindot = null;
+    target.tabs_rg = null;
+    target.tabs_rg2 = null;
+    target.gad_milb = null;
+    target.gad_botm = null;
+    target.parent_layout = null;
+    target.toolbar_title = null;
+    target.txt_free = null;
+    target.good_name = null;
+    target.txt_penum = null;
+    target.txt_day = null;
+    target.txt_hour = null;
+    target.txt_minute = null;
+    target.txt_dnum = null;
+    target.scrollView = null;
+  }
+}

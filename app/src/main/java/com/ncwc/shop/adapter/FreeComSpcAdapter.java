@@ -1,0 +1,55 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapterInject;
+import com.ncwc.shop.interactor.ViewHolderInject;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+import com.ncwc.shop.widget.CircularImage;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/9.
+ */
+public class FreeComSpcAdapter extends BaseAdapterInject {
+    public FreeComSpcAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int getConvertViewId(int position) {
+        return R.layout.freecomspcadapter_item;
+    }
+
+
+    @Override
+    public ViewHolderInject getNewHolder(int position) {
+        return new ViewHolder();
+    }
+
+    class ViewHolder extends ViewHolderInject {
+        @Bind(R.id.img_left)
+        protected CircularImage img_left;
+        @Bind(R.id.txt_nickname)
+        TextView txt_nickname;
+        @Bind(R.id.txt_time)
+        TextView txt_time;
+        @Bind(R.id.txt_content)
+        TextView txt_content;
+
+        public void loadData(JSONObject object, int position) throws JSONException {
+            AsyncLoadingPicture.getInstance(mContext).LoadPicture(object.getString("member_avatar"), img_left);
+            txt_nickname.setText(object.getString("member_name"));
+            txt_time.setText(object.getString("create_date"));
+            txt_content.setText(object.getString("content"));
+
+        }
+    }
+}

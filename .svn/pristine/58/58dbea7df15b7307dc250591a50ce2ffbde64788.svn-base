@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--购物车中的商品-->
+    <ExpandableListView
+        android:id="@+id/expandlist_shopcar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_shopcar_bottom"
+        android:layout_below="@+id/common_toolbar"
+        android:background="@color/BackColor"/>
+
+    <!--下方的结算栏-->
+    <include
+        layout="@layout/item_bottom_settlement"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

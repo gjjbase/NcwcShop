@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="小提示：积极参与试用、反馈体验报告，提高免费试用的成功率！"
+        android:textColor="@color/bg_title"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/txt_right"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/textviewinput_selector" />
+
+        <EditText
+            android:id="@+id/edt_input"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@id/txt_right"
+            android:background="@mipmap/tijiaopinglun"
+            android:hint="@string/edtinout"
+            android:padding="10dp"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    <com.ncwc.shop.widget.AllListView
+        android:layout_width="wrap_content"
+        android:divider="@null"
+        android:id="@+id/listview"
+        android:layout_height="wrap_content"/>
+</LinearLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/fragment_freecomspe.xml -->

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ncwc.shop.widget.ScrollViewExtend xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.ncwc.shop.widget.AllListView
+            android:layout_width="fill_parent"
+            android:divider="@null"
+            android:id="@+id/list_detail"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</com.ncwc.shop.widget.ScrollViewExtend>
+<!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/fragment_detail.xml -->

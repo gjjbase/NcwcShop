@@ -1,0 +1,21 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class SubmitRepActivity$$ViewBinder<T extends com.ncwc.shop.model.classifica.SubmitRepActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623940, "field 'check_xy'");
+    target.check_xy = finder.castView(view, 2131623940, "field 'check_xy'");
+    view = finder.findRequiredView(source, 2131624101, "field 'grd_botm'");
+    target.grd_botm = finder.castView(view, 2131624101, "field 'grd_botm'");
+  }
+
+  @Override public void unbind(T target) {
+    target.check_xy = null;
+    target.grd_botm = null;
+  }
+}

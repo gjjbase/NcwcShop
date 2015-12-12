@@ -1,0 +1,40 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapterInject;
+import com.ncwc.shop.interactor.ViewHolderInject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * Created by admin on 2015/10/9.
+ */
+public class SubmitRepAdapter  extends BaseAdapterInject{
+    public SubmitRepAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int getConvertViewId(int position) {
+        return R.layout.submitrepadapter_item;
+    }
+
+    @Override
+    public int getCount() {
+        return 4;
+    }
+
+    @Override
+    public ViewHolderInject getNewHolder(int position) {
+        return new ViewHolder();
+    }
+    class ViewHolder extends ViewHolderInject{
+        @Override
+        public void loadData(JSONObject object, int position) throws JSONException {
+
+        }
+    }
+}

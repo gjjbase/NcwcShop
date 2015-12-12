@@ -1,0 +1,39 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class FreeComdSpeFragment$$ViewBinder<T extends com.ncwc.shop.model.classifica.FreeComdSpeFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558577, "field 'listview'");
+    target.listview = finder.castView(view, 2131558577, "field 'listview'");
+    view = finder.findRequiredView(source, 2131558585, "field 'edt_input'");
+    target.edt_input = finder.castView(view, 2131558585, "field 'edt_input'");
+    view = finder.findRequiredView(source, 2131558764, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558765, "method 'widgetClick'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+  }
+
+  @Override public void unbind(T target) {
+    target.listview = null;
+    target.edt_input = null;
+  }
+}

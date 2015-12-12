@@ -1,0 +1,478 @@
+package com.ncwc.shop.config;
+
+import android.app.Activity;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BinaryHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.util.AppUtils;
+import com.ncwc.shop.util.SharepreUtil;
+import com.ncwc.shop.widget.FlippingLoadDialog;
+
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+/**
+ * Created by admin on 2015/9/17.
+ */
+public class AsynHttpUtil {
+	protected static AsynHttpUtil asynHttpUtil = null;
+	protected static AsyncHttpClient client;
+	protected IOAuthCallBack ioAuthCallBack;
+	protected FlippingLoadDialog flippingLoadDialog;
+
+	private enum HttpType {
+		GET, POST;
+	}
+
+	protected AsynHttpUtil() {
+		client = new AsyncHttpClient();
+		client.setTimeout(5000);   //设置链接超时，如果不设置，默认为10s
+	}
+
+	public static synchronized AsynHttpUtil getInstance() {
+		if (null == asynHttpUtil) {
+			synchronized (AsynHttpUtil.class) {
+				if (null == asynHttpUtil) {
+					asynHttpUtil = new AsynHttpUtil();
+				}
+			}
+		}
+		return asynHttpUtil;
+	}
+
+	public synchronized void setIoAuthCallBack(IOAuthCallBack ioAuthCallBack) {
+		this.ioAuthCallBack = ioAuthCallBack;
+	}
+
+	public synchronized void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+		if (ioAuthCallBack != null)
+			ioAuthCallBack.getIOAuthCallBack(response, type);
+	}
+
+	/**
+	 * 带参数
+	 *
+	 * @param activity
+	 * @param urlString
+	 * @param httpType  请求类型(get，post)
+	 * @param params    请求参数
+	 * @param type      请求的url类型
+	 * @param view      是否显示正在加载对话框
+	 */
+	protected synchronized void gainJsonData(Activity activity, String urlString, HttpType httpType, RequestParams params, final String type, boolean view)   //url里面带参数
+	{
+		if (view) {
+			flippingLoadDialog = new FlippingLoadDialog(activity);
+			flippingLoadDialog.show();
+		}
+
+		JsonHttpResponseHandler res = new JsonHttpResponseHandler() {
+
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				super.onSuccess(statusCode, headers, response);
+				if (flippingLoadDialog != null)
+					flippingLoadDialog.dismiss();
+				try {
+					getIOAuthCallBack(response, type);
+				} catch (JSONException e) {
+
+				}
+
+			}
+
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+				super.onFailure(statusCode, headers, responseString, throwable);
+				if (flippingLoadDialog != null)
+					flippingLoadDialog.dismiss();
+			}
+		};
+		switch (httpType) {
+			case GET:
+				client.get(urlString, params, res);
+				break;
+			case POST:
+				client.post(urlString, params, res);
+		}
+
+	}
+
+	/**
+	 * 不带参数
+	 *
+	 * @param activity
+	 * @param urlString
+	 * @param httpType
+	 * @param type
+	 * @param view
+	 */
+	protected void getNoneParam(Activity activity, String urlString, HttpType httpType, final String type, boolean view) {
+		JsonHttpResponseHandler res = new JsonHttpResponseHandler() {
+
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+				super.onSuccess(statusCode, headers, response);
+				try {
+					getIOAuthCallBack(response, type);
+				} catch (JSONException e) {
+
+				}
+
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+				super.onFailure(statusCode, headers, responseString, throwable);
+			}
+		};
+
+		switch (httpType) {
+			case GET:
+				client.get(urlString, res);
+				break;
+			case POST:
+				client.post(urlString, res);
+		}
+
+	}
+
+	public void get(String uString, BinaryHttpResponseHandler bHandler)   //下载数据使用，会返回byte数据
+	{
+		client.get(uString, bHandler);
+	}
+
+	/**
+	 * 微信登录
+	 *
+	 * @param activity
+	 * @param wxcode
+	 */
+	public void weixinLogin(Activity activity, String wxcode) {
+		RequestParams params = new RequestParams();
+		params.put("appid", Constants.APP_ID);
+		params.put("secret", Constants.WX_SECRET);
+		params.put("code", wxcode);
+		params.put("grant_type", "authorization_code");
+		gainJsonData(activity, HttpService.URL_CONTEXTPATH, HttpType.GET, params, HttpService.TYPE_LOGINWEIXIN, true);
+	}
+
+	/**
+	 * 获取微信登录成功后返回的个人信息
+	 *
+	 * @param activity
+	 * @param access_token
+	 * @param openId
+	 */
+	public void weixinMsg(Activity activity, String access_token, String openId) {
+		RequestParams params = new RequestParams();
+		params.put("access_token", access_token);
+		params.put("openid", openId);
+		gainJsonData(activity, HttpService.URL_MSGWEIXIN, HttpType.POST, params, HttpService.TYPE_MSGWEIXIN, false);
+	}
+
+	/**
+	 * 获取微博登录后的返回的个人信息
+	 *
+	 * @param activity
+	 * @param access_token
+	 * @param uid
+	 */
+	public void weiboMsg(Activity activity, String access_token, String uid) {
+		RequestParams params = new RequestParams();
+		params.put("access_token", access_token);
+		params.put("uid", uid);
+		gainJsonData(activity, HttpService.URL_MSGWEIBO, HttpType.GET, params, HttpService.TYPE_MSGWEIBO, false);
+	}
+
+	/**
+	 * 登录
+	 *
+	 * @param activity
+	 * @param username
+	 * @param password
+	 */
+	public void login(Activity activity, String username, String password) {
+		RequestParams params = new RequestParams();
+		params.put("username", username);
+		params.put("password", password);
+		params.put("client", HttpService.ANDROID);
+		gainJsonData(activity, HttpService.URL_LOGIN, HttpType.POST, params, HttpService.TYPE_LOGIN, false);
+	}
+
+	/**
+	 * 注册
+	 *
+	 * @param activity
+	 * @param truename
+	 * @param mobile
+	 * @param code
+	 * @param password
+	 * @param password_cofirm
+	 * @param referred_code
+	 */
+	public void register(Activity activity, String truename, String mobile, String code, String password, String password_cofirm, String referred_code) {
+		RequestParams params = new RequestParams();
+		params.put("truename", truename);
+		params.put("mobile", mobile);
+		params.put("code", code);
+		params.put("type", "2");
+		params.put("password", password);
+		params.put("password_confirm", password_cofirm);
+		params.put("client", HttpService.ANDROID);
+		params.put("referred_code", referred_code);
+		params.put("version", AppUtils.getVersionCode(activity));
+		gainJsonData(activity, HttpService.URL_REGISTER, HttpType.POST, params, HttpService.TYPE_REGISTER, false);
+	}
+
+	/**
+	 * 获取短信验证码
+	 *
+	 * @param activity
+	 * @param mobile
+	 */
+	public void getCode(Activity activity, String mobile) {
+		RequestParams params = new RequestParams();
+		params.put("mobile", mobile);
+		gainJsonData(activity, HttpService.URL_GETCODE, HttpType.POST, params, HttpService.TYPE_GETCODE, false);
+	}
+
+	/**
+	 * 重置密码
+	 *
+	 * @param activity
+	 * @param mobile
+	 * @param code
+	 * @param password
+	 * @param password_confirm
+	 */
+	public void resetPass(Activity activity, String mobile, String code, String password, String password_confirm) {
+		RequestParams params = new RequestParams();
+		params.put("mobile", mobile);
+		params.put("code", code);
+		params.put("password", password);
+		params.put("password_confirm", password_confirm);
+		gainJsonData(activity, HttpService.URL_RESET, HttpType.POST, params, HttpService.TYPE_RESET, false);
+	}
+
+	/**
+	 * 首页轮播图
+	 *
+	 * @param activity
+	 */
+	public void rotateImg(Activity activity) {
+		getNoneParam(activity, HttpService.URL_CAROUAL, HttpType.POST, HttpService.TYPE_CAROUAL, false);
+	}
+
+	/**
+	 * 商品类别
+	 *
+	 * @param activity
+	 */
+	public void menuList(Activity activity) {
+		getNoneParam(activity, HttpService.URL_COMMENULIST, HttpType.POST, HttpService.TYPE_COMMENULIST, false);
+	}
+
+	/**
+	 * 推广
+	 *
+	 * @param activity
+	 * @param page
+	 */
+	public void prom(Activity activity, int page) {
+		RequestParams params = new RequestParams();
+		params.put("page", page);
+		gainJsonData(activity, HttpService.URL_PROM, HttpType.POST, params, HttpService.TYPE_PROM, false);
+	}
+
+	/**
+	 * 商品列表
+	 *
+	 * @param activity
+	 * @param search
+	 * @param class_1
+	 * @param class_2
+	 * @param price    1为正序，2为倒序
+	 * @param sales    1为正序，2为倒序
+	 * @param collect  1为正序，2为倒序，不传则为空
+	 */
+	public synchronized void goodList(Activity activity, String search, String class_1, String class_2, String price, String sales, String collect, int page) {
+		RequestParams params = new RequestParams();
+		params.put("search", search);
+		params.put("class_1", class_1);
+		params.put("class_2", class_2);
+		params.put("price", price);
+		params.put("sales", sales);
+		params.put("collect", collect);
+		params.put("page", page);
+		gainJsonData(activity, HttpService.URL_GOODLIST, HttpType.POST, params, HttpService.TYPE_GOODLIST, false);
+	}
+
+	/**
+	 * 商品详情
+	 *
+	 * @param activity
+	 * @param id
+	 * @param goods_spec
+	 */
+	public void goodinfo(Activity activity, String id, String goods_spec) {
+		RequestParams params = new RequestParams();
+		params.put("id", id);
+		params.put("goods_spec", goods_spec);
+		params.put("member_id", SharepreUtil.getStringValue(activity, Constants.MEMBERID, ""));
+		gainJsonData(activity, HttpService.URL_GOODINFO, HttpType.POST, params, HttpService.TYPE_GOODINFO, false);
+	}
+
+	/**
+	 * 商品收藏
+	 *
+	 * @param activity
+	 * @param goods_id
+	 */
+	public void favorites(Activity activity, String goods_id) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", SharepreUtil.getStringValue(activity, Constants.MEMBERID, ""));
+		params.put("token", SharepreUtil.getStringValue(activity, Constants.TOKEN, ""));
+		params.put("goods_id", goods_id);
+		gainJsonData(activity, HttpService.URL_FAVORITES, HttpType.POST, params, HttpService.TYPE_FAVORITES, false);
+	}
+
+	/**
+	 * 评论列表
+	 *
+	 * @param activity
+	 * @param goods_id
+	 * @param page
+	 */
+	public void evaluate(Activity activity, String goods_id, int page) {
+		RequestParams params = new RequestParams();
+		params.put("goods_id", goods_id);
+		params.put("page", page);
+		gainJsonData(activity, HttpService.URL_EVALUATE, HttpType.POST, params, HttpService.TYPE_EVALUATE, false);
+	}
+
+	/**
+	 * 免费试用列表
+	 *
+	 * @param activity
+	 * @param page
+	 * @param type     1正在进行 2往期回顾 3即将开始
+	 */
+	public void triallist(Activity activity, int page, int type) {
+		RequestParams params = new RequestParams();
+		params.put("page", page);
+		params.put("type", type);
+		params.put("member_id", SharepreUtil.getStringValue(activity, Constants.MEMBERID, ""));
+		gainJsonData(activity, HttpService.URL_TRIAL, HttpType.POST, params, HttpService.TYPE_TRIAL, false);
+
+	}
+
+	/**
+	 * 购物车主页列表
+	 *
+	 * @param activity
+	 */
+	public void shopcar(Activity activity) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		gainJsonData(activity, HttpService.URL_SHOPCAR, HttpType.POST, params, HttpService.TYPE_SHOPCAR, false);
+	}
+
+	/**
+	 * 购物车删除选中项
+	 *
+	 * @param activity
+	 * @param id_s     商品id
+	 */
+	public void shopcar_delete(Activity activity, String id_s) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		params.put("goods_id", id_s);
+		gainJsonData(activity, HttpService.URL_SHOPCAR_DELETE, HttpType.POST, params, HttpService.TYPE_SHOPCAR_DELETE, true);
+	}
+
+	/**
+	 * 购物车选中项移入收藏
+	 *
+	 * @param activity
+	 * @param id_s     商品id
+	 */
+	public void shopcar_addtooshoucang(Activity activity, String id_s) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		params.put("goods_id", id_s);
+		gainJsonData(activity, HttpService.URL_SHOPCAR_ADDTO_SHOUCANG, HttpType.POST, params, HttpService.TYPE_SHOPCAR_ADDTO_SHOUCANG, true);
+	}
+
+	/**
+	 * 个人中心获取使用记录
+	 *
+	 * @param activity
+	 */
+	public void getShiYongJL(Activity activity) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6767");
+		params.put("token", "0a0ccd05457a643d144fb3d9b51e799f");
+		gainJsonData(activity, HttpService.URL_PERSONAL_SHIYONGJILU, HttpType.POST, params, HttpService.TYPE_PERSONAL_SHIYONGJILU, false);
+	}
+
+	/**
+	 * 个人中心获取浏览记录
+	 *
+	 * @param activity
+	 */
+	public void getLiuLanJL(Activity activity) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		gainJsonData(activity, HttpService.URL_PERSONAL_LIULANJILU, HttpType.POST, params, HttpService.TYPE_PERSONAL_LIULANJILU, false);
+	}
+
+	/**
+	 * 个人中心获取收藏记录
+	 *
+	 * @param activity
+	 */
+	public void getShouCangJL(Activity activity) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		gainJsonData(activity, HttpService.URL_PERSONAL_SHOUCANGJILU, HttpType.POST, params, HttpService.TYPE_PERSONAL_SHOUCANGJILU, false);
+	}
+
+	/**
+	 * 添加到购物车
+	 *
+	 * @param activity
+	 * @param goods_id 商品id
+	 */
+	public void addToShopcar(Activity activity, String goods_id) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+		params.put("goods_id", goods_id);
+		gainJsonData(activity, HttpService.URL_PERSONAL_ADDTOSHOPCAR, HttpType.POST, params, HttpService.TYPE_PERSONAL_ADDTOSHOPCAR, true);
+	}
+
+	/**
+	 * 个人中心获取头像用户昵称
+	 */
+	public void getPersonalMsg(Activity activity) {
+		RequestParams params = new RequestParams();
+		params.put("member_id", "6162");
+		params.put("token", "f015314c94489c7ebcb31a556591f2e1");
+
+	}
+
+
+}

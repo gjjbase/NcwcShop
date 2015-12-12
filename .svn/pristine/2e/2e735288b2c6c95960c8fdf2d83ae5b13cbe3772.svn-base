@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <com.ncwc.shop.widget.ScrollViewExtend
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:padding="5dp"
+                android:text="@string/itemtitle"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/reptip"
+                    android:textColor="@color/img_nickname"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@mipmap/waiguan"
+                    android:drawablePadding="10dp"
+                    android:text="@string/carapp"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_aspect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/bg_edittext"
+                        android:padding="5dp"
+                        android:singleLine="true" />
+
+                    <ImageView
+                        android:id="@+id/txt_openimg"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="3"
+                        android:background="@mipmap/tijioashiyongbaogaozhaopian"
+                        android:scaleType="center"
+                        android:src="@mipmap/zhaoxiangji" />
+                </LinearLayout>
+
+                <GridView
+                    android:id="@+id/grd_botm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/bg_color"
+                    android:horizontalSpacing="3dp"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/navpage" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@mipmap/jiage"
+                    android:drawablePadding="10dp"
+                    android:text="@string/carpric"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_price"
+                        android:layout_width="fill_parent"
+
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/bg_edittext"
+                        android:padding="5dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@mipmap/chanpinzhiliang"
+                    android:drawablePadding="10dp"
+                    android:text="@string/carqua"
+                    android:textColor="@color/Black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_quality"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/bg_edittext"
+                        android:padding="5dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@mipmap/pingfen"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/carcom"
+                        android:textColor="@color/Black"
+                        android:textSize="18sp" />
+
+                    <android.support.v7.widget.AppCompatRatingBar
+                        android:id="@+id/ratingBar2"
+                        style="?android:attr/ratingBarStyleIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="0.5" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@id/check_xy"
+                style="@style/CustomCheckboxTheme"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@id/regist"
+                style="@style/textView_style"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/logintextview_selector"
+                android:text="@string/submitrep"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </com.ncwc.shop.widget.ScrollViewExtend>
+</LinearLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_submitrep.xml -->

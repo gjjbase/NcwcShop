@@ -1,0 +1,154 @@
+package com.ncwc.shop.model.classifica;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.Window;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.FreeRepAdapter;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.interactor.OnBorderListener;
+import com.ncwc.shop.interactor.impl.SwipeBackHelper;
+import com.ncwc.shop.widget.AllListView;
+import com.ncwc.shop.widget.DamRebScrollView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * 试用报告页面
+ * Created by admin on 2015/10/9.
+ */
+public class FreeRepActivity extends BaseActivity implements IOAuthCallBack, OnBorderListener {
+    private static final int FRESQUES = 200;
+    @Bind(R.id.listview)
+    AllListView listView;
+    @Bind(R.id.toolbar_title)
+    TextView toolbar_title;
+    @Bind(R.id.top_scroll)
+    DamRebScrollView top_scroll;
+    private FreeRepAdapter adapter;
+    private AsynHttpUtil asynHttpUtil;
+    private int page = 1;
+    private String pid;
+    private String title;
+    private boolean isbotm = false;
+    private Handler scrhandler;
+    private JSONArray addjson;
+
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @OnClick({R.id.rel_rep})
+    public void widgetClick(View v) {
+        switch (v.getId()) {
+            case R.id.rel_rep:
+                Bundle bundle = new Bundle();
+                bundle.putString("pid", pid);
+                bundle.putString("title", title);
+                readyGoForResult(SubmitRepActivity.class, FRESQUES, bundle);
+                break;
+        }
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        SwipeBackHelper.onCreate(this);
+
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(true)
+                .setSwipeEdgePercent(0.5f)
+                .setSwipeSensitivity(0.5f)
+                .setClosePercent(0.5f)
+                .setSwipeRelateEnable(true).setSwipeSensitivity(1);
+        return R.layout.activity_freerep;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    @Override
+    protected void initData() {
+        scrhandler = new Handler();
+        toolbar_title.setText(R.string.freerep);
+        pid = getIntent().getStringExtra("pid");
+        title = getIntent().getStringExtra("title");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        asynHttpUtil = AsynHttpUtil.getInstance();
+        asynHttpUtil.replist(FreeRepActivity.this, pid, page);
+        asynHttpUtil.setIoAuthCallBack(this);
+        top_scroll.setOnBorderListener(this);
+        scrhandler.post(new Runnable() {
+            @Override
+            public void run() {
+                top_scroll.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+        showToast(response.getString("msg"));
+        if (!response.getString("status").equals("1")) return;
+        JSONArray jsonArray = response.getJSONObject("datas").getJSONArray("list");
+        if (page == 1) addjson = new JSONArray();
+        for (int i = 0; i < jsonArray.length(); i++) addjson.put(jsonArray.getJSONObject(i));
+        adapter = new FreeRepAdapter(getApplicationContext());
+        listView.setAdapter(adapter);
+        adapter.setData(addjson);
+        if (response.getJSONObject("datas").getString("hasmore").equals("0")) {
+            isbotm = true;
+        } else {
+            isbotm = false;
+        }
+    }
+
+    @Override
+    public void onBottom() {
+        //底部
+        if (isbotm) {
+            showToast(getString(R.string.nomore));
+            return;
+        }
+        page++;
+        asynHttpUtil.replist(FreeRepActivity.this, pid, page);
+        asynHttpUtil.setIoAuthCallBack(this);
+    }
+
+    @Override
+    public void onTop() {
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == FRESQUES) {
+            page = 1;
+            asynHttpUtil.replist(FreeRepActivity.this, pid, page);
+            asynHttpUtil.setIoAuthCallBack(this);
+        }
+    }
+}

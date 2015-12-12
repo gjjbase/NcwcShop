@@ -1,0 +1,63 @@
+package com.ncwc.shop.model.homepage;
+
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.SelectDialogAdapter;
+import com.ncwc.shop.widget.AllListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+/**
+ * Created by admin on 2015/10/10.
+ */
+public class DetailsSelectDialog extends Dialog implements View.OnClickListener {
+    private AllListView listview;
+    private SelectDialogAdapter selectDialogAdapter;
+    private ImageView img_add;
+    private ImageView img_subt;
+    private EditText edt_input;
+
+    public DetailsSelectDialog(Context context) {
+        super(context, R.style.DialogStyleBottom);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detailselect_dialog);
+        listview = (AllListView) findViewById(R.id.listview);
+        img_add = (ImageView) findViewById(R.id.img_add);
+        img_subt = (ImageView) findViewById(R.id.img_subt);
+        edt_input = (EditText) findViewById(R.id.edt_input);
+        selectDialogAdapter = new SelectDialogAdapter(getContext());
+        listview.setAdapter(selectDialogAdapter);
+        try {
+            selectDialogAdapter.setData(new JSONArray());
+        } catch (JSONException e) {
+
+        }
+        img_add.setOnClickListener(this);
+        img_subt.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int num = edt_input.getText().toString().trim().toString().equals("") ? 0 : Integer.parseInt(edt_input.getText().toString().trim());
+        switch (v.getId()) {
+            case R.id.img_subt:
+                num = num <= 0 ? 0 : num - 1;
+                break;
+            case R.id.img_add:
+                num++;
+                break;
+        }
+        edt_input.setText(num + "");
+    }
+}

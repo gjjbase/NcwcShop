@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/common_toolbar" />
+    <EditText
+        android:id="@+id/nickname"
+        style="@style/editText_style"
+        android:layout_marginTop="20dp"
+        android:hint="@string/nicknammsg" />
+    <EditText
+        android:id="@id/username"
+        style="@style/editText_style"
+        android:layout_marginTop="20dp"
+        android:inputType="phone"
+        android:hint="@string/usernamemsg" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_height="45dp">
+        <EditText
+            android:id="@id/code"
+            style="@style/editText_style"
+            android:layout_weight="1"
+            android:hint="@string/code" />
+        <TextView
+            android:id="@id/getcode"
+            android:layout_weight="2"
+           android:layout_width="fill_parent"
+            android:layout_height="45dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/codetext"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/textviewcode_selector"
+            android:textSize="16sp"
+            android:text="@string/getcode" />
+    </LinearLayout>
+    <EditText
+        android:id="@id/psw"
+        style="@style/editText_style"
+        android:layout_marginTop="10dp"
+        android:hint="@string/psw" />
+    <EditText
+        android:id="@id/repsw"
+        style="@style/editText_style"
+        android:layout_marginTop="10dp"
+        android:hint="@string/repsw" />
+    <EditText
+        android:id="@id/invitation"
+        style="@style/editText_style"
+        android:layout_marginTop="10dp"
+        android:hint="@string/invitation" />
+    <CheckBox
+        android:id="@id/check_xy"
+        android:textColor="@color/textBlack"
+        style="@style/CustomCheckboxTheme"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="5dp"
+        />
+    <TextView
+        android:id="@id/regist"
+        style="@style/textView_style"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
+        android:textColor="@color/white"
+        android:background="@drawable/logintextview_selector"
+        android:text="@string/regist" />
+</LinearLayout><!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/activity_regist.xml -->

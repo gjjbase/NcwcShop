@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <!--地址信息部分-->
+    <RelativeLayout
+        android:id="@+id/rl_05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edittext">
+
+        <!--姓名和手机号-->
+        <TextView
+            android:id="@+id/tv_place_manage_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="姓名\u3000123-1234-1234"
+            android:textColor="@color/Black"
+            android:textSize="16sp"/>
+
+        <!-- 默认单选-->
+        <TextView
+            android:id="@+id/tv_05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/moren"
+            android:textColor="@color/rea"
+            android:textSize="12sp"/>
+
+        <ImageView
+            android:id="@+id/img_place_manage_default"
+            android:layout_width="16dp"
+            android:layout_height="16sp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/tv_05"
+            android:src="@mipmap/morendizhi"/>
+
+        <!--具体地址-->
+        <TextView
+            android:id="@+id/tv_place_manage_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_place_manage_name"
+            android:layout_below="@+id/tv_place_manage_name"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="14dp"
+            android:text="北京市北京市北京市北北京市北京市北京市北京市京市北京市北京市北京市北京市"
+            android:textColor="@color/Black"
+            android:textSize="14sp"/>
+
+        <Space
+            android:id="@+id/space_00"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/tv_place_manage_place"/>
+
+        <!--分隔线-->
+        <ImageView
+            android:id="@+id/img_place_manage_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_below="@+id/space_00"
+            android:src="@color/button_material_dark"/>
+
+        <!--编辑区域-->
+        <LinearLayout
+            android:id="@+id/ll_place_manage_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/space_00"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <!--编辑-->
+            <TextView
+                android:id="@+id/tv_place_manage_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="200"
+                android:drawableLeft="@mipmap/bianji"
+                android:gravity="center"
+                android:paddingLeft="50dp"
+                android:paddingRight="30dp"
+                android:text="@string/edit"
+                android:textColor="@color/place_edit"
+                android:textSize="14sp"/>
+
+            <!--分隔线-->
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:src="@color/button_material_dark"/>
+
+            <!--删除-->
+            <TextView
+                android:id="@+id/tv_place_manage_delete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="200"
+                android:drawableLeft="@mipmap/trash"
+                android:gravity="center"
+                android:paddingLeft="50dp"
+                android:paddingRight="30dp"
+                android:text="@string/delete"
+                android:textColor="@color/place_del"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/rl_05"/>
+</RelativeLayout>

@@ -1,0 +1,236 @@
+package com.ncwc.shop.model.perscenter;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.config.Constants;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.model.MainActivity;
+import com.ncwc.shop.util.SharepreUtil;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WeiboAuthListener;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.tencent.connect.UserInfo;
+import com.tencent.connect.auth.QQAuth;
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+import butterknife.OnClick;
+
+/**
+ * Created by admin on 2015/9/25.
+ */
+public class LoginActivity extends BaseActivity implements IOAuthCallBack, WeiboAuthListener {
+    @Bind(R.id.username)
+    protected EditText username;
+    @Bind(R.id.password)
+    protected EditText password;
+    @Bind(R.id.toolbar_title)
+    protected TextView toolbar_title;
+    public static IWXAPI iwxApi;
+    public static String WX_CODE = "";
+    public static boolean isWXLogin = false;
+    private Tencent tencent;
+    private static QQAuth qqAuth;
+    private AuthInfo authInfo;
+    private UserInfo mInfo;
+    /**weibo*/
+    private static Oauth2AccessToken accessToken;
+    private SsoHandler ssoHandler;
+    private String strusername = "";
+    private String strpassword = "";
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initData() {
+        toolbar_title.setText(R.string.logintitle);
+        iwxApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID, true);
+        iwxApi.registerApp(Constants.APP_ID);
+        authInfo = new AuthInfo(LoginActivity.this, Constants.WBAPP_ID, Constants.REDIRECT_URL, Constants.SCOPE);
+        ssoHandler = new SsoHandler(LoginActivity.this, authInfo);
+        qqAuth = QQAuth.createInstance(Constants.QQAPP_ID, getApplicationContext());
+        tencent = Tencent.createInstance(Constants.QQAPP_ID, getApplicationContext());
+    }
+
+    @OnClick({R.id.qq, R.id.weixin, R.id.weibo, R.id.regist, R.id.login, R.id.forget})
+    public void widgetClick(View v) {
+        switch (v.getId()) {
+            case R.id.forget:
+                readyGo(ForgetActivity.class);
+                break;
+            case R.id.regist:
+                readyGo(RegistActivity.class);
+                break;
+            case R.id.login:
+                strusername = username.getText().toString().trim();
+                strpassword = password.getText().toString().trim();
+                asynHttpUtil.login(LoginActivity.this, strusername, strpassword);
+                asynHttpUtil.setIoAuthCallBack(this);
+                break;
+            case R.id.qq:
+                onClickLogin();
+                break;
+            case R.id.weixin:
+                isWXLogin = true;
+                SendAuth.Req req = new SendAuth.Req();
+                    /*用snsapi_base提示没权限*/
+                req.scope = "snsapi_userinfo";
+                    /*用户保持请求和回调的状态，授权后请求原样返回给第三方。该参数可以防止csrf攻击*/
+                req.state = "nichewoche";
+                iwxApi.sendReq(req);
+                break;
+            case R.id.weibo:
+                ssoHandler.authorize(this);
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+    }
+
+    protected void onClickLogin() {
+        if (!qqAuth.isSessionValid()) {
+            IUiListener listener = new BaseUiListener() {
+                @Override
+                protected void doComplete(JSONObject values) {
+                    super.doComplete(values);
+                    mInfo = new UserInfo(LoginActivity.this, tencent.getQQToken());
+                    mInfo.getUserInfo(new BaseUiListener() {
+                        @Override
+                        protected void doComplete(JSONObject values) {
+                            super.doComplete(values);
+                            Bundle bundle = new Bundle();
+                            try {
+                                bundle.putString("nickname", values.getString("nickname"));
+                                bundle.putString("gender", values.getString("gender"));
+                                bundle.putString("figureurl_qq_2", values.getString("figureurl_qq_2"));
+                            } catch (JSONException e) {
+
+                            }
+                            readyGo(BindMobActivity.class, bundle);
+                        }
+                    });
+                }
+            };
+            tencent.loginWithOEM(LoginActivity.this, "all", listener, "10000144",
+                    "10000144", "xxxx");
+        }
+    }
+
+    @Override
+    public void onComplete(Bundle bundle) {
+        //授权成功，accessToken为授权成功后的返回值
+        accessToken = Oauth2AccessToken.parseAccessToken(bundle);
+        if (accessToken.isSessionValid() && accessToken != null) {
+            asynHttpUtil.weiboMsg(LoginActivity.this, accessToken.getToken(), accessToken.getUid());
+            asynHttpUtil.setIoAuthCallBack(LoginActivity.this);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isWXLogin) {
+            asynHttpUtil.weixinLogin(LoginActivity.this, WX_CODE);
+            asynHttpUtil.setIoAuthCallBack(this);
+            isWXLogin = false;
+        }
+    }
+
+    @Override
+    public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+
+        if (type.equals(HttpService.TYPE_LOGINWEIXIN)) {
+            if (response != null) {
+                String accessToken = response.getString("access_token");
+                String openId = response.getString("openid");
+                asynHttpUtil.weixinMsg(LoginActivity.this, accessToken, openId);
+                asynHttpUtil.setIoAuthCallBack(this);
+                isWXLogin = false;
+                showToast(response.toString());
+            }
+        } else if (type.equals(HttpService.TYPE_MSGWEIXIN)) {
+            showToast(response.toString());
+        } else if (type.equals(HttpService.TYPE_MSGWEIBO)) {
+
+        } else if (type.equals(HttpService.TYPE_LOGIN)) {
+            showToast(response.getString("msg"));
+            if (response.getString("status").equals("1")) {
+                JSONObject jsonObject = response.getJSONObject("datas");
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERID, jsonObject.getString(Constants.MEMBERID));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERNAME, jsonObject.getString(Constants.MEMBERNAME));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERTRUENAME, jsonObject.getString(Constants.MEMBERTRUENAME));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERSEX, jsonObject.getString(Constants.MEMBERSEX));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERAVATAR, jsonObject.getString(Constants.MEMBERAVATAR));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBEREMAIL, jsonObject.getString(Constants.MEMBEREMAIL));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.MEMBERMOBILE, jsonObject.getString(Constants.MEMBERMOBILE));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.TOKEN, jsonObject.getString(Constants.TOKEN));
+                SharepreUtil.putStringValue(getApplicationContext(), Constants.ADDRESS, jsonObject.getJSONObject(Constants.ADDRESS).toString());
+                readyGo(MainActivity.class);
+                finish();
+            }
+        }
+    }
+
+    @Override
+    public void onWeiboException(WeiboException e) {
+
+    }
+
+    @Override
+    public void onCancel() {
+
+    }
+    private class BaseUiListener implements IUiListener {
+
+        @Override
+        public void onComplete(Object response) {
+            doComplete((JSONObject) response);
+        }
+
+        protected void doComplete(JSONObject values) {
+
+        }
+
+        @Override
+        public void onError(UiError e) {
+
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+    }
+}

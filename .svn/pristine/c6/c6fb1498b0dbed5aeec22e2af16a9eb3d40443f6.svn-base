@@ -1,0 +1,75 @@
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.FreeOldAdapter;
+import com.ncwc.shop.adapter.FreeRunAdapter;
+import com.ncwc.shop.base.BaseFragment;
+import com.ncwc.shop.config.AsynHttpUtil;
+import com.ncwc.shop.config.HttpService;
+import com.ncwc.shop.interactor.IOAuthCallBack;
+import com.ncwc.shop.widget.AllListView;
+import com.ncwc.shop.widget.TitleScrollView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/6.
+ * 正在进行和往期回顾
+ */
+public class FreeRunFragment extends BaseFragment {
+    @Bind(R.id.listview_freerun)
+   protected AllListView listview_freerun;
+    @Bind(R.id.topsroll)
+    TitleScrollView topsroll;
+    @Bind(R.id.listview_freeold)
+    protected  AllListView listview_freeold;
+    private FreeRunAdapter adapter;
+    private FreeOldAdapter freeOldAdapter;
+    private AsynHttpUtil asynHttpUtil;
+    private int page=1;
+    public void initData() {
+        asynHttpUtil=AsynHttpUtil.getInstance();
+        adapter=new FreeRunAdapter(getParentFragment().getActivity());
+        freeOldAdapter=new FreeOldAdapter(getParentFragment().getActivity());
+        listview_freeold.setAdapter(freeOldAdapter);
+        listview_freerun.setAdapter(adapter);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            asynHttpUtil.triallist(getActivity(),page, HttpService.trial);
+            asynHttpUtil.setIoAuthCallBack(new IOAuthCallBack() {
+                @Override
+                public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+
+                }
+            });
+            asynHttpUtil.triallist(getActivity(),page, HttpService.old);
+            asynHttpUtil.setIoAuthCallBack(new IOAuthCallBack() {
+                @Override
+                public void getIOAuthCallBack(JSONObject response, String type) throws JSONException {
+
+                }
+            });
+        }
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_freerun;
+    }
+
+
+}

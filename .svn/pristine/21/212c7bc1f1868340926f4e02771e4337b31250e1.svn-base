@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--选项卡-->
+    <LinearLayout
+        android:id="@+id/ll_00"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/common_toolbar"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <!--所有订单-->
+        <TextView
+            android:id="@+id/tv_order_all"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/order_all"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+
+        <!--待付款-->
+        <TextView
+            android:id="@+id/tv_order_nopay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/order_nopay"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+
+        <!--待收货-->
+        <TextView
+            android:id="@+id/tv_order_wait"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/order_wait"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+
+        <!--待评价-->
+        <TextView
+            android:id="@+id/tv_order_no_pingjia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_choose"
+            android:gravity="center"
+            android:text="@string/order_need_pingjia"
+            android:textColor="@drawable/titletxtcolorsharp"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <!--下划线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/ll_00"
+        android:src="@color/button_material_dark"/>
+
+    <!--订单内容-->
+    <!--我的浏览或者收藏内容-->
+    <com.ncwc.shop.widget.PullToLoadNewView
+        android:id="@+id/pullToLoadView_dingdan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_00"
+        android:layout_marginTop="4dp"
+        android:background="@color/BackColor"/>
+
+    <!--空白提示-->
+    <include
+        layout="@layout/include_kongbai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_00"/>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.homepage;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class HomePageFragment$$ViewBinder<T extends com.ncwc.shop.model.homepage.HomePageFragment> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623942, "field 'fadingBar'");
+    target.fadingBar = finder.castView(view, 2131623942, "field 'fadingBar'");
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131623948, "field 'lindot'");
+    target.lindot = finder.castView(view, 2131623948, "field 'lindot'");
+    view = finder.findRequiredView(source, 2131623949, "field 'listview_type'");
+    target.listview_type = finder.castView(view, 2131623949, "field 'listview_type'");
+    view = finder.findRequiredView(source, 2131624280, "field 'tableLayout'");
+    target.tableLayout = finder.castView(view, 2131624280, "field 'tableLayout'");
+    view = finder.findRequiredView(source, 2131624271, "field 'root'");
+    target.root = finder.castView(view, 2131624271, "field 'root'");
+    view = finder.findRequiredView(source, 2131624270, "field 'progressBar'");
+    target.progressBar = finder.castView(view, 2131624270, "field 'progressBar'");
+  }
+
+  @Override public void unbind(T target) {
+    target.fadingBar = null;
+    target.toolbar_title = null;
+    target.lindot = null;
+    target.listview_type = null;
+    target.tableLayout = null;
+    target.root = null;
+    target.progressBar = null;
+  }
+}

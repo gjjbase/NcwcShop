@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
+
+    <com.ncwc.shop.widget.ScrollViewExtend
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="200dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <LinearLayout
+                    android:id="@id/lindot"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freepel"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="980"
+                        android:textColor="@color/bg_title"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pel"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/freenum"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="100"
+                        android:textColor="@color/bg_title"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/num"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_btnleft"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="剩余:" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="03"
+                    android:textColor="@color/bg_title" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="@string/day" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="24"
+                    android:textColor="@color/bg_title" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="@string/hour" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="56"
+                    android:textColor="@color/bg_title" />
+
+                <TextView
+                    style="@style/runtextview"
+                    android:text="@string/minute" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txt_free"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/freeruntextview_selector"
+                android:gravity="center"
+                android:text="@string/nowrep"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v4.app.FragmentTabHost
+                    android:id="@android:id/tabhost"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:id="@android:id/tabcontent"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="0" />
+                </android.support.v4.app.FragmentTabHost>
+
+                <FrameLayout
+                    android:id="@+id/viewpager_botm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.ncwc.shop.widget.ScrollViewExtend>
+</LinearLayout>

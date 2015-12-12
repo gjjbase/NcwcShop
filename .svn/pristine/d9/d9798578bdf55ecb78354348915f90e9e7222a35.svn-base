@@ -1,0 +1,72 @@
+package com.ncwc.shop.model;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseActivity;
+import com.ncwc.shop.widget.PullToLoadView;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/9/12.
+ */
+public class RecyclerViewExample extends BaseActivity {
+
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
+    }
+
+    @Bind(R.id.pullToLoadView)
+    protected PullToLoadView mPullToLoadView;
+    private boolean isLoading = false;
+    private boolean isHasLoadedAll = false;
+    private int nextPage;
+    List<Map<String, String>> listmap;
+    JSONArray jso, addjson;
+    RecyclerView mRecyclerView;
+
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.exmaple_recyclerview;
+    }
+
+    @Override
+    protected void initData() {
+        listmap = new ArrayList<Map<String, String>>();
+        for (int i = 0; i < 30; i++) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("name", i + 1 + "");
+            listmap.add(map);
+        }
+        jso = new JSONArray(listmap);
+        addjson = new JSONArray(listmap);
+        mRecyclerView = mPullToLoadView.getRecyclerView();
+        mRecyclerView.setHasFixedSize(false);
+           /*设置瀑布流*/
+//        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);//表示两列，并且是竖直方向的瀑布流
+//        mRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(manager);
+        mPullToLoadView.isLoadMoreEnabled(true);
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+
+}

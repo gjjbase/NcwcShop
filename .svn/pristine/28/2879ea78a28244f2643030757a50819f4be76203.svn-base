@@ -1,0 +1,67 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+    <include
+        layout="@layout/common_toolbar"
+        />
+        <com.ncwc.shop.widget.DamRebScrollView
+            android:id="@+id/root"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp">
+                    <android.support.v4.view.ViewPager
+                        android:id="@id/fading_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        />
+                    <LinearLayout
+                        android:id="@id/lindot"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"/>
+                </RelativeLayout>
+            <LinearLayout
+                android:id="@id/zp_curr_potion_linear"
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TableLayout
+                    android:id="@+id/job_name_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+                    <com.ncwc.shop.widget.AllListView
+                        android:id="@id/listview_type"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="fill_parent"
+                        android:divider="@null"
+                        android:layout_height="wrap_content"/>
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </com.ncwc.shop.widget.DamRebScrollView>
+
+
+</LinearLayout>
+<!-- From: file:/D:/Studio1.1.0/workspace/NcwcShop/app/src/main/res/layout/fragment_homepage.xml -->

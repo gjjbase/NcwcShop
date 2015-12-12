@@ -1,0 +1,44 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.homepage;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class AllCommitActivity$$ViewBinder<T extends com.ncwc.shop.model.homepage.AllCommitActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624076, "field 'tab_layout'");
+    target.tab_layout = finder.castView(view, 2131624076, "field 'tab_layout'");
+    view = finder.findRequiredView(source, 2131624077, "field 'viewpager'");
+    target.viewpager = finder.castView(view, 2131624077, "field 'viewpager'");
+    view = finder.findRequiredView(source, 2131624073, "field 'txt_type' and method 'widgetClick'");
+    target.txt_type = finder.castView(view, 2131624073, "field 'txt_type'");
+    view.setOnClickListener(
+      new butterknife.internal.DebouncingOnClickListener() {
+        @Override public void doClick(
+          android.view.View p0
+        ) {
+          target.widgetClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131624074, "field 'feedbook'");
+    target.feedbook = finder.castView(view, 2131624074, "field 'feedbook'");
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+    view = finder.findRequiredView(source, 2131624260, "field 'toolbar_right'");
+    target.toolbar_right = finder.castView(view, 2131624260, "field 'toolbar_right'");
+    view = finder.findRequiredView(source, 2131624075, "field 'sear_cart'");
+    target.sear_cart = finder.castView(view, 2131624075, "field 'sear_cart'");
+  }
+
+  @Override public void unbind(T target) {
+    target.tab_layout = null;
+    target.viewpager = null;
+    target.txt_type = null;
+    target.feedbook = null;
+    target.toolbar_title = null;
+    target.toolbar_right = null;
+    target.sear_cart = null;
+  }
+}

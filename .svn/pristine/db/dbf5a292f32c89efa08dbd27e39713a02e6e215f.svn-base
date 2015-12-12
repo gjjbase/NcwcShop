@@ -1,0 +1,36 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class MyPlaceManageAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.MyPlaceManageAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624347, "field 'tv_place_manage_name'");
+    target.tv_place_manage_name = finder.castView(view, 2131624347, "field 'tv_place_manage_name'");
+    view = finder.findRequiredView(source, 2131624348, "field 'img_place_manage_default'");
+    target.img_place_manage_default = finder.castView(view, 2131624348, "field 'img_place_manage_default'");
+    view = finder.findRequiredView(source, 2131624151, "field 'tv_05'");
+    target.tv_05 = finder.castView(view, 2131624151, "field 'tv_05'");
+    view = finder.findRequiredView(source, 2131624349, "field 'tv_place_manage_place'");
+    target.tv_place_manage_place = finder.castView(view, 2131624349, "field 'tv_place_manage_place'");
+    view = finder.findRequiredView(source, 2131624353, "field 'tv_place_manage_edit'");
+    target.tv_place_manage_edit = finder.castView(view, 2131624353, "field 'tv_place_manage_edit'");
+    view = finder.findRequiredView(source, 2131624354, "field 'tv_place_manage_delete'");
+    target.tv_place_manage_delete = finder.castView(view, 2131624354, "field 'tv_place_manage_delete'");
+    view = finder.findRequiredView(source, 2131624352, "field 'll_place_manage_edit'");
+    target.ll_place_manage_edit = finder.castView(view, 2131624352, "field 'll_place_manage_edit'");
+  }
+
+  @Override public void unbind(T target) {
+    target.tv_place_manage_name = null;
+    target.img_place_manage_default = null;
+    target.tv_05 = null;
+    target.tv_place_manage_place = null;
+    target.tv_place_manage_edit = null;
+    target.tv_place_manage_delete = null;
+    target.ll_place_manage_edit = null;
+  }
+}

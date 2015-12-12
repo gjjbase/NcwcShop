@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--可滑动-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_shopcar_bottom"
+        android:layout_below="@+id/common_toolbar"
+        android:background="@color/BackColor">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--商品信息-->
+            <LinearLayout
+                android:id="@+id/ll_shopcar_sendorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <!--空白-->
+            <TextView
+                android:id="@+id/tv_03"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/ll_shopcar_sendorder"
+                android:background="@color/BackColor"/>
+
+            <!--购物券-->
+            <RelativeLayout
+                android:id="@+id/rl_shopcar_commitorder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_03"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_shopcar_num_shopsale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="5张购物券可用"
+                    android:textColor="@color/abc_input_method_navigation_guard"
+                    android:textSize="14sp"/>
+
+                <ImageView
+                    android:id="@+id/img_to_shopsale"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="70dp"
+                    android:layout_toRightOf="@+id/tv_shopcar_num_shopsale"
+                    android:src="@mipmap/ic_launcher"/>
+
+            </RelativeLayout>
+
+            <!--选择收货信息-->
+            <TextView
+                android:id="@+id/tv_srue_msgofreceiving"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/rl_shopcar_commitorder"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="14sp"
+                android:background="@drawable/bg_textview"
+                android:gravity="center"
+                android:text="选择收货信息"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+            <!--空白-->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@+id/tv_srue_msgofreceiving"/>
+        </RelativeLayout>
+    </ScrollView>
+    <!--确认提交-->
+    <include
+        layout="@layout/item_bottom_settlement"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_shopcar_commitorder.xml -->

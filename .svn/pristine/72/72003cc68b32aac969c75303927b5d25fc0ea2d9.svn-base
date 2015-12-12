@@ -1,0 +1,34 @@
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import android.widget.ListView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.adapter.FreeWillAdapter;
+import com.ncwc.shop.base.BaseFragment;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/6.
+ * 即将开始
+ */
+public class FreeWillFragment extends BaseFragment {
+    @Bind(R.id.listview_old)
+    ListView listview_old;
+    private FreeWillAdapter adapter;
+    public void initData() {
+        adapter=new FreeWillAdapter(getParentFragment().getActivity());
+        listview_old.setAdapter(adapter);
+    }
+
+    @Override
+    public void widgetClick(View v) {
+
+    }
+
+    @Override
+    protected int getContentViewLayoutID() {
+        return R.layout.fragment_freewill;
+    }
+}

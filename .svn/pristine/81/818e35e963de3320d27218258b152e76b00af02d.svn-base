@@ -1,0 +1,27 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ShiyongJiluAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.ShiyongJiluAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558853, "field 'img_shiyongjilu_icon'");
+    target.img_shiyongjilu_icon = finder.castView(view, 2131558853, "field 'img_shiyongjilu_icon'");
+    view = finder.findRequiredView(source, 2131558854, "field 'tv_shiyongjilu_product_name'");
+    target.tv_shiyongjilu_product_name = finder.castView(view, 2131558854, "field 'tv_shiyongjilu_product_name'");
+    view = finder.findRequiredView(source, 2131558855, "field 'tv_shiyongjilu_kaijiang_time'");
+    target.tv_shiyongjilu_kaijiang_time = finder.castView(view, 2131558855, "field 'tv_shiyongjilu_kaijiang_time'");
+    view = finder.findRequiredView(source, 2131558856, "field 'tv_shiyongjilu_status'");
+    target.tv_shiyongjilu_status = finder.castView(view, 2131558856, "field 'tv_shiyongjilu_status'");
+  }
+
+  @Override public void unbind(T target) {
+    target.img_shiyongjilu_icon = null;
+    target.tv_shiyongjilu_product_name = null;
+    target.tv_shiyongjilu_kaijiang_time = null;
+    target.tv_shiyongjilu_status = null;
+  }
+}

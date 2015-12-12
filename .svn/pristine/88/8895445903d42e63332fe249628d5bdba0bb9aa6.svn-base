@@ -1,0 +1,18 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class TitlesAdapter$ViewHolder$$ViewBinder<T extends com.ncwc.shop.adapter.TitlesAdapter.ViewHolder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624281, "field 'text1'");
+    target.text1 = finder.castView(view, 2131624281, "field 'text1'");
+  }
+
+  @Override public void unbind(T target) {
+    target.text1 = null;
+  }
+}

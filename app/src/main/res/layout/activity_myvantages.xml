@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题栏-->
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--现有积分部分-->
+    <RelativeLayout
+        android:id="@+id/rl_03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_toolbar">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/vantages_bg"/>
+
+        <Space
+            android:id="@+id/space_01"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/space_01"
+            android:text="现有积分:"
+            android:textColor="@color/Black"
+            android:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/tv_allvantages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tv_01"
+            android:layout_marginTop="100dp"
+            android:text="0"
+            android:textColor="@color/rea"
+            android:textSize="36sp"
+            android:textStyle="bold|italic"/>
+
+    </RelativeLayout>
+
+    <!--积分记录-->
+    <com.ncwc.shop.widget.ScrollBottomScrollView
+        android:id="@+id/sl_01"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@+id/rl_03"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_edittext"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_vantages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+                <!--空白-->
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"/>
+                <!--动态插入数据-->
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/ll_vantages"/>
+        </RelativeLayout>
+    </com.ncwc.shop.widget.ScrollBottomScrollView>
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/rl_03"
+        android:layout_centerHorizontal="true"
+        android:background="@color/rea"
+        android:gravity="center"
+        android:text="@string/jifenjilu"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+    <!--积分抽奖-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sl_01"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_edittext">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:src="@mipmap/choujiang"/>
+
+        <TextView
+            android:id="@+id/tv_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/zanweilaiqi"
+            android:textColor="@color/rea"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_02"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:text="@string/zhongjiang"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/sl_01"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/rea"
+        android:gravity="center"
+        android:text="@string/jifenchoujiang"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+
+</RelativeLayout>

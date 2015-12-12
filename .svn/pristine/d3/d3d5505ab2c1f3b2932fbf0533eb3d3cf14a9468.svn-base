@@ -1,0 +1,18 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.homepage;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class CategoryActivity$$ViewBinder<T extends com.ncwc.shop.model.homepage.CategoryActivity> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131623960, "field 'toolbar_title'");
+    target.toolbar_title = finder.castView(view, 2131623960, "field 'toolbar_title'");
+  }
+
+  @Override public void unbind(T target) {
+    target.toolbar_title = null;
+  }
+}

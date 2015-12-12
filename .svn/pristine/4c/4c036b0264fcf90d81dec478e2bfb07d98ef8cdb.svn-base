@@ -1,0 +1,132 @@
+package com.ncwc.shop.config;
+
+/**
+ * 网络请求的地址类型
+ * Created by admin on 2015/9/1.
+ */
+public class HttpService {
+	public static final String PROTOCOL = "http://";
+	/**
+	 * 服务器域名
+	 */
+	public static final String HOST = "dev.api.nichewoche.com";
+	/**
+	 * 服务器端口号
+	 */
+	public static final String PORT = "80";
+	/**
+	 * 客户端类型
+	 */
+	public static final String ANDROID = "android";
+	/**
+	 * 数据请求编码
+	 */
+	public static final String CODEING = "UTF-8";
+	/**
+	 * 应用上下文完整路径
+	 */
+	public static final String URL_CONTEXTPATH = PROTOCOL + HOST;
+	/**
+	 * 微信登录请求地址
+	 */
+	public static final String URL_LOGINWEIXIN = "https://api.weixin.qq.com/sns/oauth2/access_token";
+	public static final String TYPE_LOGINWEIXIN = "loginweixin";
+	/**
+	 * 获取微信登录的信息
+	 */
+	public static final String URL_MSGWEIXIN = "https://api.weixin.qq.com/sns/userinfo";
+	public static final String TYPE_MSGWEIXIN = "msgweixin";
+	/**
+	 * 获取微博登录后用户的信息
+	 */
+	public static final String URL_MSGWEIBO = "https://api.weibo.com/2/users/show.json";
+	public static final String TYPE_MSGWEIBO = "msgweibo";
+	/**
+	 * 登录
+	 */
+	public static final String URL_LOGIN = URL_CONTEXTPATH + "/user/login/";
+	public static final String TYPE_LOGIN = "login";
+	/**
+	 * 注册
+	 */
+	public static final String URL_REGISTER = URL_CONTEXTPATH + "/user/register/";
+	public static final String TYPE_REGISTER = "register";
+	/**
+	 * 获取验证码
+	 */
+	public static final String URL_GETCODE = URL_CONTEXTPATH + "/send/mobilecode/";
+	public static final String TYPE_GETCODE = "getcode";
+	/**
+	 * 重置密码
+	 */
+	public static final String URL_RESET = URL_CONTEXTPATH + "/user/ reset/";
+	public static final String TYPE_RESET = "reset";
+	/**
+	 * 首页轮播图
+	 */
+	public static final String URL_CAROUAL = URL_CONTEXTPATH + "/rotateimg/list/";
+	public static final String TYPE_CAROUAL = "caroual";
+	/**
+	 * 商品类别
+	 */
+	public static final String URL_COMMENULIST = URL_CONTEXTPATH + "/menu/list/";
+	public static final String TYPE_COMMENULIST = "menulist";
+	/**
+	 * 推广
+	 */
+	public static final String URL_PROM = URL_CONTEXTPATH + "/promotion/list/";
+	public static final String TYPE_PROM = "prom";
+	/**
+	 * 商品列表
+	 */
+	public static final String URL_GOODLIST = URL_CONTEXTPATH + "/goods/list/";
+	public static final String TYPE_GOODLIST = "goodlist";
+	public static final String TYPE_POSI = "1";
+	public static final String TYPE_FLAS = "0";
+	/**
+	 * 商品详情
+	 */
+	public static final String URL_GOODINFO = URL_CONTEXTPATH + "/goods/info/";
+	public static final String TYPE_GOODINFO = "goodinfo";
+	/**
+	 * 收藏商品
+	 */
+	public static final String URL_FAVORITES = URL_CONTEXTPATH + "/favorites/goods/";
+	public static final String TYPE_FAVORITES = "favorites";
+	/**
+	 * 商品评价列表
+	 */
+	public static final String URL_EVALUATE = URL_CONTEXTPATH + "/evaluate/list/";
+	public static final String TYPE_EVALUATE = "evaluate";
+	/**
+	 * 免费试用
+	 */
+	public static final String URL_TRIAL = URL_CONTEXTPATH + "/trial/list/";
+	public static final String TYPE_TRIAL = "trial";
+	public static final int trial = 1;//正在进行往期
+	public static final int old = 2;//往期回顾
+	public static final int begined = 3;//即将开始
+
+
+	/*购物车主页列表*/
+	public static final String URL_SHOPCAR = URL_CONTEXTPATH + "/cart/list/";
+	public static final String TYPE_SHOPCAR = "shopcar";
+	/*购物车删除选中项*/
+	public static final String URL_SHOPCAR_DELETE = URL_CONTEXTPATH + "/cart/del/";
+	public static final String TYPE_SHOPCAR_DELETE = "shopcar_delete";
+	/*购物车选中项移入收藏*/
+	public static final String URL_SHOPCAR_ADDTO_SHOUCANG = URL_CONTEXTPATH + "/cart/favorites/";
+	public static final String TYPE_SHOPCAR_ADDTO_SHOUCANG = "shopcar_toshoucang";
+	/*个人中心获取试用记录*/
+	public static final String URL_PERSONAL_SHIYONGJILU = URL_CONTEXTPATH + "/record/triallist/";
+	public static final String TYPE_PERSONAL_SHIYONGJILU = "personal_shiyong";
+	/*个人中心获取浏览记录*/
+	public static final String URL_PERSONAL_LIULANJILU = URL_CONTEXTPATH + "/record/browse";
+	public static final String TYPE_PERSONAL_LIULANJILU = "personal_liulan";
+	/*个人中心获取收藏记录*/
+	public static final String URL_PERSONAL_SHOUCANGJILU = URL_CONTEXTPATH + "/record/favorites";
+	public static final String TYPE_PERSONAL_SHOUCANGJILU = "personal_shoucang";
+	/*添加到购物车*/
+	public static final String URL_PERSONAL_ADDTOSHOPCAR = URL_CONTEXTPATH + "/cart/add/";
+	public static final String TYPE_PERSONAL_ADDTOSHOPCAR = "personal_addtoshopcar";
+}

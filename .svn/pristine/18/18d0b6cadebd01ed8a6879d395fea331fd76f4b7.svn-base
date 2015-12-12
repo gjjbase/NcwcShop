@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/BackColor">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--可滑动内容-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/common_toolbar"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--订单信息-->
+            <RelativeLayout
+                android:id="@+id/rl_04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <!--订单编号-->
+                <TextView
+                    android:id="@+id/tv_wuliu_numoforder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14dp"
+                    android:text="订单编号：1214321423131"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp"/>
+
+                <!--运送状态-->
+                <TextView
+                    android:id="@+id/tv_wuliu_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_wuliu_numoforder"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="运送中"
+                    android:textColor="@color/rea"
+                    android:textSize="14sp"/>
+
+                <!--分隔线-->
+                <ImageView
+                    android:id="@+id/img_00"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_below="@+id/tv_wuliu_numoforder"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@color/button_material_dark"/>
+
+                <!--商品列表-->
+                <LinearLayout
+                    android:id="@+id/ll_wuliu_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_00"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+                    <!--动态添加信息-->
+                </LinearLayout>
+
+                <!--确认收货-->
+                <TextView
+                    android:id="@+id/tv_wuliu_sure_get"
+                    android:layout_width="80dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ll_wuliu_products"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/rea"
+                    android:gravity="center"
+                    android:text="确定收货"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+
+                <!--分割线-->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_below="@+id/tv_wuliu_sure_get"
+                    android:layout_marginTop="5dp"
+                    android:src="@color/Black"/>
+            </RelativeLayout>
+
+            <!--运单跟踪-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_04"
+                android:layout_marginTop="20dp"
+                android:background="@color/white">
+
+                <!--深色线-->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_alignParentTop="true"
+                    android:src="@color/Black"/>
+
+                <!--信息来源-->
+                <TextView
+                    android:id="@+id/tv_wuliu_msgfrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:text="信息来源：中通快递"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+
+                <!--运单编号-->
+                <TextView
+                    android:id="@+id/tv_wuliu_numofyundan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/tv_wuliu_msgfrom"
+                    android:layout_marginBottom="1dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:text="运单编号：333324352435243523"
+                    android:textColor="@color/Black"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+                <!--分隔线-->
+                <ImageView
+                    android:id="@+id/img_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:layout_below="@+id/tv_wuliu_numofyundan"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@color/button_material_dark"/>
+
+                <!--物流信息列表-->
+                <LinearLayout
+                    android:id="@+id/ll_wuliu_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_10"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+                    <!--动态插入数据-->
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_wuliumsg.xml -->

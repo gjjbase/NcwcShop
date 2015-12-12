@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+    <!--上划线-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_alignParentTop="true"
+        android:src="@color/button_material_dark"/>
+
+    <!--店铺名-->
+    <TextView
+        android:id="@+id/tv_shouhou_storename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="4.3dp"
+        android:text="店铺名称"
+        android:textColor="@color/Black"
+        android:textSize="16sp"/>
+
+    <!--交易成功-->
+    <TextView
+        android:id="@+id/tv_shouhou_trading_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_shouhou_storename"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:text="未通过"
+        android:textColor="@color/rea"
+        android:textSize="13sp"/>
+
+    <!--店铺名称下划线-->
+    <ImageView
+        android:id="@+id/img_20"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_shouhou_storename"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:src="@color/button_material_dark"/>
+
+    <!--商品部分-->
+    <RelativeLayout
+        android:id="@+id/rl_shouhou_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_20"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <!--商品缩略图-->
+        <ImageView
+            android:id="@+id/shouhou_shopicon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <!--商品名称-->
+        <TextView
+            android:id="@+id/shouhou_productname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/shouhou_shopicon"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/shouhou_shopicon"
+            android:text="产品产品产品产品产品产品产品产品产品产品"
+            android:textColor="@color/abc_input_method_navigation_guard"
+            android:textSize="14sp"/>
+
+        <!--产品价格-->
+        <TextView
+            android:id="@+id/shouhou_productprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shouhou_productname"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@+id/shouhou_shopicon"
+            android:text="金额:￥404004"
+            android:textColor="@color/rea"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <!--分隔线-->
+    <ImageView
+        android:id="@+id/img_21"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/rl_shouhou_products"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="3dp"
+        android:src="@color/button_material_dark"/>
+
+    <!--底部按钮-->
+    <!--查看更多-->
+    <TextView
+        android:id="@+id/tv_shouhou_bottom_more"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignBottom="@+id/tv_shouhou_bottom_r_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/look_more"
+        android:textColor="@color/Black"
+        android:textSize="13sp"/>
+    <!--右按钮-->
+    <TextView
+        android:id="@+id/tv_shouhou_bottom_r_btn"
+        android:layout_width="50dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/img_21"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textColor="@color/Black"
+        android:textSize="13sp"/>
+
+    <!--最下方下划线-->
+    <ImageView
+        android:id="@+id/img_22"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/tv_shouhou_bottom_r_btn"
+        android:layout_marginTop="5dp"
+        android:src="@color/button_material_dark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@+id/img_22"
+        android:background="@color/BackColor"/>
+
+</RelativeLayout>

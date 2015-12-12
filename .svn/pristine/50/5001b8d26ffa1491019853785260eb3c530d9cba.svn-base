@@ -1,0 +1,24 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.model.classifica;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class ClassificaFragmnet$$ViewBinder<T extends com.ncwc.shop.model.classifica.ClassificaFragmnet> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131624067, "field 'mToolbar'");
+    target.mToolbar = finder.castView(view, 2131624067, "field 'mToolbar'");
+    view = finder.findRequiredView(source, 2131624077, "field 'viewpager'");
+    target.viewpager = finder.castView(view, 2131624077, "field 'viewpager'");
+    view = finder.findRequiredView(source, 2131624076, "field 'tab_layout'");
+    target.tab_layout = finder.castView(view, 2131624076, "field 'tab_layout'");
+  }
+
+  @Override public void unbind(T target) {
+    target.mToolbar = null;
+    target.viewpager = null;
+    target.tab_layout = null;
+  }
+}

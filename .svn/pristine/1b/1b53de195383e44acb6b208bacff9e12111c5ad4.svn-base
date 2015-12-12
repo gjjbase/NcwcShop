@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!--标题栏-->
+    <include
+        layout="@layout/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
+    <!--我的邀请码-->
+    <RelativeLayout
+        android:id="@+id/rl_00"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/common_toolbar"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_textview">
+
+        <TextView
+            android:id="@+id/tv_05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:gravity="center"
+            android:text="@string/my_yaoqing_code"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <!--邀请码-->
+        <TextView
+            android:id="@+id/tv_yaoqing_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_05"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="666666"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"/>
+
+        <!--复制-->
+        <TextView
+            android:id="@+id/tv_yaoqing_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="56dp"
+            android:text="复制"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <!--邀请数量-->
+    <TextView
+        android:id="@+id/tv_yaoqing_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_00"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="邀请记录（4）"
+        android:textColor="@color/Black"
+        android:textSize="16sp"/>
+
+    <!--邀请记录-->
+    <ScrollView
+        android:id="@+id/sl_00"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@+id/tv_yaoqing_num"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_edittext"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_yaoqing_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--邀请记录表头-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <!--时间-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/time"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+
+                <!--用户名-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/username"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+
+                <!--获得积分-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/get_vantages"
+                    android:textColor="@color/Black"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!--动态插入记录内容-->
+        </LinearLayout>
+    </ScrollView>
+
+    <!--分享文字标示-->
+    <TextView
+        android:id="@+id/tv_06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sl_00"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/share_to_friend"
+        android:textColor="@color/circle"
+        android:textSize="12sp"/>
+
+    <!--左侧下划线-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:layout_alignBottom="@+id/tv_06"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@+id/tv_06"
+        android:src="@color/circle"/>
+
+    <!--右侧下划线-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:layout_alignBottom="@+id/tv_06"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/tv_06"
+        android:src="@color/circle"/>
+
+    <!--分享平台-->
+    <GridView
+        android:id="@+id/gv_yaoqing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_06"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:horizontalSpacing="30dp"
+        android:numColumns="3"
+        android:verticalSpacing="10dp"/>
+
+</RelativeLayout><!-- From: file:/Users/gaojiangjian/AndroidStudioProjects/NcwcShop/app/src/main/res/layout/activity_myyaoqing.xml -->

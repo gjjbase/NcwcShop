@@ -1,0 +1,30 @@
+// Generated code from Butter Knife. Do not modify!
+package com.ncwc.shop.adapter;
+
+import android.view.View;
+import butterknife.ButterKnife.Finder;
+import butterknife.ButterKnife.ViewBinder;
+
+public class EvaluateAdapter$CallViewholder$$ViewBinder<T extends com.ncwc.shop.adapter.EvaluateAdapter.CallViewholder> implements ViewBinder<T> {
+  @Override public void bind(final Finder finder, final T target, Object source) {
+    View view;
+    view = finder.findRequiredView(source, 2131558568, "field 'grd_botm'");
+    target.grd_botm = finder.castView(view, 2131558568, "field 'grd_botm'");
+    view = finder.findRequiredView(source, 2131558566, "field 'geval_addtime'");
+    target.geval_addtime = finder.castView(view, 2131558566, "field 'geval_addtime'");
+    view = finder.findRequiredView(source, 2131558567, "field 'evaluate'");
+    target.evaluate = finder.castView(view, 2131558567, "field 'evaluate'");
+    view = finder.findRequiredView(source, 2131558565, "field 'member_name'");
+    target.member_name = finder.castView(view, 2131558565, "field 'member_name'");
+    view = finder.findRequiredView(source, 2131558564, "field 'member_avatar'");
+    target.member_avatar = finder.castView(view, 2131558564, "field 'member_avatar'");
+  }
+
+  @Override public void unbind(T target) {
+    target.grd_botm = null;
+    target.geval_addtime = null;
+    target.evaluate = null;
+    target.member_name = null;
+    target.member_avatar = null;
+  }
+}

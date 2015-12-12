@@ -1,0 +1,52 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+import android.widget.GridView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapterInject;
+import com.ncwc.shop.interactor.ViewHolderInject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/9.
+ */
+public class FreeRepAdapter extends BaseAdapterInject {
+    public FreeRepAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int getConvertViewId(int position) {
+        return R.layout.freerepadapter_item;
+    }
+
+    @Override
+    public int getCount() {
+        return 4;
+    }
+
+    @Override
+    public ViewHolderInject getNewHolder(int position) {
+        return new ViewHolder();
+    }
+    class ViewHolder extends ViewHolderInject{
+        @Bind(R.id.grd_botm)
+        GridView grd_botm;
+        DetailCartAdapter adapter;
+        public void loadData(JSONObject object, int position) throws JSONException {
+            adapter = new DetailCartAdapter(mContext);
+            try {
+                adapter.setData(new JSONArray());
+            } catch (JSONException e) {
+
+            }
+            grd_botm.setAdapter(adapter);
+        }
+    }
+}

@@ -1,0 +1,44 @@
+package com.ncwc.shop.adapter;
+
+import android.content.Context;
+import android.widget.ImageView;
+
+import com.ncwc.shop.R;
+import com.ncwc.shop.base.BaseAdapterInject;
+import com.ncwc.shop.interactor.ViewHolderInject;
+import com.ncwc.shop.util.AsyncLoadingPicture;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.Bind;
+
+/**
+ * Created by admin on 2015/10/4.
+ */
+public class FineComAdapter extends BaseAdapterInject {
+    public FineComAdapter(Context context) {
+        super(context);
+    }
+
+    @Override
+    public int getConvertViewId(int position) {
+        return R.layout.activity_fineitem;
+    }
+
+    public ViewHolderInject getNewHolder(int position) {
+        return new ViewHolder();
+    }
+
+    class ViewHolder extends ViewHolderInject {
+        @Bind(R.id.img_fineitem)
+        ImageView img_fineitem;
+
+        @Override
+        public void loadData(JSONObject object, int position) throws JSONException {
+            // TODO Auto-generated method stub
+            AsyncLoadingPicture.getInstance(mContext).LoadPicture(object.getString("img"), img_fineitem);
+        }
+
+    }
+}
